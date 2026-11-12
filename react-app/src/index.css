@@ -1,0 +1,15 @@
+
+@import "tailwindcss";
+
+/* Activar modo oscuro mediante la clase .dark */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* Estilos globales */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  min-width: 320px;
+  min-height: 100vh;
+}

@@ -23,12 +23,13 @@ jobs:
       run:
         working-directory: react-app
 
+
     steps:
-      # Descargar React desde la rama de desarrollo
+      # Descargar React desde main
       - name: Obtener codigo React
         uses: actions/checkout@v4
         with:
-          ref: react-redesign
+          ref: main
           persist-credentials: false
 
       # Preparar Node.js
