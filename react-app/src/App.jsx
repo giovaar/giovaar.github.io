@@ -1,30 +1,30 @@
 
+import Navbar from './components/Navbar'
+import Hero from './components/Hero'
+import Footer from './components/Footer'
+
+import About from './sections/About'
+import Skills from './sections/Skills'
+import Projects from './sections/Projects'
+import Experience from './sections/Experience'
+import Contact from './sections/Contact'
+
 function App() {
   return (
-    <main>
-      <h1>Hola, soy Giovanny Arpaia 👋</h1>
+    <>
+      <Navbar />
 
-      <h2>Bienvenido a GIO Portfolio</h2>
+      <main>
+        <Hero />
+        <About />
+        <Skills />
+        <Projects />
+        <Experience />
+        <Contact />
+      </main>
 
-      <p>
-        Soy estudiante de Ingeniería de Sistemas
-        y Computacional en la Universidad
-        Tecnológica de Panamá.
-      </p>
-
-      <p>
-        Me interesa el desarrollo de software,
-        la programación y el análisis de datos.
-      </p>
-
-      <a
-        href="https://github.com/giovaar"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        Visitar mi GitHub
-      </a>
-    </main>
+      <Footer />
+    </>
   )
 }
 
