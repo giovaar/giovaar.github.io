@@ -1,5 +1,6 @@
 
 import { useState } from 'react'
+import { Menu, X, GitBranch } from 'lucide-react'
 import ThemeToggle from './ThemeToggle'
 
 const navLinks = [
@@ -19,7 +20,7 @@ function Navbar() {
   }
 
   return (
-    <header className="sticky top-0 z-50 border-b border-slate-200 bg-white/95 backdrop-blur-md dark:border-slate-800 dark:bg-slate-950/95">
+    <header className="sticky top-0 z-50 border-b border-slate-200 bg-white/95 backdrop-blur-md transition-colors duration-300 dark:border-slate-800 dark:bg-slate-950/95">
       <nav
         className="mx-auto flex h-20 max-w-6xl items-center justify-between px-6"
         aria-label="Navegación principal"
@@ -30,7 +31,7 @@ function Navbar() {
           onClick={closeMenu}
           className="text-2xl font-extrabold tracking-tight text-slate-900 dark:text-white"
         >
-          GIO<span className="text-indigo-600">.</span>
+          GIO<span className="text-indigo-600 dark:text-indigo-400">.</span>
         </a>
 
         {/* Navegación de escritorio */}
@@ -47,39 +48,40 @@ function Navbar() {
           ))}
         </ul>
 
-        {/* Botones de la derecha */}
+        {/* Botones del Navbar */}
         <div className="flex items-center gap-3">
-
-          {/* Cambiar tema */}
           <ThemeToggle />
 
-          {/* GitHub */}
+          {/* Enlace a GitHub */}
           <a
             href="https://github.com/giovaar"
             target="_blank"
             rel="noopener noreferrer"
-            className="hidden rounded-xl bg-indigo-600 px-4 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-indigo-700 sm:inline-flex"
+            className="hidden items-center gap-2 rounded-xl bg-indigo-600 px-4 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-indigo-700 sm:inline-flex"
           >
-            GitHub
+            <GitBranch size={18} aria-hidden="true" />
+            <span>GitHub</span>
           </a>
 
-          {/* Menú móvil */}
+          {/* Botón de menú móvil */}
           <button
             type="button"
             onClick={() => setMenuOpen(!menuOpen)}
             aria-label={menuOpen ? 'Cerrar menú' : 'Abrir menú'}
             aria-expanded={menuOpen}
             aria-controls="mobile-menu"
-            className="rounded-lg border border-slate-200 p-2 text-slate-800 hover:bg-slate-100 lg:hidden dark:border-slate-700 dark:text-white dark:hover:bg-slate-800"
+            className="flex h-11 w-11 items-center justify-center rounded-xl border border-slate-200 text-slate-800 transition-colors hover:bg-slate-100 lg:hidden dark:border-slate-700 dark:text-white dark:hover:bg-slate-800"
           >
-            <span aria-hidden="true" className="text-2xl leading-none">
-              {menuOpen ? '✕' : '☰'}
-            </span>
+            {menuOpen ? (
+              <X size={22} strokeWidth={2} aria-hidden="true" />
+            ) : (
+              <Menu size={22} strokeWidth={2} aria-hidden="true" />
+            )}
           </button>
         </div>
       </nav>
 
-      {/* Menú desplegable móvil */}
+      {/* Menú para celulares */}
       {menuOpen && (
         <div
           id="mobile-menu"
@@ -98,6 +100,19 @@ function Navbar() {
               </li>
             ))}
           </ul>
+
+          <div className="mx-auto mt-4 max-w-6xl border-t border-slate-200 pt-4 sm:hidden dark:border-slate-800">
+            <a
+              href="https://github.com/giovaar"
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={closeMenu}
+              className="flex items-center justify-center gap-2 rounded-xl bg-indigo-600 px-4 py-3 font-semibold text-white transition-colors hover:bg-indigo-700"
+            >
+              <GitBranch size={18} aria-hidden="true" />
+              Ver mi GitHub
+            </a>
+          </div>
         </div>
       )}
     </header>

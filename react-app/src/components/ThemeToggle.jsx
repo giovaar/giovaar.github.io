@@ -1,5 +1,6 @@
 
 import { useEffect, useState } from 'react'
+import { Moon, Sun } from 'lucide-react'
 
 function getInitialTheme() {
   const savedTheme = localStorage.getItem('gio-theme')
@@ -41,11 +42,18 @@ function ThemeToggle() {
           : 'Activar modo oscuro'
       }
       aria-pressed={theme === 'dark'}
-      className="rounded-xl border border-slate-200 bg-white p-2.5 text-slate-700 transition-colors hover:bg-slate-100 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-100 dark:hover:bg-slate-700"
+      title={
+        theme === 'dark'
+          ? 'Cambiar a modo claro'
+          : 'Cambiar a modo oscuro'
+      }
+      className="flex h-11 w-11 items-center justify-center rounded-xl border border-slate-200 bg-white text-slate-700 transition-all duration-300 hover:bg-slate-100 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-100 dark:hover:bg-slate-700"
     >
-      <span aria-hidden="true">
-        {theme === 'dark' ? '☀️' : '🌙'}
-      </span>
+      {theme === 'dark' ? (
+        <Sun size={21} strokeWidth={2} aria-hidden="true" />
+      ) : (
+        <Moon size={21} strokeWidth={2} aria-hidden="true" />
+      )}
     </button>
   )
 }
