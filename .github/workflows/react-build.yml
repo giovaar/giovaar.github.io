@@ -1,0 +1,52 @@
+
+name: React Portfolio - Build
+
+# Ejecutar al subir cambios a la rama de desarrollo
+on:
+  push:
+    branches:
+      - react-redesign
+
+  workflow_dispatch:
+
+# Permisos mínimos: solo leer el repositorio
+permissions:
+  contents: read
+
+jobs:
+  build:
+    name: Compilar portafolio React
+    runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        working-directory: react-app
+
+    steps:
+      # Descargar el código del repositorio
+      - name: Obtener código
+        uses: actions/checkout@v4
+
+      # Preparar Node.js
+      - name: Configurar Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+          cache-dependency-path: react-app/package-lock.json
+
+      # Instalar dependencias
+      - name: Instalar dependencias
+        run: npm ci
+
+      # Compilar React con Vite
+      - name: Generar versión de producción
+        run: npm run build
+
+      # Guardar los archivos compilados como artefacto
+      - name: Guardar compilación
+        uses: actions/upload-artifact@v4
+        with:
+          name: gio-portfolio-react
+          path: react-app/dist/
+          retention-days: 7
