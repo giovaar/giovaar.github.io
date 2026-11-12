@@ -1,0 +1,72 @@
+
+name: GIO Portfolio - Deploy
+
+# Ejecutar manualmente desde GitHub Actions
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: github-pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    name: Compilar React
+    runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        working-directory: react-app
+
+    steps:
+      # Descargar React desde la rama de desarrollo
+      - name: Obtener codigo React
+        uses: actions/checkout@v4
+        with:
+          ref: react-redesign
+          persist-credentials: false
+
+      # Preparar Node.js
+      - name: Configurar Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+          cache-dependency-path: react-app/package-lock.json
+
+      # Instalar dependencias
+      - name: Instalar dependencias
+        run: npm ci
+
+      # Generar archivos de produccion
+      - name: Compilar portafolio
+        run: npm run build
+
+      # Configurar GitHub Pages
+      - name: Preparar GitHub Pages
+        uses: actions/configure-pages@v5
+
+      # Subir archivos compilados
+      - name: Subir archivos de la web
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: react-app/dist
+
+  deploy:
+    name: Publicar portafolio
+    needs: build
+    runs-on: ubuntu-latest
+
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    steps:
+      - name: Publicar en GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
