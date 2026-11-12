@@ -1,7 +1,7 @@
 
 name: GIO Portfolio - Deploy
 
-# Solo se ejecuta manualmente desde GitHub Actions
+# Ejecutar manualmente desde GitHub Actions
 on:
   workflow_dispatch:
 
@@ -12,7 +12,7 @@ permissions:
 
 concurrency:
   group: github-pages
-  cancel-in-progress: true
+  cancel-in-progress: false
 
 jobs:
   build:
@@ -24,9 +24,14 @@ jobs:
         working-directory: react-app
 
     steps:
-      - name: Descargar repositorio
+      # Descargar React desde la rama de desarrollo
+      - name: Obtener codigo React
         uses: actions/checkout@v4
+        with:
+          ref: react-redesign
+          persist-credentials: false
 
+      # Preparar Node.js
       - name: Configurar Node.js
         uses: actions/setup-node@v4
         with:
@@ -34,15 +39,19 @@ jobs:
           cache: npm
           cache-dependency-path: react-app/package-lock.json
 
+      # Instalar dependencias
       - name: Instalar dependencias
         run: npm ci
 
+      # Generar archivos de produccion
       - name: Compilar portafolio
         run: npm run build
 
+      # Configurar GitHub Pages
       - name: Preparar GitHub Pages
         uses: actions/configure-pages@v5
 
+      # Subir archivos compilados
       - name: Subir archivos de la web
         uses: actions/upload-pages-artifact@v4
         with:
