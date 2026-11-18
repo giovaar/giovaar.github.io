@@ -1,122 +1,152 @@
 
-import { useState } from 'react'
-import { Menu, X, GitBranch } from 'lucide-react'
-import ThemeToggle from './ThemeToggle'
+import { useState } from "react";
+import { useTranslation } from "react-i18next";
+import { motion, AnimatePresence, useReducedMotion } from "motion/react";
+import {
+  Compass,
+  Menu,
+  X,
+  GitBranch,
+  ExternalLink,
+} from "lucide-react";
 
-const navLinks = [
-  { name: 'Inicio', href: '#inicio' },
-  { name: 'Sobre mí', href: '#sobre-mi' },
-  { name: 'Habilidades', href: '#habilidades' },
-  { name: 'Proyectos', href: '#proyectos' },
-  { name: 'Experiencia', href: '#experiencia' },
-  { name: 'Contacto', href: '#contacto' },
-]
+import ThemeToggle from "./ThemeToggle";
+import LanguageSwitcher from "./LanguageSwitcher";
 
-function Navbar() {
-  const [menuOpen, setMenuOpen] = useState(false)
+const navigation = [
+  { key: "home", href: "#inicio" },
+  { key: "about", href: "#sobre-mi" },
+  { key: "skills", href: "#habilidades" },
+  { key: "projects", href: "#proyectos" },
+  { key: "experience", href: "#experiencia" },
+  { key: "contact", href: "#contacto" },
+];
 
-  function closeMenu() {
-    setMenuOpen(false)
-  }
+export default function Navbar() {
+  const { t } = useTranslation();
+  const [menuOpen, setMenuOpen] = useState(false);
+  const reduceMotion = useReducedMotion();
+
+  const closeMenu = () => setMenuOpen(false);
 
   return (
-    <header className="sticky top-0 z-50 border-b border-slate-200 bg-white/95 backdrop-blur-md transition-colors duration-300 dark:border-slate-800 dark:bg-slate-950/95">
+    <header className="sticky top-0 z-50 border-b border-[#C9AA70]/25 bg-[#101B25]/95 shadow-lg shadow-black/10 backdrop-blur-xl">
       <nav
-        className="mx-auto flex h-20 max-w-6xl items-center justify-between px-6"
-        aria-label="Navegación principal"
+        aria-label={t("common.language") === "Idioma" ? "Navegación principal" : "Main navigation"}
+        className="mx-auto flex max-w-7xl items-center justify-between gap-3 px-4 py-3 sm:px-6 lg:px-8"
       >
         {/* Logo */}
         <a
           href="#inicio"
           onClick={closeMenu}
-          className="text-2xl font-extrabold tracking-tight text-slate-900 dark:text-white"
+          className="group flex shrink-0 items-center gap-3 rounded-lg"
+          aria-label="GIO Portfolio - Home"
         >
-          GIO<span className="text-indigo-600 dark:text-indigo-400">.</span>
+          <span className="flex h-11 w-11 items-center justify-center rounded-xl border border-[#C9AA70]/55 bg-[#203C35] transition-all duration-300 group-hover:rotate-12 group-hover:border-[#C9AA70] group-hover:shadow-[0_0_18px_rgba(201,170,112,0.25)]">
+            <Compass
+              size={23}
+              strokeWidth={1.6}
+              className="text-[#C9AA70]"
+            />
+          </span>
+
+          <span className="font-['Cinzel'] text-xl font-bold tracking-[0.12em] text-[#EDE5D4]">
+            GIO<span className="text-[#C9AA70]">.</span>
+          </span>
         </a>
 
-        {/* Navegación de escritorio */}
-        <ul className="hidden items-center gap-6 lg:flex">
-          {navLinks.map((link) => (
-            <li key={link.href}>
-              <a
-                href={link.href}
-                className="text-sm font-medium text-slate-600 transition-colors hover:text-indigo-600 dark:text-slate-300 dark:hover:text-indigo-400"
-              >
-                {link.name}
-              </a>
-            </li>
+        {/* Navegación escritorio */}
+        <div className="hidden items-center gap-1 xl:flex">
+          {navigation.map((item) => (
+            <a
+              key={item.key}
+              href={item.href}
+              className="group relative rounded-md px-2.5 py-2 text-sm font-medium text-[#D0D9D3] transition-colors hover:text-[#E8C88D]"
+            >
+              {t(`nav.${item.key}`)}
+
+              <span className="absolute bottom-0 left-2.5 right-2.5 h-px origin-center scale-x-0 bg-[#C9AA70] transition-transform duration-300 group-hover:scale-x-100" />
+            </a>
           ))}
-        </ul>
+        </div>
 
-        {/* Botones del Navbar */}
-        <div className="flex items-center gap-3">
-          <ThemeToggle />
+        {/* Acciones */}
+        <div className="flex items-center gap-2">
+          {/* Selector ES / EN / IT */}
+          <LanguageSwitcher />
 
-          {/* Enlace a GitHub */}
+          {/* GitHub */}
           <a
             href="https://github.com/giovaar"
             target="_blank"
             rel="noopener noreferrer"
-            className="hidden items-center gap-2 rounded-xl bg-indigo-600 px-4 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-indigo-700 sm:inline-flex"
+            className="hidden items-center gap-2 rounded-lg border border-[#C9AA70]/50 bg-[#C9AA70]/10 px-3 py-2 text-sm font-semibold text-[#E8C88D] transition-all hover:border-[#C9AA70] hover:bg-[#C9AA70]/20 lg:inline-flex"
+            aria-label={`${t("common.github")} (${t("common.openNewTab")})`}
           >
-            <GitBranch size={18} aria-hidden="true" />
-            <span>GitHub</span>
+            <GitBranch size={16} />
+            GitHub
+            <ExternalLink size={13} />
           </a>
 
-          {/* Botón de menú móvil */}
+          {/* Modo claro / oscuro */}
+          <div className="rounded-lg border border-[#C9AA70]/25 bg-[#203C35]/70">
+            <ThemeToggle />
+          </div>
+
+          {/* Menú móvil */}
           <button
             type="button"
-            onClick={() => setMenuOpen(!menuOpen)}
-            aria-label={menuOpen ? 'Cerrar menú' : 'Abrir menú'}
+            onClick={() => setMenuOpen((prev) => !prev)}
+            aria-label={menuOpen ? "Cerrar menú" : "Abrir menú"}
             aria-expanded={menuOpen}
-            aria-controls="mobile-menu"
-            className="flex h-11 w-11 items-center justify-center rounded-xl border border-slate-200 text-slate-800 transition-colors hover:bg-slate-100 lg:hidden dark:border-slate-700 dark:text-white dark:hover:bg-slate-800"
+            aria-controls="gio-mobile-menu"
+            className="flex h-11 w-11 items-center justify-center rounded-lg border border-[#C9AA70]/40 text-[#EDE5D4] transition-colors hover:bg-[#203C35] xl:hidden"
           >
-            {menuOpen ? (
-              <X size={22} strokeWidth={2} aria-hidden="true" />
-            ) : (
-              <Menu size={22} strokeWidth={2} aria-hidden="true" />
-            )}
+            {menuOpen ? <X size={22} /> : <Menu size={22} />}
           </button>
         </div>
       </nav>
 
-      {/* Menú para celulares */}
-      {menuOpen && (
-        <div
-          id="mobile-menu"
-          className="border-t border-slate-200 bg-white px-6 py-5 lg:hidden dark:border-slate-800 dark:bg-slate-950"
-        >
-          <ul className="mx-auto flex max-w-6xl flex-col gap-2">
-            {navLinks.map((link) => (
-              <li key={link.href}>
+      {/* Menú móvil desplegable */}
+      <AnimatePresence>
+        {menuOpen && (
+          <motion.div
+            id="gio-mobile-menu"
+            initial={reduceMotion ? false : { opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: "auto" }}
+            exit={reduceMotion ? undefined : { opacity: 0, height: 0 }}
+            transition={{ duration: reduceMotion ? 0 : 0.2 }}
+            className="overflow-hidden border-t border-[#C9AA70]/20 bg-[#101B25] xl:hidden"
+          >
+            <div className="mx-auto flex max-w-7xl flex-col gap-1 px-4 py-4 sm:px-6">
+              {navigation.map((item) => (
                 <a
-                  href={link.href}
+                  key={item.key}
+                  href={item.href}
                   onClick={closeMenu}
-                  className="block rounded-lg px-4 py-3 font-medium text-slate-700 transition-colors hover:bg-indigo-50 hover:text-indigo-600 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-indigo-400"
+                  className="rounded-lg border border-transparent px-4 py-3 text-sm font-medium text-[#EDE5D4] hover:border-[#C9AA70]/25 hover:bg-[#203C35]"
                 >
-                  {link.name}
+                  {t(`nav.${item.key}`)}
                 </a>
-              </li>
-            ))}
-          </ul>
+              ))}
 
-          <div className="mx-auto mt-4 max-w-6xl border-t border-slate-200 pt-4 sm:hidden dark:border-slate-800">
-            <a
-              href="https://github.com/giovaar"
-              target="_blank"
-              rel="noopener noreferrer"
-              onClick={closeMenu}
-              className="flex items-center justify-center gap-2 rounded-xl bg-indigo-600 px-4 py-3 font-semibold text-white transition-colors hover:bg-indigo-700"
-            >
-              <GitBranch size={18} aria-hidden="true" />
-              Ver mi GitHub
-            </a>
-          </div>
-        </div>
-      )}
+              <div className="my-2 h-px bg-[#C9AA70]/20" />
+
+              <a
+                href="https://github.com/giovaar"
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={closeMenu}
+                className="flex items-center justify-center gap-2 rounded-lg border border-[#C9AA70]/50 bg-[#203C35] px-4 py-3 text-sm font-semibold text-[#E8C88D]"
+              >
+                <GitBranch size={17} />
+                GitHub
+                <ExternalLink size={14} />
+              </a>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </header>
-  )
+  );
 }
-
-export default Navbar

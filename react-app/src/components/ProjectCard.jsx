@@ -1,5 +1,6 @@
 
 import { motion, useReducedMotion } from 'motion/react'
+import { useTranslation } from 'react-i18next'
 
 import {
   Code2,
@@ -11,25 +12,24 @@ import {
   Play,
 } from 'lucide-react'
 
-// Seleccionar icono según el tipo de proyecto
-function getProjectIcon(category) {
+function ProjectCategoryIcon({ category }) {
   switch (category) {
     case 'Videojuegos':
-      return Gamepad2
+      return <Gamepad2 size={24} strokeWidth={1.8} aria-hidden="true" />
 
     case 'Web':
-      return Code2
+      return <Code2 size={24} strokeWidth={1.8} aria-hidden="true" />
 
     case 'Software':
-      return Database
+      return <Database size={24} strokeWidth={1.8} aria-hidden="true" />
 
     default:
-      return Code2
+      return <Code2 size={24} strokeWidth={1.8} aria-hidden="true" />
   }
 }
 
 function ProjectCard({ project }) {
-  const ProjectIcon = getProjectIcon(project.category)
+  const { t } = useTranslation()
   const reduceMotion = useReducedMotion()
 
   return (
@@ -54,15 +54,11 @@ function ProjectCard({ project }) {
       {/* Icono y categoría */}
       <div className="mb-6 flex items-center justify-between">
         <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-indigo-50 text-indigo-600 dark:bg-indigo-500/10 dark:text-indigo-400">
-          <ProjectIcon
-            size={24}
-            strokeWidth={1.8}
-            aria-hidden="true"
-          />
+          <ProjectCategoryIcon category={project.category} />
         </div>
 
         <span className="rounded-full bg-slate-100 px-3 py-1 text-xs font-semibold text-slate-600 dark:bg-slate-700 dark:text-slate-300">
-          {project.category}
+          {t(project.categoryKey)}
         </span>
       </div>
 
@@ -73,7 +69,7 @@ function ProjectCard({ project }) {
 
       {/* Descripción */}
       <p className="mt-4 flex-1 leading-relaxed text-slate-600 dark:text-slate-300">
-        {project.description}
+        {t(project.descriptionKey)}
       </p>
 
       {/* Tecnologías */}
@@ -105,7 +101,7 @@ function ProjectCard({ project }) {
             project.stars !== undefined && (
               <span className="flex items-center gap-1.5">
                 <Star size={15} aria-hidden="true" />
-                {project.stars} estrellas
+                {t('projects.card.stars', { count: project.stars })}
               </span>
             )}
         </div>
@@ -122,7 +118,7 @@ function ProjectCard({ project }) {
           className="inline-flex items-center gap-2 text-sm font-semibold text-indigo-600 transition-colors hover:text-indigo-800 dark:text-indigo-400 dark:hover:text-indigo-300"
         >
           <GitBranch size={17} aria-hidden="true" />
-          Ver código
+          {t('projects.card.viewCode')}
           <ExternalLink size={14} aria-hidden="true" />
         </a>
 
@@ -135,13 +131,15 @@ function ProjectCard({ project }) {
             className="inline-flex items-center gap-2 text-sm font-semibold text-emerald-700 transition-colors hover:text-emerald-800 dark:text-emerald-400 dark:hover:text-emerald-300"
           >
             <Play size={17} aria-hidden="true" />
-            {project.category === 'Videojuegos'
-              ? 'Jugar ahora'
-              : 'Ver demo'}
+            {t(
+              project.category === 'Videojuegos'
+                ? 'projects.card.playNow'
+                : 'projects.card.viewDemo'
+            )}
           </a>
         ) : (
           <span className="text-xs text-slate-400 dark:text-slate-500">
-            Demo no disponible
+            {t('projects.card.noDemo')}
           </span>
         )}
       </div>

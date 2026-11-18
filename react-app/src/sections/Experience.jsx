@@ -1,5 +1,6 @@
 
 import { motion, useReducedMotion } from 'motion/react'
+import { useTranslation } from 'react-i18next'
 import {
   Award,
   ExternalLink,
@@ -15,43 +16,41 @@ const documentsBase = `${import.meta.env.BASE_URL}documents/`
 
 const cvFiles = [
   {
-    label: 'CV Español',
+    labelKey: 'experience.cv.spanish',
     filename: 'CV_Giovanny_Arpaia.pdf',
-    language: 'Español',
+    languageKey: 'experience.languages.spanish',
   },
   {
-    label: 'CV English',
+    labelKey: 'experience.cv.english',
     filename: 'CV_Giovanny_Arpaia_English.pdf',
-    language: 'English',
+    languageKey: 'experience.languages.english',
   },
 ]
 
 const experiences = [
   {
     id: 1,
-    title: 'Tutor de Cálculo I',
+    titleKey: 'experience.entries.calculusTutor.title',
     organization: 'Universidad Tecnológica de Panamá',
-    period: 'Marzo 2026 - Actualidad',
-    description:
-      'Apoyo académico a estudiantes universitarios en conceptos matemáticos, resolución de ejercicios y preparación para evaluaciones. Desarrollo de habilidades de comunicación y enseñanza.',
+    periodKey: 'experience.entries.calculusTutor.period',
+    descriptionKey: 'experience.entries.calculusTutor.description',
   },
 ]
 
 const education = [
   {
     id: 1,
-    title: 'Ingeniería de Sistemas y Computación',
+    titleKey: 'experience.education.systemsEngineering.title',
     institution: 'Universidad Tecnológica de Panamá',
-    period: 'En curso',
-    description:
-      'Formación en programación, estructuras de datos, bases de datos, ingeniería de software y tecnologías computacionales.',
+    periodKey: 'experience.education.systemsEngineering.period',
+    descriptionKey: 'experience.education.systemsEngineering.description',
   },
   {
     id: 2,
-    title: 'Bachiller en Ciencias',
+    titleKey: 'experience.education.scienceHighSchool.title',
     institution: 'Colegio Alejandro Humboldt, Venezuela',
-    period: '2020',
-    description: 'Educación secundaria con orientación científica.',
+    periodKey: 'experience.education.scienceHighSchool.period',
+    descriptionKey: 'experience.education.scienceHighSchool.description',
   },
 ]
 
@@ -60,7 +59,7 @@ const certifications = [
   {
     id: 1,
     title: 'Data Science Essentials with Python',
-    institution: 'Cisco Networking Academy y UTP',
+    institutionKey: 'experience.certifications.ciscoUtp',
     year: '2026',
     file:
       'Data_Science_Essentials_with_Python_certificate_giovanny-arpaia-utp-ac-pa_70e192e5-2443-4f10-8d53-d4b596bf0598.pdf',
@@ -68,7 +67,7 @@ const certifications = [
   {
     id: 2,
     title: 'Python Essentials 1',
-    institution: 'Cisco Networking Academy y UTP',
+    institutionKey: 'experience.certifications.ciscoUtp',
     year: '2026',
     file:
       'Python_Essentials_1_certificate_giovanny-arpaia-utp-ac-pa_225e5f12-e113-458d-aea6-7d65437761ec.pdf',
@@ -76,7 +75,7 @@ const certifications = [
   {
     id: 3,
     title: 'Python Essentials 2',
-    institution: 'Cisco Networking Academy y UTP',
+    institutionKey: 'experience.certifications.ciscoUtp',
     year: '2026',
     file:
       'Python_Essentials_2_certificate_giovanny-arpaia-utp-ac-pa_45d48f39-eef2-4e68-b810-8822d05c810e.pdf',
@@ -91,25 +90,26 @@ const certifications = [
   {
     id: 5,
     title: 'Inglés A2',
-    institution: 'Certificación de idioma',
+    institutionKey: 'experience.certifications.languageCredential',
     year: '',
     file: 'Certificado_A2.pdf',
   },
   {
     id: 6,
     title: 'Computación Básica',
-    institution: 'Diploma de formación',
+    institutionKey: 'experience.certifications.basicTraining',
     year: '',
     file: 'diploma-computacion-basica.pdf',
   },
 ]
 
 const languages = [
-  { name: 'Español', level: 'Nativo' },
-  { name: 'Inglés', level: 'A2 · En desarrollo' },
+  { nameKey: 'experience.languages.spanish', levelKey: 'experience.languages.native' },
+  { nameKey: 'experience.languages.english', levelKey: 'experience.languages.englishLevel' },
 ]
 
 function Experience() {
+  const { t } = useTranslation()
   const reduceMotion = useReducedMotion()
 
   // Efecto de aparición al desplazarse
@@ -132,17 +132,15 @@ function Experience() {
         {/* Encabezado */}
         <motion.div {...reveal} className="max-w-3xl">
           <span className="text-sm font-bold uppercase tracking-widest text-indigo-600 dark:text-indigo-400">
-            Mi trayectoria
+            {t('experience.eyebrow')}
           </span>
 
           <h2 className="mt-4 text-4xl font-extrabold tracking-tight text-slate-900 md:text-5xl dark:text-white">
-            Educación y experiencia
+            {t('experience.title')}
           </h2>
 
           <p className="mt-6 text-lg leading-relaxed text-slate-600 dark:text-slate-300">
-            Mi formación, experiencia académica y preparación
-            profesional mientras continúo desarrollándome
-            en el mundo de la tecnología.
+            {t('experience.subtitle')}
           </p>
         </motion.div>
 
@@ -154,7 +152,7 @@ function Experience() {
               className="text-indigo-600 dark:text-indigo-400"
               aria-hidden="true"
             />
-            Experiencia
+            {t('experience.sections.experience')}
           </h3>
 
           <div className="grid gap-6">
@@ -164,11 +162,11 @@ function Experience() {
                 className="rounded-2xl border border-slate-200 bg-white p-7 shadow-sm dark:border-slate-700 dark:bg-slate-900"
               >
                 <span className="text-sm font-semibold text-indigo-600 dark:text-indigo-400">
-                  {item.period}
+                  {t(item.periodKey)}
                 </span>
 
                 <h4 className="mt-3 text-xl font-bold text-slate-900 dark:text-white">
-                  {item.title}
+                  {t(item.titleKey)}
                 </h4>
 
                 <p className="mt-2 font-medium text-slate-700 dark:text-slate-200">
@@ -176,7 +174,7 @@ function Experience() {
                 </p>
 
                 <p className="mt-4 leading-relaxed text-slate-600 dark:text-slate-300">
-                  {item.description}
+                  {t(item.descriptionKey)}
                 </p>
               </article>
             ))}
@@ -191,7 +189,7 @@ function Experience() {
               className="text-indigo-600 dark:text-indigo-400"
               aria-hidden="true"
             />
-            Educación
+            {t('experience.sections.education')}
           </h3>
 
           <div className="grid gap-6 md:grid-cols-2">
@@ -201,11 +199,11 @@ function Experience() {
                 className="rounded-2xl border border-slate-200 bg-white p-7 shadow-sm dark:border-slate-700 dark:bg-slate-900"
               >
                 <span className="text-sm font-semibold text-indigo-600 dark:text-indigo-400">
-                  {item.period}
+                  {t(item.periodKey)}
                 </span>
 
                 <h4 className="mt-3 text-xl font-bold text-slate-900 dark:text-white">
-                  {item.title}
+                  {t(item.titleKey)}
                 </h4>
 
                 <p className="mt-2 font-medium text-slate-700 dark:text-slate-200">
@@ -213,7 +211,7 @@ function Experience() {
                 </p>
 
                 <p className="mt-4 leading-relaxed text-slate-600 dark:text-slate-300">
-                  {item.description}
+                  {t(item.descriptionKey)}
                 </p>
               </article>
             ))}
@@ -229,11 +227,11 @@ function Experience() {
                 className="text-indigo-600 dark:text-indigo-400"
                 aria-hidden="true"
               />
-              Certificaciones
+              {t('experience.sections.certifications')}
             </h3>
 
             <span className="text-sm text-slate-500 dark:text-slate-400">
-              {certifications.length} certificados
+              {t('experience.certificatesCount', { count: certifications.length })}
             </span>
           </div>
 
@@ -264,7 +262,9 @@ function Experience() {
                   </h4>
 
                   <p className="mt-2 flex-1 text-sm text-slate-600 dark:text-slate-300">
-                    {certificate.institution}
+                    {certificate.institutionKey
+                      ? t(certificate.institutionKey)
+                      : certificate.institution}
                   </p>
 
                   <a
@@ -273,7 +273,7 @@ function Experience() {
                     rel="noopener noreferrer"
                     className="mt-6 inline-flex items-center gap-2 font-semibold text-indigo-600 hover:text-indigo-800 dark:text-indigo-400 dark:hover:text-indigo-300"
                   >
-                    Ver certificado
+                    {t('experience.viewCertificate')}
                     <ExternalLink size={16} aria-hidden="true" />
                   </a>
                 </article>
@@ -290,7 +290,7 @@ function Experience() {
               className="text-indigo-600 dark:text-indigo-400"
               aria-hidden="true"
             />
-            Idiomas
+            {t('experience.sections.languages')}
           </h3>
 
           <div className="grid gap-4 sm:grid-cols-2">
@@ -300,11 +300,11 @@ function Experience() {
                 className="flex flex-wrap items-center justify-between gap-3 rounded-xl border border-slate-200 bg-white p-6 dark:border-slate-700 dark:bg-slate-900"
               >
                 <span className="font-semibold text-slate-900 dark:text-white">
-                  {language.name}
+                  {t(language.nameKey)}
                 </span>
 
                 <span className="rounded-full bg-indigo-50 px-3 py-1 text-sm font-medium text-indigo-700 dark:bg-indigo-500/10 dark:text-indigo-300">
-                  {language.level}
+                  {t(language.levelKey)}
                 </span>
               </div>
             ))}
@@ -324,14 +324,12 @@ function Experience() {
             />
 
             <h3 className="text-2xl font-bold text-slate-900 dark:text-white">
-              Mis currículums
+              {t('experience.cv.title')}
             </h3>
           </div>
 
           <p className="mt-4 max-w-2xl leading-relaxed text-slate-600 dark:text-slate-300">
-            Consulta o descarga mi currículum en español o inglés
-            para conocer más sobre mi formación, experiencia
-            y habilidades.
+            {t('experience.cv.description')}
           </p>
 
           <div className="mt-7 grid gap-4 md:grid-cols-2">
@@ -344,11 +342,11 @@ function Experience() {
                   className="rounded-xl border border-indigo-200 bg-white p-5 dark:border-slate-700 dark:bg-slate-900"
                 >
                   <p className="font-bold text-slate-900 dark:text-white">
-                    {cv.label}
+                    {t(cv.labelKey)}
                   </p>
 
                   <p className="mt-1 text-sm text-slate-500 dark:text-slate-400">
-                    Idioma: {cv.language}
+                    {t('experience.cv.language')}: {t(cv.languageKey)}
                   </p>
 
                   <div className="mt-5 flex flex-wrap gap-3">
@@ -359,7 +357,7 @@ function Experience() {
                       className="inline-flex items-center gap-2 rounded-lg bg-indigo-600 px-4 py-2.5 text-sm font-semibold text-white hover:bg-indigo-700"
                     >
                       <ExternalLink size={16} aria-hidden="true" />
-                      Ver CV
+                      {t('experience.cv.view')}
                     </a>
 
                     <a
@@ -368,7 +366,7 @@ function Experience() {
                       className="inline-flex items-center gap-2 rounded-lg border border-indigo-300 px-4 py-2.5 text-sm font-semibold text-indigo-700 hover:bg-indigo-50 dark:border-slate-600 dark:text-indigo-300 dark:hover:bg-slate-800"
                     >
                       <Download size={16} aria-hidden="true" />
-                      Descargar
+                      {t('experience.cv.download')}
                     </a>
                   </div>
                 </div>

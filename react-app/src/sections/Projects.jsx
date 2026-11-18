@@ -1,10 +1,12 @@
 
 import { useEffect, useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import { projects } from '../data/projects'
 import { getGithubRepos } from '../services/githubApi'
 import ProjectCard from '../components/ProjectCard'
 
 function Projects() {
+  const { t } = useTranslation()
   const [activeFilter, setActiveFilter] = useState('Todos')
   const [githubRepos, setGithubRepos] = useState([])
   const [loading, setLoading] = useState(true)
@@ -47,8 +49,13 @@ function Projects() {
 
   // Crear categorías sin duplicados
   const categories = [
-    'Todos',
-    ...new Set(projects.map((project) => project.category)),
+    { value: 'Todos', labelKey: 'projects.filters.all' },
+    ...new Map(
+      projects.map((project) => [
+        project.category,
+        { value: project.category, labelKey: project.categoryKey },
+      ])
+    ).values(),
   ]
 
   // Filtrar los proyectos
@@ -69,17 +76,15 @@ function Projects() {
         {/* Encabezado */}
         <div className="max-w-3xl">
           <span className="text-sm font-bold uppercase tracking-widest text-indigo-600 dark:text-indigo-400">
-            Mi trabajo
+            {t('projects.eyebrow')}
           </span>
 
           <h2 className="mt-4 text-4xl font-extrabold tracking-tight text-slate-900 md:text-5xl dark:text-white">
-            Proyectos que he construido
+            {t('projects.title')}
           </h2>
 
           <p className="mt-6 text-lg leading-relaxed text-slate-600 dark:text-slate-300">
-            Una selección de proyectos personales y académicos
-            en los que aplico mis conocimientos de programación,
-            desarrollo web y bases de datos.
+            {t('projects.subtitle')}
           </p>
         </div>
 
@@ -87,21 +92,21 @@ function Projects() {
         <div
           className="mt-10 flex flex-wrap gap-3"
           role="group"
-          aria-label="Filtrar proyectos por categoría"
+          aria-label={t('projects.filters.label')}
         >
           {categories.map((category) => (
             <button
-              key={category}
+              key={category.value}
               type="button"
-              onClick={() => setActiveFilter(category)}
-              aria-pressed={activeFilter === category}
+              onClick={() => setActiveFilter(category.value)}
+              aria-pressed={activeFilter === category.value}
               className={`rounded-xl px-5 py-2.5 text-sm font-semibold transition-colors ${
-                activeFilter === category
+                activeFilter === category.value
                   ? 'bg-indigo-600 text-white'
                   : 'border border-slate-200 bg-slate-50 text-slate-600 hover:border-indigo-300 hover:text-indigo-600 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-300 dark:hover:border-indigo-400 dark:hover:text-indigo-400'
               }`}
             >
-              {category}
+              {t(category.labelKey)}
             </button>
           ))}
         </div>
@@ -112,7 +117,7 @@ function Projects() {
             role="status"
             className="mt-6 text-sm text-slate-500 dark:text-slate-400"
           >
-            Actualizando información desde GitHub...
+            {t('projects.loading')}
           </p>
         )}
 
@@ -129,7 +134,7 @@ function Projects() {
         {/* Estado vacío */}
         {filteredProjects.length === 0 && (
           <p className="mt-10 text-slate-500 dark:text-slate-400">
-            No hay proyectos disponibles en esta categoría.
+            {t('projects.empty')}
           </p>
         )}
 

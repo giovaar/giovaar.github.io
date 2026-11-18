@@ -1,29 +1,36 @@
 
+import { useTranslation } from 'react-i18next'
+
 const contactLinks = [
   {
-    name: 'Correo electrónico',
-    description: 'Envíame un mensaje',
+    nameKey: 'contact.links.email.name',
+    descriptionKey: 'contact.links.email.description',
     value: 'giovaarpaia13@gmail.com',
     href: 'mailto:giovaarpaia13@gmail.com',
     external: false,
+    actionKey: 'contact.links.email.action',
   },
   {
-    name: 'GitHub',
-    description: 'Explora mis proyectos',
+    nameKey: 'contact.links.github.name',
+    descriptionKey: 'contact.links.github.description',
     value: 'github.com/giovaar',
     href: 'https://github.com/giovaar',
     external: true,
+    actionKey: 'contact.links.externalAction',
   },
   {
-    name: 'LinkedIn',
-    description: 'Conectemos profesionalmente',
-    value: 'Mi perfil de LinkedIn',
+    nameKey: 'contact.links.linkedin.name',
+    descriptionKey: 'contact.links.linkedin.description',
+    valueKey: 'contact.links.linkedin.value',
     href: 'https://www.linkedin.com/in/giovanny-arpaia-075273328/',
     external: true,
+    actionKey: 'contact.links.externalAction',
   },
 ]
 
 function Contact() {
+  const { t } = useTranslation()
+
   return (
     <section
       id="contacto"
@@ -34,19 +41,15 @@ function Contact() {
         {/* Encabezado */}
         <div className="max-w-3xl">
           <span className="text-sm font-bold uppercase tracking-widest text-indigo-600 dark:text-indigo-400">
-            Contacto
+            {t('contact.eyebrow')}
           </span>
 
           <h2 className="mt-4 text-4xl font-extrabold tracking-tight text-slate-900 md:text-5xl dark:text-white">
-            ¿Hablamos?
+            {t('contact.title')}
           </h2>
 
           <p className="mt-6 text-lg leading-relaxed text-slate-600 dark:text-slate-300">
-            Estoy interesado en oportunidades para seguir
-            aprendiendo y creciendo profesionalmente en
-            desarrollo de software y análisis de datos.
-            Si deseas conocer mis proyectos o contactar
-            conmigo, puedes encontrarme aquí.
+            {t('contact.subtitle')}
           </p>
         </div>
 
@@ -61,22 +64,22 @@ function Contact() {
               className="group rounded-2xl border border-slate-200 bg-slate-50 p-7 transition-all duration-300 hover:-translate-y-1 hover:border-indigo-300 hover:shadow-lg dark:border-slate-700 dark:bg-slate-800 dark:hover:border-indigo-500 dark:hover:shadow-indigo-950/20"
             >
               <span className="text-sm font-semibold text-indigo-600 dark:text-indigo-400">
-                {contact.name}
+                {t(contact.nameKey)}
               </span>
 
               <h3 className="mt-4 text-xl font-bold text-slate-900 dark:text-white">
-                {contact.description}
+                {t(contact.descriptionKey)}
               </h3>
 
               <p className="mt-3 break-words text-sm text-slate-600 dark:text-slate-300">
-                {contact.value}
+                {contact.valueKey ? t(contact.valueKey) : contact.value}
               </p>
 
               <span
                 className="mt-6 inline-block font-semibold text-indigo-600 transition-transform group-hover:translate-x-1 dark:text-indigo-400"
                 aria-hidden="true"
               >
-                {contact.external ? 'Visitar perfil ↗' : 'Enviar correo →'}
+                {t(contact.actionKey)}
               </span>
             </a>
           ))}

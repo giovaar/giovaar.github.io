@@ -1,0 +1,173 @@
+{
+  "nav": {
+    "home": "Home",
+    "about": "Chi sono",
+    "skills": "Competenze",
+    "projects": "Progetti",
+    "experience": "Esperienza",
+    "contact": "Contatti"
+  },
+  "hero": {
+    "welcome": "Benvenuto nel mio portfolio",
+    "role": "Studente di Ingegneria dei Sistemi e dell'Informatica",
+    "description": "Sono Giovanny Arpaia, studente di Ingegneria dei Sistemi e dell'Informatica, interessato allo sviluppo software e all'analisi dei dati.",
+    "secondary": "Sto costruendo il mio percorso nel mondo della tecnologia, imparando con ogni progetto e cercando di creare soluzioni utili.",
+    "projectsButton": "Scopri i miei progetti",
+    "contactButton": "Contattami",
+    "cvSpanish": "Curriculum in spagnolo",
+    "cvEnglish": "Curriculum in inglese",
+    "character": "Profilo dello sviluppatore",
+    "characterDescription": "Curiosità, costanza e passione per imparare e creare con la tecnologia.",
+    "chapter": "Capitolo 01 · In corso",
+    "journey": "Ogni progetto, una nuova scoperta",
+    "scroll": "Scorri per esplorare"
+  },
+  "about": {
+    "eyebrow": "Chi sono",
+    "title": "Imparare e creare con la tecnologia",
+    "subtitle": "Il mio percorso unisce programmazione, analisi dei dati e apprendimento continuo.",
+    "software": "Sviluppo software",
+    "softwareDescription": "Mi interessa realizzare applicazioni e soluzioni che rispondano a esigenze reali.",
+    "data": "Dati e analisi",
+    "dataDescription": "Mi piace organizzare ed esplorare i dati e trasformarli in informazioni utili.",
+    "learning": "Apprendimento continuo",
+    "learningDescription": "Continuo ad ampliare le mie conoscenze attraverso progetti e nuove tecnologie.",
+    "intro": "Sono Giovanny Arpaia, studente di Ingegneria dei Sistemi e dell'Informatica presso l'Università Tecnologica di Panama.",
+    "description": "Mi sto avvicinando ad ambiti come lo sviluppo web, la programmazione e l'analisi dei dati, mettendo in pratica ciò che imparo in progetti accademici e personali.",
+    "goal": "Il mio obiettivo è continuare a crescere professionalmente e contribuire alla creazione di soluzioni software utili e curate."
+  },
+  "common": {
+    "language": "Lingua",
+    "github": "GitHub",
+    "openNewTab": "si apre in una nuova scheda"
+  },
+  "skills": {
+  "eyebrow": "Albero delle competenze",
+  "title": "Le mie competenze",
+  "subtitle": "Strumenti e tecnologie che ho imparato durante il mio percorso come sviluppatore.",
+  "web": "Sviluppo web",
+  "webDescription": "Interfacce, applicazioni ed esperienze web.",
+  "programming": "Programmazione",
+  "programmingDescription": "Logica, algoritmi e sviluppo software.",
+  "data": "Dati e analisi",
+  "dataDescription": "Database, organizzazione e visualizzazione dei dati.",
+  "tools": "Strumenti",
+  "toolsDescription": "Ambienti e piattaforme per lo sviluppo e la collaborazione.",
+  "learning": "In fase di apprendimento",
+  "learningDescription": "Tecnologie che continuo a esplorare e mettere in pratica."
+  },
+  "projects": {
+    "eyebrow": "I miei progetti",
+    "title": "Progetti che ho realizzato",
+    "subtitle": "Una selezione di progetti personali e accademici in cui applico le mie conoscenze di programmazione, sviluppo web e database.",
+    "filters": {
+      "label": "Filtra i progetti per categoria",
+      "all": "Tutti"
+    },
+    "categories": {
+      "software": "Software",
+      "games": "Videogiochi",
+      "web": "Web"
+    },
+    "loading": "Aggiornamento delle informazioni da GitHub...",
+    "empty": "Non ci sono progetti disponibili in questa categoria.",
+    "card": {
+      "stars_one": "{{count}} stella",
+      "stars_other": "{{count}} stelle",
+      "viewCode": "Visualizza il codice",
+      "playNow": "Gioca ora",
+      "viewDemo": "Visualizza la demo",
+      "noDemo": "Demo non disponibile"
+    },
+    "items": {
+      "clinic": {
+        "description": "Applicazione accademica sviluppata in C# per gestire le informazioni dei pazienti e le visite, utilizzando un database SQL."
+      },
+      "firstGame": {
+        "description": "Progetto di programmazione in C++ per esercitarsi con la logica, le strutture dati e i fondamenti dello sviluppo di videogiochi."
+      },
+      "portfolio": {
+        "description": "Portfolio personale inizialmente realizzato con HTML, CSS e JavaScript, ora in fase di aggiornamento con React e Tailwind CSS."
+      }
+    }
+  },
+  "experience": {
+    "eyebrow": "Il mio percorso",
+    "title": "Formazione ed esperienza",
+    "subtitle": "La mia formazione, esperienza accademica e preparazione professionale mentre continuo a crescere nel mondo della tecnologia.",
+    "sections": {
+      "experience": "Esperienza",
+      "education": "Formazione",
+      "certifications": "Certificazioni",
+      "languages": "Lingue"
+    },
+    "entries": {
+      "calculusTutor": {
+        "title": "Tutor di Calcolo I",
+        "period": "Marzo 2026 - Presente",
+        "description": "Supporto accademico agli studenti universitari nei concetti matematici, nella risoluzione di esercizi e nella preparazione agli esami, sviluppando al contempo capacità comunicative e didattiche."
+      }
+    },
+    "education": {
+      "systemsEngineering": {
+        "title": "Ingegneria dei Sistemi e dell'Informatica",
+        "period": "In corso",
+        "description": "Studi di programmazione, strutture dati, database, ingegneria del software e tecnologie informatiche."
+      },
+      "scienceHighSchool": {
+        "title": "Diploma di scuola superiore a indirizzo scientifico",
+        "period": "2020",
+        "description": "Istruzione secondaria con indirizzo scientifico."
+      }
+    },
+    "certifications": {
+      "ciscoUtp": "Cisco Networking Academy e UTP",
+      "languageCredential": "Certificazione linguistica",
+      "basicTraining": "Diploma di formazione di base"
+    },
+    "certificatesCount_one": "{{count}} certificato",
+    "certificatesCount_other": "{{count}} certificati",
+    "viewCertificate": "Visualizza il certificato",
+    "languages": {
+      "spanish": "Spagnolo",
+      "english": "Inglese",
+      "native": "Madrelingua",
+      "englishLevel": "A2 · In apprendimento"
+    },
+    "cv": {
+      "title": "I miei curriculum",
+      "description": "Consulta o scarica il mio curriculum in spagnolo o in inglese per saperne di più sulla mia formazione, esperienza e competenze.",
+      "spanish": "Curriculum in spagnolo",
+      "english": "Curriculum in inglese",
+      "language": "Lingua",
+      "view": "Visualizza il CV",
+      "download": "Scarica"
+    }
+  },
+  "contact": {
+    "eyebrow": "Contatti",
+    "title": "Parliamone",
+    "subtitle": "Sono interessato a opportunità per continuare a imparare e crescere professionalmente nello sviluppo software e nell'analisi dei dati. Se vuoi conoscere i miei progetti o contattarmi, mi trovi qui.",
+    "links": {
+      "email": {
+        "name": "Email",
+        "description": "Inviami un messaggio",
+        "action": "Invia email →"
+      },
+      "github": {
+        "name": "GitHub",
+        "description": "Esplora i miei progetti"
+      },
+      "linkedin": {
+        "name": "LinkedIn",
+        "description": "Restiamo in contatto professionalmente",
+        "value": "Il mio profilo LinkedIn"
+      },
+      "externalAction": "Visita il profilo ↗"
+    }
+  },
+  "footer": {
+    "navigationLabel": "Navigazione a piè di pagina",
+    "copyright": "© {{year}} Giovanny Arpaia. Progettato e sviluppato con React."
+  }
+}

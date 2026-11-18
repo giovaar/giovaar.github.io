@@ -1,15 +1,19 @@
 
+import { useTranslation } from 'react-i18next'
+
 const footerLinks = [
-  { name: 'Inicio', href: '#inicio' },
-  { name: 'Sobre mí', href: '#sobre-mi' },
-  { name: 'Habilidades', href: '#habilidades' },
-  { name: 'Proyectos', href: '#proyectos' },
-  { name: 'Experiencia', href: '#experiencia' },
-  { name: 'Contacto', href: '#contacto' },
+  { key: 'nav.home', href: '#inicio' },
+  { key: 'nav.about', href: '#sobre-mi' },
+  { key: 'nav.skills', href: '#habilidades' },
+  { key: 'nav.projects', href: '#proyectos' },
+  { key: 'nav.experience', href: '#experiencia' },
+  { key: 'nav.contact', href: '#contacto' },
 ]
 
+const currentYear = new Date().getFullYear()
+
 function Footer() {
-  const currentYear = new Date().getFullYear()
+  const { t } = useTranslation()
 
   return (
     <footer className="border-t border-slate-200 bg-slate-50 px-6 py-10 transition-colors duration-300 dark:border-slate-800 dark:bg-slate-950">
@@ -26,7 +30,7 @@ function Footer() {
           </a>
 
           {/* Enlaces */}
-          <nav aria-label="Navegación del pie de página">
+          <nav aria-label={t('footer.navigationLabel')}>
             <ul className="flex flex-wrap justify-center gap-x-5 gap-y-3">
               {footerLinks.map((link) => (
                 <li key={link.href}>
@@ -34,7 +38,7 @@ function Footer() {
                     href={link.href}
                     className="text-sm text-slate-600 transition-colors hover:text-indigo-600 dark:text-slate-400 dark:hover:text-indigo-400"
                   >
-                    {link.name}
+                    {t(link.key)}
                   </a>
                 </li>
               ))}
@@ -45,8 +49,7 @@ function Footer() {
         {/* Derechos y créditos */}
         <div className="mt-8 border-t border-slate-200 pt-6 dark:border-slate-800">
           <p className="text-center text-sm text-slate-500 dark:text-slate-400">
-            © {currentYear} Giovanny Arpaia.
-            Diseñado y desarrollado con React.
+            {t('footer.copyright', { year: currentYear })}
           </p>
         </div>
 

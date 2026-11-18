@@ -1,15 +1,151 @@
 
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap');
+
 @import "tailwindcss";
 
-/* Activar modo oscuro mediante la clase .dark */
+/* Compatibilidad del modo oscuro con Tailwind */
 @custom-variant dark (&:where(.dark, .dark *));
 
-/* Estilos globales */
+/* Colores de GIO Portfolio 2.0 */
+:root {
+  font-family: 'Inter', sans-serif;
+
+  --gio-night: #101b25;
+  --gio-forest: #203c35;
+  --gio-gold: #c9aa70;
+  --gio-parchment: #ede5d4;
+  --gio-magic: #72b7ac;
+  --gio-stone: #7c8792;
+
+  color-scheme: light;
+}
+
+/* Configuracion general */
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 80px;
 }
 
 body {
   min-width: 320px;
   min-height: 100vh;
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+  background-color: #f5f1e8;
+  color: #20302c;
+}
+
+/* Modo oscuro */
+html.dark {
+  color-scheme: dark;
+}
+
+html.dark body {
+  background-color: var(--gio-night);
+  color: var(--gio-parchment);
+}
+
+/* Tipografia de aventura */
+h1,
+h2,
+h3 {
+  font-family: 'Cinzel', serif;
+  letter-spacing: 0.025em;
+}
+
+/* Texto seleccionado */
+::selection {
+  background-color: var(--gio-gold);
+  color: var(--gio-night);
+}
+
+/* Elementos interactivos */
+button,
+a,
+select,
+summary,
+[role="button"] {
+  cursor: pointer;
+}
+
+/* Enfoque visible para navegacion con teclado */
+:where(a, button, input, textarea, select, summary):focus-visible {
+  outline: 3px solid var(--gio-magic);
+  outline-offset: 4px;
+}
+
+/* Animaciones suaves */
+button,
+a {
+  transition:
+    color 200ms ease,
+    background-color 200ms ease,
+    border-color 200ms ease,
+    box-shadow 200ms ease,
+    transform 200ms ease;
+}
+
+button:active:not(:disabled) {
+  transform: scale(0.98);
+}
+
+button:disabled {
+  cursor: not-allowed;
+}
+
+/* Fondo ambiental */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+
+  background:
+    radial-gradient(
+      circle at 15% 20%,
+      rgba(114, 183, 172, 0.08),
+      transparent 35%
+    ),
+    radial-gradient(
+      circle at 85% 75%,
+      rgba(201, 170, 112, 0.08),
+      transparent 40%
+    );
+}
+
+/* Scrollbar de estilo fantasy */
+@media (min-width: 768px) {
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: var(--gio-night);
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: var(--gio-forest);
+    border: 2px solid var(--gio-night);
+    border-radius: 10px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--gio-gold);
+  }
+}
+
+/* Accesibilidad: reducir movimiento */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }

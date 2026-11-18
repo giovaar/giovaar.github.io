@@ -3,10 +3,10 @@ export const projects = [
   {
     id: 1,
     title: 'Clínica Salud y Bienestar',
-    description:
-      'Aplicación académica desarrollada en C# para gestionar información de pacientes y consultas, utilizando una base de datos SQL.',
+    descriptionKey: 'projects.items.clinic.description',
     technologies: ['C#', 'SQL', 'Windows Forms'],
     category: 'Software',
+    categoryKey: 'projects.categories.software',
     github:
       'https://github.com/giovaar/ClinicaSaludBienestar-HPA3',
     featured: true,
@@ -14,10 +14,10 @@ export const projects = [
   {
     id: 2,
     title: 'FirstGame',
-    description:
-      'Proyecto de programación desarrollado en C++ para practicar lógica, estructuras y fundamentos del desarrollo de videojuegos.',
+    descriptionKey: 'projects.items.firstGame.description',
     technologies: ['C++'],
     category: 'Videojuegos',
+    categoryKey: 'projects.categories.games',
     github:
       'https://github.com/giovaar/FirstGame',
     featured: true,
@@ -25,8 +25,7 @@ export const projects = [
   {
     id: 3,
     title: 'Portafolio Web Personal',
-    description:
-      'Portafolio personal desarrollado inicialmente con HTML, CSS y JavaScript, actualmente en proceso de modernización con React y Tailwind CSS.',
+    descriptionKey: 'projects.items.portfolio.description',
     technologies: [
       'HTML',
       'CSS',
@@ -35,6 +34,7 @@ export const projects = [
       'Tailwind CSS',
     ],
     category: 'Web',
+    categoryKey: 'projects.categories.web',
     github:
       'https://github.com/giovaar/giovaar.github.io',
     featured: true,

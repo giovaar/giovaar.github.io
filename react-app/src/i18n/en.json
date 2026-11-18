@@ -1,0 +1,173 @@
+{
+  "nav": {
+    "home": "Home",
+    "about": "About",
+    "skills": "Skills",
+    "projects": "Projects",
+    "experience": "Experience",
+    "contact": "Contact"
+  },
+  "hero": {
+    "welcome": "Welcome to my portfolio",
+    "role": "Systems and Computer Engineering student",
+    "description": "I'm Giovanny Arpaia, a Systems and Computer Engineering student interested in software development and data analysis.",
+    "secondary": "I'm building my path in technology, learning with every project and aiming to create useful solutions.",
+    "projectsButton": "Explore my projects",
+    "contactButton": "Get in touch",
+    "cvSpanish": "CV in Spanish",
+    "cvEnglish": "CV in English",
+    "character": "Developer profile",
+    "characterDescription": "Curiosity, persistence, and a passion for learning and creating with technology.",
+    "chapter": "Chapter 01 · In progress",
+    "journey": "Every project brings a new lesson",
+    "scroll": "Scroll to explore"
+  },
+  "about": {
+    "eyebrow": "About me",
+    "title": "Learning and creating with technology",
+    "subtitle": "My journey brings together programming, data analysis, and continuous learning.",
+    "software": "Software development",
+    "softwareDescription": "I'm interested in building applications and solutions that address real needs.",
+    "data": "Data and analytics",
+    "dataDescription": "I enjoy organizing and exploring data and turning it into useful information.",
+    "learning": "Continuous learning",
+    "learningDescription": "I keep expanding my knowledge through projects and new technologies.",
+    "intro": "I'm Giovanny Arpaia, a Systems and Computer Engineering student at the Technological University of Panama.",
+    "description": "I'm exploring areas such as web development, programming, and data analysis, applying what I learn to academic and personal projects.",
+    "goal": "My goal is to keep growing as a professional and help create useful, thoughtfully designed software solutions."
+  },
+  "common": {
+    "language": "Language",
+    "github": "GitHub",
+    "openNewTab": "opens in a new tab"
+  },
+  "skills": {
+  "eyebrow": "Skill tree",
+  "title": "My skills",
+  "subtitle": "Tools and technologies I've learned throughout my journey as a developer.",
+  "web": "Web development",
+  "webDescription": "Interfaces, applications, and web experiences.",
+  "programming": "Programming",
+  "programmingDescription": "Logic, algorithms, and software development.",
+  "data": "Data and analytics",
+  "dataDescription": "Databases, data organization, and visualization.",
+  "tools": "Tools",
+  "toolsDescription": "Environments and platforms for development and collaboration.",
+  "learning": "Currently learning",
+  "learningDescription": "Technologies I'm continuing to explore and practice."
+  },
+  "projects": {
+    "eyebrow": "My work",
+    "title": "Projects I've built",
+    "subtitle": "A selection of personal and academic projects where I apply my knowledge of programming, web development, and databases.",
+    "filters": {
+      "label": "Filter projects by category",
+      "all": "All"
+    },
+    "categories": {
+      "software": "Software",
+      "games": "Video games",
+      "web": "Web"
+    },
+    "loading": "Refreshing information from GitHub...",
+    "empty": "There are no projects available in this category.",
+    "card": {
+      "stars_one": "{{count}} star",
+      "stars_other": "{{count}} stars",
+      "viewCode": "View code",
+      "playNow": "Play now",
+      "viewDemo": "View demo",
+      "noDemo": "Demo unavailable"
+    },
+    "items": {
+      "clinic": {
+        "description": "An academic C# application for managing patient and appointment information using a SQL database."
+      },
+      "firstGame": {
+        "description": "A C++ programming project for practicing logic, data structures, and the fundamentals of game development."
+      },
+      "portfolio": {
+        "description": "A personal portfolio originally built with HTML, CSS, and JavaScript, now being modernized with React and Tailwind CSS."
+      }
+    }
+  },
+  "experience": {
+    "eyebrow": "My journey",
+    "title": "Education and experience",
+    "subtitle": "My education, academic experience, and professional preparation as I continue to grow in technology.",
+    "sections": {
+      "experience": "Experience",
+      "education": "Education",
+      "certifications": "Certifications",
+      "languages": "Languages"
+    },
+    "entries": {
+      "calculusTutor": {
+        "title": "Calculus I Tutor",
+        "period": "March 2026 - Present",
+        "description": "Academic support for university students in mathematical concepts, problem-solving, and exam preparation, while developing communication and teaching skills."
+      }
+    },
+    "education": {
+      "systemsEngineering": {
+        "title": "Systems and Computer Engineering",
+        "period": "In progress",
+        "description": "Studies in programming, data structures, databases, software engineering, and computing technologies."
+      },
+      "scienceHighSchool": {
+        "title": "Science High School Diploma",
+        "period": "2020",
+        "description": "Secondary education with a science focus."
+      }
+    },
+    "certifications": {
+      "ciscoUtp": "Cisco Networking Academy and UTP",
+      "languageCredential": "Language certification",
+      "basicTraining": "Foundational training diploma"
+    },
+    "certificatesCount_one": "{{count}} certificate",
+    "certificatesCount_other": "{{count}} certificates",
+    "viewCertificate": "View certificate",
+    "languages": {
+      "spanish": "Spanish",
+      "english": "English",
+      "native": "Native",
+      "englishLevel": "A2 · In progress"
+    },
+    "cv": {
+      "title": "My résumés",
+      "description": "View or download my résumé in Spanish or English to learn more about my education, experience, and skills.",
+      "spanish": "Résumé in Spanish",
+      "english": "Résumé in English",
+      "language": "Language",
+      "view": "View résumé",
+      "download": "Download"
+    }
+  },
+  "contact": {
+    "eyebrow": "Contact",
+    "title": "Let's talk",
+    "subtitle": "I'm interested in opportunities to keep learning and growing professionally in software development and data analysis. If you'd like to learn about my projects or get in touch, you can find me here.",
+    "links": {
+      "email": {
+        "name": "Email",
+        "description": "Send me a message",
+        "action": "Send email →"
+      },
+      "github": {
+        "name": "GitHub",
+        "description": "Explore my projects"
+      },
+      "linkedin": {
+        "name": "LinkedIn",
+        "description": "Let's connect professionally",
+        "value": "My LinkedIn profile"
+      },
+      "externalAction": "Visit profile ↗"
+    }
+  },
+  "footer": {
+    "navigationLabel": "Footer navigation",
+    "copyright": "© {{year}} Giovanny Arpaia. Designed and developed with React."
+  }
+}
