@@ -131,7 +131,12 @@
     },
     "items": {
       "clinic": {
-        "description": "Aplicación académica desarrollada en C# para gestionar información de pacientes y consultas, utilizando una base de datos SQL."
+        "description": "Aplicación de escritorio para gestionar pacientes y consultas médicas y visualizar la evolución del IMC.",
+        "story": {
+          "objective": "El equipo desarrolló este proyecto para aplicar los contenidos de la asignatura Herramientas de Programación Aplicadas III de la Universidad Tecnológica de Panamá a la gestión clínica.",
+          "solution": "La aplicación permite gestionar pacientes y registrar consultas médicas. Calcula y clasifica el IMC a partir del peso y la estatura, muestra su evolución en el historial de cada paciente y reúne estadísticas en un informe general.",
+          "technologies": "La lógica de la aplicación está escrita en C# y se ejecuta sobre .NET 10. Windows Forms proporciona la interfaz de escritorio y Azure SQL Database almacena los pacientes, las consultas y los rangos de clasificación del IMC."
+        }
       },
       "firstGame": {
         "description": "Proyecto de programación desarrollado en C++ para practicar lógica, estructuras y fundamentos del desarrollo de videojuegos."

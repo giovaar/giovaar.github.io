@@ -6,12 +6,17 @@ export const projects = [
     id: 1,
     title: 'Clínica Salud y Bienestar',
     descriptionKey: 'projects.items.clinic.description',
-    technologies: ['C#', 'SQL', 'Windows Forms'],
+    technologies: ['C#', '.NET 10', 'Windows Forms', 'Azure SQL Database'],
     category: 'Software',
     categoryKey: 'projects.categories.software',
     github:
       'https://github.com/giovaar/ClinicaSaludBienestar-HPA3',
     featured: true,
+    story: {
+      objective: 'projects.items.clinic.story.objective',
+      solution: 'projects.items.clinic.story.solution',
+      technologies: 'projects.items.clinic.story.technologies',
+    },
   },
   {
     id: 2,

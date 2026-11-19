@@ -131,7 +131,12 @@
     },
     "items": {
       "clinic": {
-        "description": "An academic C# application for managing patient and appointment information using a SQL database."
+        "description": "A desktop application for managing patient records and medical visits and tracking BMI over time.",
+        "story": {
+          "objective": "The team built this project for the Applied Programming Tools III course at the Technological University of Panama to apply what they learned to clinical record management.",
+          "solution": "The application manages patient records and logs medical visits. It calculates and classifies BMI from weight and height, charts each patient’s BMI over time, and summarizes statistics in an overall report.",
+          "technologies": "The application logic is written in C# and runs on .NET 10. Windows Forms provides the desktop interface, and Azure SQL Database stores patient records, medical visits, and BMI classification ranges."
+        }
       },
       "firstGame": {
         "description": "A C++ programming project for practicing logic, data structures, and the fundamentals of game development."

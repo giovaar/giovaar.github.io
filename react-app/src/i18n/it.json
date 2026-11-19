@@ -131,7 +131,12 @@
     },
     "items": {
       "clinic": {
-        "description": "Applicazione accademica sviluppata in C# per gestire le informazioni dei pazienti e le visite, utilizzando un database SQL."
+        "description": "Applicazione desktop per gestire le anagrafiche dei pazienti e le visite mediche e monitorare l’andamento dell’IMC.",
+        "story": {
+          "objective": "Il progetto è stato sviluppato in gruppo per il corso di Strumenti di programmazione applicata III dell’Università Tecnologica di Panama, con l’obiettivo di applicare alla gestione clinica quanto appreso durante il corso.",
+          "solution": "L’applicazione gestisce le anagrafiche dei pazienti e registra le visite mediche. Calcola e classifica l’IMC in base a peso e altezza, ne mostra l’andamento per ciascun paziente e raccoglie le statistiche in un report generale.",
+          "technologies": "La logica dell’applicazione è scritta in C# e viene eseguita su .NET 10. Windows Forms fornisce l’interfaccia desktop e Azure SQL Database archivia le anagrafiche, le visite mediche e gli intervalli di classificazione dell’IMC."
+        }
       },
       "firstGame": {
         "description": "Progetto di programmazione in C++ per esercitarsi con la logica, le strutture dati e i fondamenti dello sviluppo di videogiochi."
