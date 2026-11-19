@@ -1,5 +1,10 @@
 {
   "nav": {
+    "label": "Navigazione principale",
+    "brandHome": "GIO Portfolio, pagina iniziale",
+    "openMenu": "Apri menu",
+    "closeMenu": "Chiudi menu",
+    "skipToContent": "Vai al contenuto",
     "home": "Home",
     "about": "Chi sono",
     "skills": "Competenze",
@@ -37,6 +42,7 @@
     "goal": "Il mio obiettivo è continuare a crescere professionalmente e contribuire alla creazione di soluzioni software utili e curate."
   },
   "common": {
+    "darkMode": "Modalità scura",
     "language": "Lingua",
     "github": "GitHub",
     "openNewTab": "si apre in una nuova scheda"

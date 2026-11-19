@@ -1,33 +1,49 @@
 
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { projects } from '../data/projects'
-import { getGithubRepos } from '../services/githubApi'
 import ProjectCard from '../components/ProjectCard'
 
 function Projects() {
   const { t } = useTranslation()
   const [activeFilter, setActiveFilter] = useState('Todos')
   const [githubRepos, setGithubRepos] = useState([])
-  const [loading, setLoading] = useState(true)
+  const [loading, setLoading] = useState(false)
+  const sectionRef = useRef(null)
 
-  // Consultar los repositorios públicos de GitHub
+  // Las tarjetas locales se renderizan antes de consultar GitHub.
   useEffect(() => {
     let active = true
+    let observer
 
     async function loadRepos() {
-      const repos = await getGithubRepos()
-
-      if (active) {
-        setGithubRepos(repos)
-        setLoading(false)
+      setLoading(true)
+      try {
+        const { getGithubRepos } = await import('../services/githubApi')
+        if (!active) return
+        const repos = await getGithubRepos()
+        if (active) setGithubRepos(repos)
+      } catch {
+        // Las tarjetas locales siguen disponibles si el módulo no carga.
+      } finally {
+        if (active) setLoading(false)
       }
     }
 
-    loadRepos()
+    if (typeof IntersectionObserver === 'function') {
+      observer = new IntersectionObserver((entries) => {
+        if (!active || !entries.some((entry) => entry.isIntersecting)) return
+        observer.disconnect()
+        loadRepos()
+      }, { rootMargin: '400px 0px' })
+      observer.observe(sectionRef.current)
+    } else {
+      loadRepos()
+    }
 
     return () => {
       active = false
+      observer?.disconnect()
     }
   }, [])
 
@@ -43,7 +59,6 @@ function Projects() {
       ...project,
       language: githubData?.language ?? null,
       stars: githubData?.stars ?? null,
-      updatedAt: githubData?.updatedAt ?? null,
     }
   })
 
@@ -68,22 +83,24 @@ function Projects() {
 
   return (
     <section
+      ref={sectionRef}
       id="proyectos"
-      className="scroll-mt-24 bg-white px-6 py-24 transition-colors duration-300 dark:bg-slate-900"
+      tabIndex={-1}
+      className="gio-section gio-section-alt scroll-mt-24 px-6 py-24"
     >
       <div className="mx-auto max-w-6xl">
 
         {/* Encabezado */}
         <div className="max-w-3xl">
-          <span className="text-sm font-bold uppercase tracking-widest text-indigo-600 dark:text-indigo-400">
+          <span className="text-sm font-bold uppercase tracking-widest text-gio-violet">
             {t('projects.eyebrow')}
           </span>
 
-          <h2 className="mt-4 text-4xl font-extrabold tracking-tight text-slate-900 md:text-5xl dark:text-white">
+          <h2 className="mt-4 text-3xl font-bold text-gio-ink sm:text-4xl lg:text-5xl">
             {t('projects.title')}
           </h2>
 
-          <p className="mt-6 text-lg leading-relaxed text-slate-600 dark:text-slate-300">
+          <p className="mt-6 text-lg leading-relaxed text-gio-muted">
             {t('projects.subtitle')}
           </p>
         </div>
@@ -102,8 +119,8 @@ function Projects() {
               aria-pressed={activeFilter === category.value}
               className={`rounded-xl px-5 py-2.5 text-sm font-semibold transition-colors ${
                 activeFilter === category.value
-                  ? 'bg-indigo-600 text-white'
-                  : 'border border-slate-200 bg-slate-50 text-slate-600 hover:border-indigo-300 hover:text-indigo-600 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-300 dark:hover:border-indigo-400 dark:hover:text-indigo-400'
+                  ? 'bg-gio-action text-gio-on-action'
+                  : 'border border-gio-line bg-gio-raised text-gio-muted hover:border-gio-violet hover:text-gio-violet'
               }`}
             >
               {t(category.labelKey)}
@@ -115,7 +132,7 @@ function Projects() {
         {loading && (
           <p
             role="status"
-            className="mt-6 text-sm text-slate-500 dark:text-slate-400"
+            className="mt-6 text-sm text-gio-muted"
           >
             {t('projects.loading')}
           </p>
@@ -133,7 +150,7 @@ function Projects() {
 
         {/* Estado vacío */}
         {filteredProjects.length === 0 && (
-          <p className="mt-10 text-slate-500 dark:text-slate-400">
+          <p className="mt-10 text-gio-muted">
             {t('projects.empty')}
           </p>
         )}

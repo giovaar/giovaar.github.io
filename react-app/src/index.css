@@ -1,141 +1,145 @@
-
-@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
 @import "tailwindcss";
 
-/* Compatibilidad del modo oscuro con Tailwind */
 @custom-variant dark (&:where(.dark, .dark *));
 
-/* Colores de GIO Portfolio 2.0 */
+@theme inline {
+  --font-sans: 'Inter', system-ui, sans-serif;
+  --color-gio-canvas: var(--gio-canvas);
+  --color-gio-surface: var(--gio-surface);
+  --color-gio-raised: var(--gio-raised);
+  --color-gio-line: var(--gio-line);
+  --color-gio-ink: var(--gio-ink);
+  --color-gio-muted: var(--gio-muted);
+  --color-gio-turquoise: var(--gio-turquoise);
+  --color-gio-violet: var(--gio-violet);
+  --color-gio-coral: var(--gio-coral);
+  --color-gio-gold: var(--gio-gold);
+  --color-gio-action: var(--gio-action);
+  --color-gio-action-hover: var(--gio-action-hover);
+  --color-gio-on-action: var(--gio-on-action);
+}
+
 :root {
-  font-family: 'Inter', sans-serif;
-
-  --gio-night: #101b25;
-  --gio-forest: #203c35;
-  --gio-gold: #c9aa70;
-  --gio-parchment: #ede5d4;
-  --gio-magic: #72b7ac;
-  --gio-stone: #7c8792;
-
   color-scheme: light;
+  --gio-canvas: #f6f5fb;
+  --gio-surface: #fffeff;
+  --gio-raised: #ebe8f5;
+  --gio-line: #b9b1cc;
+  --gio-ink: #221d32;
+  --gio-muted: #51495f;
+  --gio-turquoise: #006459;
+  --gio-violet: #593aa0;
+  --gio-coral: #a03851;
+  --gio-gold: #79510a;
+  --gio-action: #594098;
+  --gio-action-hover: #482e85;
+  --gio-on-action: #ffffff;
+  --gio-focus: #593aa0;
+  --gio-shadow: 0 14px 36px rgb(42 24 73 / 0.08);
+  --gio-wash: 10%;
 }
 
-/* Configuracion general */
-html {
-  scroll-behavior: smooth;
-  scroll-padding-top: 80px;
-}
-
-body {
-  min-width: 320px;
-  min-height: 100vh;
-  margin: 0;
-  font-family: 'Inter', sans-serif;
-  background-color: #f5f1e8;
-  color: #20302c;
-}
-
-/* Modo oscuro */
 html.dark {
   color-scheme: dark;
+  --gio-canvas: #110e1b;
+  --gio-surface: #1b1728;
+  --gio-raised: #272139;
+  --gio-line: #544a69;
+  --gio-ink: #f7f3fc;
+  --gio-muted: #c7bfd4;
+  --gio-turquoise: #7ce3ce;
+  --gio-violet: #c1a6ff;
+  --gio-coral: #ff9caa;
+  --gio-gold: #f5cf83;
+  --gio-action: #c1a6ff;
+  --gio-action-hover: #d5c3ff;
+  --gio-on-action: #20152f;
+  --gio-focus: #7ce3ce;
+  --gio-shadow: 0 18px 42px rgb(6 4 12 / 0.28);
+  --gio-wash: 16%;
 }
 
-html.dark body {
-  background-color: var(--gio-night);
-  color: var(--gio-parchment);
-}
-
-/* Tipografia de aventura */
-h1,
-h2,
-h3 {
-  font-family: 'Cinzel', serif;
-  letter-spacing: 0.025em;
-}
-
-/* Texto seleccionado */
-::selection {
-  background-color: var(--gio-gold);
-  color: var(--gio-night);
-}
-
-/* Elementos interactivos */
-button,
-a,
-select,
-summary,
-[role="button"] {
-  cursor: pointer;
-}
-
-/* Enfoque visible para navegacion con teclado */
-:where(a, button, input, textarea, select, summary):focus-visible {
-  outline: 3px solid var(--gio-magic);
-  outline-offset: 4px;
-}
-
-/* Animaciones suaves */
-button,
-a {
-  transition:
-    color 200ms ease,
-    background-color 200ms ease,
-    border-color 200ms ease,
-    box-shadow 200ms ease,
-    transform 200ms ease;
-}
-
-button:active:not(:disabled) {
-  transform: scale(0.98);
-}
-
-button:disabled {
-  cursor: not-allowed;
-}
-
-/* Fondo ambiental */
-body::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  z-index: -1;
-  pointer-events: none;
-
-  background:
-    radial-gradient(
-      circle at 15% 20%,
-      rgba(114, 183, 172, 0.08),
-      transparent 35%
-    ),
-    radial-gradient(
-      circle at 85% 75%,
-      rgba(201, 170, 112, 0.08),
-      transparent 40%
-    );
-}
-
-/* Scrollbar de estilo fantasy */
-@media (min-width: 768px) {
-  ::-webkit-scrollbar {
-    width: 10px;
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 80px;
   }
 
-  ::-webkit-scrollbar-track {
-    background: var(--gio-night);
+  body {
+    min-height: 100vh;
+    background-color: var(--gio-canvas);
+    color: var(--gio-ink);
+    font-family: var(--font-sans);
   }
 
-  ::-webkit-scrollbar-thumb {
-    background: var(--gio-forest);
-    border: 2px solid var(--gio-night);
-    border-radius: 10px;
+  h1, h2, h3 {
+    letter-spacing: -0.025em;
+    text-wrap: balance;
   }
 
-  ::-webkit-scrollbar-thumb:hover {
-    background: var(--gio-gold);
+  ::selection {
+    background-color: var(--gio-action);
+    color: var(--gio-on-action);
+  }
+
+  button, a, select, summary, [role="button"] {
+    cursor: pointer;
+  }
+
+  button:disabled {
+    cursor: not-allowed;
+  }
+
+  :where(a, button, input, textarea, select, summary):focus-visible {
+    outline: 3px solid var(--gio-focus);
+    outline-offset: 3px;
+    box-shadow: 0 0 0 3px var(--gio-surface);
+  }
+
+  button, a {
+    transition: color 180ms ease, background-color 180ms ease, border-color 180ms ease;
   }
 }
 
-/* Accesibilidad: reducir movimiento */
+@layer components {
+  .gio-section {
+    border-top: 1px solid var(--gio-line);
+    background-color: color-mix(in srgb, var(--gio-canvas) 97%, transparent);
+  }
+
+  .gio-section-alt {
+    background-color: color-mix(in srgb, var(--gio-surface) 97%, transparent);
+  }
+
+  .gio-card {
+    min-width: 0;
+    border: 1px solid var(--gio-line);
+    background-color: color-mix(in srgb, var(--gio-surface) 96%, transparent);
+    box-shadow: var(--gio-shadow);
+  }
+
+  .gio-card-interactive:hover,
+  .gio-card-interactive:focus-within {
+    border-color: var(--gio-violet);
+  }
+
+  .gio-hero {
+    background:
+      radial-gradient(ellipse at 84% 24%, color-mix(in srgb, var(--gio-violet) var(--gio-wash), transparent), transparent 52%),
+      radial-gradient(ellipse at 95% 88%, color-mix(in srgb, var(--gio-coral) var(--gio-wash), transparent), transparent 45%),
+      radial-gradient(ellipse at 12% 12%, color-mix(in srgb, var(--gio-turquoise) var(--gio-wash), transparent), transparent 40%),
+      var(--gio-canvas);
+  }
+
+  .gio-hero-art {
+    background:
+      radial-gradient(circle at 50% 30%, color-mix(in srgb, var(--gio-turquoise) var(--gio-wash), transparent), transparent 50%),
+      radial-gradient(circle at 85% 95%, color-mix(in srgb, var(--gio-coral) var(--gio-wash), transparent), transparent 55%),
+      var(--gio-raised);
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;

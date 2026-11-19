@@ -49,26 +49,26 @@ function ProjectCard({ project }) {
         duration: 0.5,
         ease: 'easeOut',
       }}
-      className="group flex h-full flex-col rounded-2xl border border-slate-200 bg-white p-7 shadow-sm transition-colors duration-300 hover:border-indigo-300 hover:shadow-lg dark:border-slate-700 dark:bg-slate-800 dark:hover:border-indigo-500 dark:hover:shadow-indigo-950/20"
+      className="group flex h-full flex-col gio-card gio-card-interactive rounded-2xl p-7 transition-colors duration-300"
     >
       {/* Icono y categoría */}
       <div className="mb-6 flex items-center justify-between">
-        <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-indigo-50 text-indigo-600 dark:bg-indigo-500/10 dark:text-indigo-400">
+        <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-gio-raised text-gio-violet">
           <ProjectCategoryIcon category={project.category} />
         </div>
 
-        <span className="rounded-full bg-slate-100 px-3 py-1 text-xs font-semibold text-slate-600 dark:bg-slate-700 dark:text-slate-300">
+        <span className="rounded-full bg-gio-raised px-3 py-1 text-xs font-semibold text-gio-muted">
           {t(project.categoryKey)}
         </span>
       </div>
 
       {/* Nombre del proyecto */}
-      <h3 className="text-2xl font-bold tracking-tight text-slate-900 dark:text-white">
+      <h3 className="text-2xl font-bold tracking-tight text-gio-ink">
         {project.title}
       </h3>
 
       {/* Descripción */}
-      <p className="mt-4 flex-1 leading-relaxed text-slate-600 dark:text-slate-300">
+      <p className="mt-4 flex-1 leading-relaxed text-gio-muted">
         {t(project.descriptionKey)}
       </p>
 
@@ -77,7 +77,7 @@ function ProjectCard({ project }) {
         {project.technologies.map((technology) => (
           <span
             key={technology}
-            className="rounded-lg border border-indigo-100 bg-indigo-50 px-3 py-1.5 text-xs font-medium text-indigo-700 dark:border-indigo-500/20 dark:bg-indigo-500/10 dark:text-indigo-300"
+            className="rounded-lg border border-gio-line bg-gio-raised px-3 py-1.5 text-xs font-medium text-gio-violet"
           >
             {technology}
           </span>
@@ -88,7 +88,7 @@ function ProjectCard({ project }) {
       {(project.language ||
         (project.stars !== null &&
           project.stars !== undefined)) && (
-        <div className="mt-5 flex flex-wrap items-center gap-4 text-sm text-slate-500 dark:text-slate-400">
+        <div className="mt-5 flex flex-wrap items-center gap-4 text-sm text-gio-muted">
 
           {project.language && (
             <span className="flex items-center gap-1.5">
@@ -108,14 +108,14 @@ function ProjectCard({ project }) {
       )}
 
       {/* Enlaces del proyecto */}
-      <div className="mt-8 flex flex-wrap items-center gap-5 border-t border-slate-100 pt-5 dark:border-slate-700">
+      <div className="mt-8 flex flex-wrap items-center gap-5 border-t border-gio-line pt-5">
 
         {/* Código en GitHub */}
         <a
           href={project.github}
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex items-center gap-2 text-sm font-semibold text-indigo-600 transition-colors hover:text-indigo-800 dark:text-indigo-400 dark:hover:text-indigo-300"
+          className="inline-flex items-center gap-2 text-sm font-semibold text-gio-violet hover:underline"
         >
           <GitBranch size={17} aria-hidden="true" />
           {t('projects.card.viewCode')}
@@ -128,7 +128,7 @@ function ProjectCard({ project }) {
             href={project.demo}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 text-sm font-semibold text-emerald-700 transition-colors hover:text-emerald-800 dark:text-emerald-400 dark:hover:text-emerald-300"
+            className="inline-flex items-center gap-2 text-sm font-semibold text-gio-turquoise hover:underline"
           >
             <Play size={17} aria-hidden="true" />
             {t(
@@ -138,7 +138,7 @@ function ProjectCard({ project }) {
             )}
           </a>
         ) : (
-          <span className="text-xs text-slate-400 dark:text-slate-500">
+          <span className="text-xs text-gio-muted">
             {t('projects.card.noDemo')}
           </span>
         )}

@@ -1,5 +1,10 @@
 {
   "nav": {
+    "label": "Main navigation",
+    "brandHome": "GIO Portfolio, home",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu",
+    "skipToContent": "Skip to content",
     "home": "Home",
     "about": "About",
     "skills": "Skills",
@@ -37,6 +42,7 @@
     "goal": "My goal is to keep growing as a professional and help create useful, thoughtfully designed software solutions."
   },
   "common": {
+    "darkMode": "Dark mode",
     "language": "Language",
     "github": "GitHub",
     "openNewTab": "opens in a new tab"

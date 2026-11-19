@@ -16,7 +16,7 @@ function Footer() {
   const { t } = useTranslation()
 
   return (
-    <footer className="border-t border-slate-200 bg-slate-50 px-6 py-10 transition-colors duration-300 dark:border-slate-800 dark:bg-slate-950">
+    <footer className="border-t border-gio-line bg-gio-raised px-6 py-10">
       <div className="mx-auto max-w-6xl">
 
         <div className="flex flex-col items-center justify-between gap-6 md:flex-row">
@@ -24,9 +24,9 @@ function Footer() {
           {/* Logo */}
           <a
             href="#inicio"
-            className="text-2xl font-extrabold tracking-tight text-slate-900 dark:text-white"
+            className="text-2xl font-extrabold tracking-tight text-gio-ink"
           >
-            GIO<span className="text-indigo-600 dark:text-indigo-400">.</span>
+            GIO<span className="text-gio-violet">.</span>
           </a>
 
           {/* Enlaces */}
@@ -36,7 +36,7 @@ function Footer() {
                 <li key={link.href}>
                   <a
                     href={link.href}
-                    className="text-sm text-slate-600 transition-colors hover:text-indigo-600 dark:text-slate-400 dark:hover:text-indigo-400"
+                    className="text-sm text-gio-muted transition-colors hover:text-gio-violet"
                   >
                     {t(link.key)}
                   </a>
@@ -47,8 +47,8 @@ function Footer() {
         </div>
 
         {/* Derechos y créditos */}
-        <div className="mt-8 border-t border-slate-200 pt-6 dark:border-slate-800">
-          <p className="text-center text-sm text-slate-500 dark:text-slate-400">
+        <div className="mt-8 border-t border-gio-line pt-6">
+          <p className="text-center text-sm text-gio-muted">
             {t('footer.copyright', { year: currentYear })}
           </p>
         </div>

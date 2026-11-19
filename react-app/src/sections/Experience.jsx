@@ -116,7 +116,7 @@ function Experience() {
   const reveal = reduceMotion
     ? {}
     : {
-        initial: { opacity: 0, y: 20 },
+        initial: { opacity: 0, y: 12 },
         whileInView: { opacity: 1, y: 0 },
         viewport: { once: true, amount: 0.1 },
         transition: { duration: 0.5, ease: 'easeOut' },
@@ -125,31 +125,32 @@ function Experience() {
   return (
     <section
       id="experiencia"
-      className="scroll-mt-24 bg-slate-50 px-6 py-24 transition-colors duration-300 dark:bg-slate-950"
+      tabIndex={-1}
+      className="gio-section scroll-mt-24 px-6 py-24"
     >
       <div className="mx-auto max-w-6xl">
 
         {/* Encabezado */}
         <motion.div {...reveal} className="max-w-3xl">
-          <span className="text-sm font-bold uppercase tracking-widest text-indigo-600 dark:text-indigo-400">
+          <span className="text-sm font-bold uppercase tracking-widest text-gio-gold">
             {t('experience.eyebrow')}
           </span>
 
-          <h2 className="mt-4 text-4xl font-extrabold tracking-tight text-slate-900 md:text-5xl dark:text-white">
+          <h2 className="mt-4 text-3xl font-bold text-gio-ink sm:text-4xl lg:text-5xl">
             {t('experience.title')}
           </h2>
 
-          <p className="mt-6 text-lg leading-relaxed text-slate-600 dark:text-slate-300">
+          <p className="mt-6 text-lg leading-relaxed text-gio-muted">
             {t('experience.subtitle')}
           </p>
         </motion.div>
 
         {/* Experiencia laboral y académica */}
         <motion.div {...reveal} className="mt-14">
-          <h3 className="mb-6 flex items-center gap-3 text-2xl font-bold text-slate-900 dark:text-white">
+          <h3 className="mb-6 flex items-center gap-3 text-2xl font-bold text-gio-ink">
             <BriefcaseBusiness
               size={25}
-              className="text-indigo-600 dark:text-indigo-400"
+              className="text-gio-gold"
               aria-hidden="true"
             />
             {t('experience.sections.experience')}
@@ -159,21 +160,21 @@ function Experience() {
             {experiences.map((item) => (
               <article
                 key={item.id}
-                className="rounded-2xl border border-slate-200 bg-white p-7 shadow-sm dark:border-slate-700 dark:bg-slate-900"
+                className="gio-card rounded-2xl p-7"
               >
-                <span className="text-sm font-semibold text-indigo-600 dark:text-indigo-400">
+                <span className="text-sm font-semibold text-gio-gold">
                   {t(item.periodKey)}
                 </span>
 
-                <h4 className="mt-3 text-xl font-bold text-slate-900 dark:text-white">
+                <h4 className="mt-3 text-xl font-bold text-gio-ink">
                   {t(item.titleKey)}
                 </h4>
 
-                <p className="mt-2 font-medium text-slate-700 dark:text-slate-200">
+                <p className="mt-2 font-medium text-gio-muted">
                   {item.organization}
                 </p>
 
-                <p className="mt-4 leading-relaxed text-slate-600 dark:text-slate-300">
+                <p className="mt-4 leading-relaxed text-gio-muted">
                   {t(item.descriptionKey)}
                 </p>
               </article>
@@ -183,10 +184,10 @@ function Experience() {
 
         {/* Educación */}
         <motion.div {...reveal} className="mt-14">
-          <h3 className="mb-6 flex items-center gap-3 text-2xl font-bold text-slate-900 dark:text-white">
+          <h3 className="mb-6 flex items-center gap-3 text-2xl font-bold text-gio-ink">
             <GraduationCap
               size={25}
-              className="text-indigo-600 dark:text-indigo-400"
+              className="text-gio-gold"
               aria-hidden="true"
             />
             {t('experience.sections.education')}
@@ -196,21 +197,21 @@ function Experience() {
             {education.map((item) => (
               <article
                 key={item.id}
-                className="rounded-2xl border border-slate-200 bg-white p-7 shadow-sm dark:border-slate-700 dark:bg-slate-900"
+                className="gio-card rounded-2xl p-7"
               >
-                <span className="text-sm font-semibold text-indigo-600 dark:text-indigo-400">
+                <span className="text-sm font-semibold text-gio-gold">
                   {t(item.periodKey)}
                 </span>
 
-                <h4 className="mt-3 text-xl font-bold text-slate-900 dark:text-white">
+                <h4 className="mt-3 text-xl font-bold text-gio-ink">
                   {t(item.titleKey)}
                 </h4>
 
-                <p className="mt-2 font-medium text-slate-700 dark:text-slate-200">
+                <p className="mt-2 font-medium text-gio-muted">
                   {item.institution}
                 </p>
 
-                <p className="mt-4 leading-relaxed text-slate-600 dark:text-slate-300">
+                <p className="mt-4 leading-relaxed text-gio-muted">
                   {t(item.descriptionKey)}
                 </p>
               </article>
@@ -221,16 +222,16 @@ function Experience() {
         {/* Certificaciones */}
         <motion.div {...reveal} className="mt-14">
           <div className="mb-6 flex flex-wrap items-center justify-between gap-3">
-            <h3 className="flex items-center gap-3 text-2xl font-bold text-slate-900 dark:text-white">
+            <h3 className="flex items-center gap-3 text-2xl font-bold text-gio-ink">
               <Award
                 size={25}
-                className="text-indigo-600 dark:text-indigo-400"
+                className="text-gio-gold"
                 aria-hidden="true"
               />
               {t('experience.sections.certifications')}
             </h3>
 
-            <span className="text-sm text-slate-500 dark:text-slate-400">
+            <span className="text-sm text-gio-muted">
               {t('experience.certificatesCount', { count: certifications.length })}
             </span>
           </div>
@@ -243,25 +244,25 @@ function Experience() {
               return (
                 <article
                   key={certificate.id}
-                  className="flex flex-col rounded-2xl border border-slate-200 bg-white p-6 transition-all duration-300 hover:border-indigo-300 hover:shadow-lg dark:border-slate-700 dark:bg-slate-900 dark:hover:border-indigo-500"
+                  className="flex flex-col gio-card gio-card-interactive rounded-2xl p-6 transition-colors duration-300"
                 >
                   <div className="mb-4 flex items-center justify-between">
-                    <div className="rounded-xl bg-indigo-50 p-3 text-indigo-600 dark:bg-indigo-500/10 dark:text-indigo-400">
+                    <div className="rounded-xl bg-gio-raised p-3 text-gio-gold">
                       <Award size={23} aria-hidden="true" />
                     </div>
 
                     {certificate.year && (
-                      <span className="text-sm font-medium text-slate-500 dark:text-slate-400">
+                      <span className="text-sm font-medium text-gio-muted">
                         {certificate.year}
                       </span>
                     )}
                   </div>
 
-                  <h4 className="text-lg font-bold text-slate-900 dark:text-white">
+                  <h4 className="text-lg font-bold text-gio-ink">
                     {certificate.title}
                   </h4>
 
-                  <p className="mt-2 flex-1 text-sm text-slate-600 dark:text-slate-300">
+                  <p className="mt-2 flex-1 text-sm text-gio-muted">
                     {certificate.institutionKey
                       ? t(certificate.institutionKey)
                       : certificate.institution}
@@ -271,7 +272,7 @@ function Experience() {
                     href={certificateUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="mt-6 inline-flex items-center gap-2 font-semibold text-indigo-600 hover:text-indigo-800 dark:text-indigo-400 dark:hover:text-indigo-300"
+                    className="mt-6 inline-flex items-center gap-2 font-semibold text-gio-violet hover:underline"
                   >
                     {t('experience.viewCertificate')}
                     <ExternalLink size={16} aria-hidden="true" />
@@ -284,10 +285,10 @@ function Experience() {
 
         {/* Idiomas */}
         <motion.div {...reveal} className="mt-14">
-          <h3 className="mb-6 flex items-center gap-3 text-2xl font-bold text-slate-900 dark:text-white">
+          <h3 className="mb-6 flex items-center gap-3 text-2xl font-bold text-gio-ink">
             <Languages
               size={25}
-              className="text-indigo-600 dark:text-indigo-400"
+              className="text-gio-gold"
               aria-hidden="true"
             />
             {t('experience.sections.languages')}
@@ -297,13 +298,13 @@ function Experience() {
             {languages.map((language) => (
               <div
                 key={language.name}
-                className="flex flex-wrap items-center justify-between gap-3 rounded-xl border border-slate-200 bg-white p-6 dark:border-slate-700 dark:bg-slate-900"
+                className="flex flex-wrap items-center justify-between gap-3 gio-card rounded-xl p-6"
               >
-                <span className="font-semibold text-slate-900 dark:text-white">
+                <span className="font-semibold text-gio-ink">
                   {t(language.nameKey)}
                 </span>
 
-                <span className="rounded-full bg-indigo-50 px-3 py-1 text-sm font-medium text-indigo-700 dark:bg-indigo-500/10 dark:text-indigo-300">
+                <span className="rounded-full bg-gio-raised px-3 py-1 text-sm font-medium text-gio-violet">
                   {t(language.levelKey)}
                 </span>
               </div>
@@ -314,21 +315,21 @@ function Experience() {
         {/* Currículums */}
         <motion.div
           {...reveal}
-          className="mt-14 rounded-2xl border border-indigo-200 bg-indigo-50 p-8 md:p-10 dark:border-indigo-500/30 dark:bg-indigo-500/10"
+          className="mt-14 gio-card rounded-2xl p-5 sm:p-8 md:p-10"
         >
           <div className="flex items-center gap-3">
             <FileText
               size={27}
-              className="text-indigo-600 dark:text-indigo-400"
+              className="text-gio-gold"
               aria-hidden="true"
             />
 
-            <h3 className="text-2xl font-bold text-slate-900 dark:text-white">
+            <h3 className="text-2xl font-bold text-gio-ink">
               {t('experience.cv.title')}
             </h3>
           </div>
 
-          <p className="mt-4 max-w-2xl leading-relaxed text-slate-600 dark:text-slate-300">
+          <p className="mt-4 max-w-2xl leading-relaxed text-gio-muted">
             {t('experience.cv.description')}
           </p>
 
@@ -339,13 +340,13 @@ function Experience() {
               return (
                 <div
                   key={cv.filename}
-                  className="rounded-xl border border-indigo-200 bg-white p-5 dark:border-slate-700 dark:bg-slate-900"
+                  className="gio-card rounded-xl p-5"
                 >
-                  <p className="font-bold text-slate-900 dark:text-white">
+                  <p className="font-bold text-gio-ink">
                     {t(cv.labelKey)}
                   </p>
 
-                  <p className="mt-1 text-sm text-slate-500 dark:text-slate-400">
+                  <p className="mt-1 text-sm text-gio-muted">
                     {t('experience.cv.language')}: {t(cv.languageKey)}
                   </p>
 
@@ -354,7 +355,7 @@ function Experience() {
                       href={cvUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2 rounded-lg bg-indigo-600 px-4 py-2.5 text-sm font-semibold text-white hover:bg-indigo-700"
+                      className="inline-flex items-center gap-2 rounded-lg bg-gio-action px-4 py-2.5 text-sm font-semibold text-gio-on-action hover:bg-gio-action-hover"
                     >
                       <ExternalLink size={16} aria-hidden="true" />
                       {t('experience.cv.view')}
@@ -363,7 +364,7 @@ function Experience() {
                     <a
                       href={cvUrl}
                       download={cv.filename}
-                      className="inline-flex items-center gap-2 rounded-lg border border-indigo-300 px-4 py-2.5 text-sm font-semibold text-indigo-700 hover:bg-indigo-50 dark:border-slate-600 dark:text-indigo-300 dark:hover:bg-slate-800"
+                      className="inline-flex items-center gap-2 rounded-lg border border-gio-line px-4 py-2.5 text-sm font-semibold text-gio-violet hover:bg-gio-raised"
                     >
                       <Download size={16} aria-hidden="true" />
                       {t('experience.cv.download')}

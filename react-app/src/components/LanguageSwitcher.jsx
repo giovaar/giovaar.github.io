@@ -21,12 +21,12 @@ export default function LanguageSwitcher() {
     <div
       role="group"
       aria-label={t("common.language")}
-      className="flex items-center gap-1 rounded-xl border border-[#C9AA70]/40 bg-[#203C35]/80 p-1"
+      className="flex items-center gap-1 rounded-xl border border-gio-line bg-gio-raised p-1"
     >
       <Globe2
         size={16}
         aria-hidden="true"
-        className="ml-2 hidden text-[#C9AA70] sm:block"
+        className="ml-2 hidden text-gio-gold sm:block"
       />
 
       {languages.map((language) => {
@@ -41,10 +41,10 @@ export default function LanguageSwitcher() {
             aria-label={language.name}
             aria-pressed={selected}
             title={language.name}
-            className={`min-h-9 min-w-9 rounded-lg px-2 text-xs font-semibold transition-all duration-200 sm:min-w-10 ${
+            className={`min-h-9 min-w-9 rounded-lg px-2 text-xs font-semibold transition-colors duration-200 sm:min-w-10 ${
               selected
-                ? "bg-[#C9AA70] text-[#101B25] shadow-sm"
-                : "text-[#EDE5D4] hover:bg-[#C9AA70]/15 hover:text-[#E8C88D]"
+                ? "bg-gio-action text-gio-on-action shadow-sm"
+                : "text-gio-ink hover:bg-gio-gold/15 hover:text-gio-gold"
             }`}
           >
             {language.label}

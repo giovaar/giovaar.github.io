@@ -34,21 +34,22 @@ function Contact() {
   return (
     <section
       id="contacto"
-      className="scroll-mt-24 bg-white px-6 py-24 transition-colors duration-300 dark:bg-slate-900"
+      tabIndex={-1}
+      className="gio-section gio-section-alt scroll-mt-24 px-6 py-24"
     >
       <div className="mx-auto max-w-6xl">
 
         {/* Encabezado */}
         <div className="max-w-3xl">
-          <span className="text-sm font-bold uppercase tracking-widest text-indigo-600 dark:text-indigo-400">
+          <span className="text-sm font-bold uppercase tracking-widest text-gio-coral">
             {t('contact.eyebrow')}
           </span>
 
-          <h2 className="mt-4 text-4xl font-extrabold tracking-tight text-slate-900 md:text-5xl dark:text-white">
+          <h2 className="mt-4 text-3xl font-bold text-gio-ink sm:text-4xl lg:text-5xl">
             {t('contact.title')}
           </h2>
 
-          <p className="mt-6 text-lg leading-relaxed text-slate-600 dark:text-slate-300">
+          <p className="mt-6 text-lg leading-relaxed text-gio-muted">
             {t('contact.subtitle')}
           </p>
         </div>
@@ -61,22 +62,22 @@ function Contact() {
               href={contact.href}
               target={contact.external ? '_blank' : undefined}
               rel={contact.external ? 'noopener noreferrer' : undefined}
-              className="group rounded-2xl border border-slate-200 bg-slate-50 p-7 transition-all duration-300 hover:-translate-y-1 hover:border-indigo-300 hover:shadow-lg dark:border-slate-700 dark:bg-slate-800 dark:hover:border-indigo-500 dark:hover:shadow-indigo-950/20"
+              className="group gio-card gio-card-interactive rounded-2xl p-7 transition-colors duration-300"
             >
-              <span className="text-sm font-semibold text-indigo-600 dark:text-indigo-400">
+              <span className="text-sm font-semibold text-gio-coral">
                 {t(contact.nameKey)}
               </span>
 
-              <h3 className="mt-4 text-xl font-bold text-slate-900 dark:text-white">
+              <h3 className="mt-4 text-xl font-bold text-gio-ink">
                 {t(contact.descriptionKey)}
               </h3>
 
-              <p className="mt-3 break-words text-sm text-slate-600 dark:text-slate-300">
+              <p className="mt-3 [overflow-wrap:anywhere] text-sm text-gio-muted">
                 {contact.valueKey ? t(contact.valueKey) : contact.value}
               </p>
 
               <span
-                className="mt-6 inline-block font-semibold text-indigo-600 transition-transform group-hover:translate-x-1 dark:text-indigo-400"
+                className="mt-6 inline-block font-semibold text-gio-coral"
                 aria-hidden="true"
               >
                 {t(contact.actionKey)}

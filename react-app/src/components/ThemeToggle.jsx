@@ -1,12 +1,16 @@
 
 import { useEffect, useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import { Moon, Sun } from 'lucide-react'
 
 function getInitialTheme() {
-  const savedTheme = localStorage.getItem('gio-theme')
-
-  if (savedTheme === 'dark' || savedTheme === 'light') {
-    return savedTheme
+  try {
+    const savedTheme = localStorage.getItem('gio-theme')
+    if (savedTheme === 'dark' || savedTheme === 'light') {
+      return savedTheme
+    }
+  } catch {
+    // La preferencia del sistema sigue disponible sin almacenamiento.
   }
 
   return window.matchMedia('(prefers-color-scheme: dark)').matches
@@ -15,6 +19,7 @@ function getInitialTheme() {
 }
 
 function ThemeToggle() {
+  const { t } = useTranslation()
   const [theme, setTheme] = useState(getInitialTheme)
 
   useEffect(() => {
@@ -23,7 +28,11 @@ function ThemeToggle() {
       theme === 'dark'
     )
 
-    localStorage.setItem('gio-theme', theme)
+    try {
+      localStorage.setItem('gio-theme', theme)
+    } catch {
+      // El tema sigue activo durante la sesión.
+    }
   }, [theme])
 
   function toggleTheme() {
@@ -36,18 +45,10 @@ function ThemeToggle() {
     <button
       type="button"
       onClick={toggleTheme}
-      aria-label={
-        theme === 'dark'
-          ? 'Activar modo claro'
-          : 'Activar modo oscuro'
-      }
+      aria-label={t('common.darkMode')}
       aria-pressed={theme === 'dark'}
-      title={
-        theme === 'dark'
-          ? 'Cambiar a modo claro'
-          : 'Cambiar a modo oscuro'
-      }
-      className="flex h-11 w-11 items-center justify-center rounded-xl border border-slate-200 bg-white text-slate-700 transition-all duration-300 hover:bg-slate-100 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-100 dark:hover:bg-slate-700"
+      title={t('common.darkMode')}
+      className="flex h-11 w-11 items-center justify-center rounded-xl border border-gio-line bg-gio-surface text-gio-muted transition-colors duration-300 hover:bg-gio-raised"
     >
       {theme === 'dark' ? (
         <Sun size={21} strokeWidth={2} aria-hidden="true" />
