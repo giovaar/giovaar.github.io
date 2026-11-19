@@ -41,7 +41,7 @@ export default function LanguageSwitcher() {
             aria-label={language.name}
             aria-pressed={selected}
             title={language.name}
-            className={`min-h-9 min-w-9 rounded-lg px-2 text-xs font-semibold transition-colors duration-200 sm:min-w-10 ${
+            className={`min-h-10 min-w-9 rounded-lg px-2 text-xs font-semibold transition-colors duration-200 sm:min-w-10 ${
               selected
                 ? "bg-gio-action text-gio-on-action shadow-sm"
                 : "text-gio-ink hover:bg-gio-gold/15 hover:text-gio-gold"

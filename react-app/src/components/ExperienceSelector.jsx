@@ -60,7 +60,7 @@ export default function ExperienceSelector({ selected, onSelect, allowVideo }) {
         hidden={!open}
         role="group"
         aria-label={t('experiencePicker.title')}
-        className="absolute right-0 top-full z-10 mt-2 max-h-[calc(100dvh-5rem)] w-56 max-w-[calc(100vw-2rem)] overflow-y-auto rounded-xl border border-gio-line bg-gio-surface p-2 text-gio-ink shadow-xl"
+        className="gio-experience-panel absolute right-0 top-full z-10 mt-2 w-56 max-w-[calc(100vw-2rem)] overflow-y-auto overscroll-contain rounded-xl border border-gio-line bg-gio-surface p-2 text-gio-ink shadow-xl"
       >
         <div className="grid gap-1">
           {options.filter(({ id }) => allowVideo || id === 'original').map(({ id, Icon }) => (

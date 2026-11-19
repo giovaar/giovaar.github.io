@@ -52,7 +52,7 @@
     }
   }
 
-  @media (width < 48rem) {
+  @media (width < 48rem), (height < 32rem) {
     .gio-tech-anchor,
     .dark .gio-tech-anchor {
       opacity: 0.29;

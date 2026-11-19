@@ -14,7 +14,7 @@ export default function Hero() {
       id="inicio"
       tabIndex={-1}
       aria-labelledby="hero-title"
-      className="relative isolate mx-auto grid w-full max-w-7xl scroll-mt-20 items-center gap-8 px-5 pb-14 pt-10 sm:px-8 sm:pb-20 sm:pt-14 lg:min-h-[78svh] lg:grid-cols-[minmax(0,1.18fr)_minmax(0,0.82fr)] lg:py-20"
+      className="gio-hero relative isolate mx-auto grid w-full max-w-7xl items-center gap-8 lg:grid-cols-[minmax(0,1.18fr)_minmax(0,0.82fr)]"
     >
       <motion.div
         initial={reduceMotion ? false : { opacity: 0.82, y: 10 }}

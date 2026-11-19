@@ -31,8 +31,24 @@ export default function Navbar({ experienceControl }) {
   const menuButton = useRef(null);
 
   useEffect(() => {
+    const nav = navBar.current;
+    const root = document.documentElement;
+    const measure = () => root.style.setProperty("--gio-nav-height", `${nav.offsetTop + nav.offsetHeight}px`);
+    const observer = typeof ResizeObserver === "function" ? new ResizeObserver(measure) : null;
+    measure();
+    observer?.observe(nav);
+    window.addEventListener("resize", measure);
+    return () => {
+      observer?.disconnect();
+      window.removeEventListener("resize", measure);
+      root.style.removeProperty("--gio-nav-height");
+    };
+  }, []);
+
+  useEffect(() => {
     let frame;
     let directionStart = Math.max(0, window.scrollY);
+    const desktop = window.matchMedia("(min-width: 80rem)");
     const sections = navigation.map(({ href }) => document.getElementById(href.slice(1)));
 
     function updateNavigation() {
@@ -52,8 +68,8 @@ export default function Navbar({ experienceControl }) {
       setActiveSection(atEnd ? navigation.at(-1).href : current);
 
       const travel = scrollY - directionStart;
-      if (scrollY <= 24 || Math.abs(travel) >= 10) {
-        setCompact(scrollY > 24 && travel > 0);
+      if (!desktop.matches || scrollY <= 24 || Math.abs(travel) >= 10) {
+        setCompact(desktop.matches && scrollY > 24 && travel > 0);
         directionStart = scrollY;
       }
     }
@@ -93,7 +109,7 @@ export default function Navbar({ experienceControl }) {
   }
 
   return (
-    <header onKeyDown={handleKeyDown} data-compact={compact} className="gio-navbar sticky top-0 z-50">
+    <header onKeyDown={handleKeyDown} data-compact={compact && !reduceMotion} className="gio-navbar sticky top-0 z-50">
       <nav
         ref={navBar}
         aria-label={t("nav.label")}
@@ -179,7 +195,7 @@ export default function Navbar({ experienceControl }) {
             initial={reduceMotion ? false : { opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             transition={{ duration: reduceMotion ? 0 : 0.2 }}
-            className="max-h-[calc(100dvh-4.5rem)] overflow-y-auto border-t border-gio-line bg-gio-surface"
+            className="gio-mobile-menu overflow-y-auto overscroll-contain border-t border-gio-line bg-gio-surface"
           >
             <div className="mx-auto flex max-w-7xl flex-col gap-1 px-4 py-4 sm:px-6">
               {navigation.map((item) => (

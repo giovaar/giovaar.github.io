@@ -1,13 +1,15 @@
 @layer components {
   .gio-background-playback {
+    --gio-playback-edge: max(0.75rem, env(safe-area-inset-right, 0px));
+    --gio-playback-opposite-edge: max(0.75rem, env(safe-area-inset-left, 0px));
     position: fixed;
     z-index: 30;
-    inset-inline-end: max(0.75rem, env(safe-area-inset-right));
-    inset-block-end: max(0.75rem, env(safe-area-inset-bottom));
+    inset-inline-end: var(--gio-playback-edge);
+    inset-block-end: max(0.75rem, env(safe-area-inset-bottom, 0px));
+    max-inline-size: calc(100% - var(--gio-playback-edge) - var(--gio-playback-opposite-edge));
   }
 
   .gio-background-playback .gio-ambient-controls {
-    max-inline-size: calc(100vw - 1.5rem);
     border: 1px solid var(--gio-line);
     border-radius: 0.85rem;
     background: var(--gio-surface);
@@ -16,6 +18,10 @@
 
   .gio-background-playback .gio-ambient-name:empty {
     display: none;
+  }
+
+  .gio-background-playback .gio-ambient-name {
+    overflow-wrap: anywhere;
   }
 
   .gio-ambient {
@@ -45,6 +51,7 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
+    object-position: center;
     pointer-events: none;
     opacity: 0;
   }
