@@ -137,6 +137,7 @@
         "description": "A C++ programming project for practicing logic, data structures, and the fundamentals of game development."
       },
       "portfolio": {
+        "imageAlt": "Giovanny Arpaia’s portfolio homepage, with his name and main links.",
         "description": "A personal portfolio originally built with HTML, CSS, and JavaScript, now being modernized with React and Tailwind CSS.",
         "story": {
           "objective": "Modernize the original portfolio and present the projects in Spanish, English, and Italian.",

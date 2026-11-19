@@ -1,4 +1,5 @@
 
+import { useState } from 'react'
 import { motion, useReducedMotion } from 'motion/react'
 import { useTranslation } from 'react-i18next'
 
@@ -46,6 +47,8 @@ function ProjectCard({ project, index }) {
   const { t } = useTranslation()
   const reduceMotion = useReducedMotion()
   const { image, story } = project
+  const [failedImageSrc, setFailedImageSrc] = useState(null)
+  const showImage = image && image.src !== failedImageSrc
   const codeUrl = httpUrl(project.github)
   const demoUrl = httpUrl(project.demo)
   const demoLabel = t(project.category === 'Videojuegos'
@@ -77,14 +80,24 @@ function ProjectCard({ project, index }) {
       className="gio-project-card gio-card gio-card-padding rounded-2xl transition-colors duration-150 hover:border-gio-violet focus-within:border-gio-violet motion-reduce:transition-none"
     >
       <header>
-        {image && (
+        {showImage && (
           <div className="mb-4 overflow-hidden rounded-xl border border-gio-line bg-gio-raised">
-            <img              src={image.src}              width={image.width}              height={image.height}              alt={t(image.altKey)}              loading="lazy"              decoding="async"              className="aspect-video h-auto w-full object-contain"            />
+            <img
+              key={image.src}
+              src={image.src}
+              width={image.width}
+              height={image.height}
+              alt={t(image.altKey)}
+              loading="lazy"
+              decoding="async"
+              onError={() => setFailedImageSrc(image.src)}
+              className="h-auto max-h-48 w-full object-contain"
+            />
           </div>
         )}
 
         <div className="flex items-center gap-3">
-          {!image && (
+          {!showImage && (
             <div className="grid size-11 shrink-0 place-items-center rounded-xl border border-gio-line bg-gio-raised text-gio-violet">
               <ProjectCategoryIcon category={project.category} />
             </div>

@@ -1,5 +1,5 @@
 
-// image opcional: { src: imagen local importada, width, height, altKey }.
+// image opcional: { src, width, height, altKey }.
 // story usa claves i18n y requiere objective y solution para mostrar el detalle.
 export const projects = [
   {
@@ -40,6 +40,12 @@ export const projects = [
     github:
       'https://github.com/giovaar/giovaar.github.io',
     featured: true,
+    image: {
+      src: `${import.meta.env.BASE_URL}images/projects/portfolio-hero.png`,
+      width: 1587,
+      height: 768,
+      altKey: 'projects.items.portfolio.imageAlt',
+    },
     story: {
       objective: 'projects.items.portfolio.story.objective',
       solution: 'projects.items.portfolio.story.solution',

@@ -137,6 +137,7 @@
         "description": "Progetto di programmazione in C++ per esercitarsi con la logica, le strutture dati e i fondamenti dello sviluppo di videogiochi."
       },
       "portfolio": {
+        "imageAlt": "Pagina iniziale del portfolio di Giovanny Arpaia, con il suo nome e i link principali.",
         "description": "Portfolio personale inizialmente realizzato con HTML, CSS e JavaScript, ora in fase di aggiornamento con React e Tailwind CSS.",
         "story": {
           "objective": "Aggiornare il portfolio originale e presentare i progetti in spagnolo, inglese e italiano.",
