@@ -1,9 +1,8 @@
 
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { motion, useReducedMotion } from "motion/react";
 import {
-  Compass,
   Menu,
   X,
   GitBranch,
@@ -22,11 +21,56 @@ const navigation = [
   { key: "contact", href: "#contacto" },
 ];
 
-export default function Navbar() {
+export default function Navbar({ experienceControl }) {
   const { t } = useTranslation();
   const [menuOpen, setMenuOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState("#inicio");
+  const [compact, setCompact] = useState(false);
   const reduceMotion = useReducedMotion();
+  const navBar = useRef(null);
   const menuButton = useRef(null);
+
+  useEffect(() => {
+    let frame;
+    let directionStart = Math.max(0, window.scrollY);
+    const sections = navigation.map(({ href }) => document.getElementById(href.slice(1)));
+
+    function updateNavigation() {
+      frame = undefined;
+      const scrollY = Math.max(0, window.scrollY);
+      const position = (navBar.current?.getBoundingClientRect().bottom ?? 0) + window.innerHeight * 0.23;
+      let current = navigation[0].href;
+
+      for (const section of sections) {
+        if (section && section.getBoundingClientRect().top <= position) {
+          current = `#${section.id}`;
+        }
+      }
+
+      const atEnd = scrollY > 0 &&
+        scrollY + window.innerHeight >= document.documentElement.scrollHeight - 2;
+      setActiveSection(atEnd ? navigation.at(-1).href : current);
+
+      const travel = scrollY - directionStart;
+      if (scrollY <= 24 || Math.abs(travel) >= 10) {
+        setCompact(scrollY > 24 && travel > 0);
+        directionStart = scrollY;
+      }
+    }
+
+    function scheduleUpdate() {
+      if (frame === undefined) frame = window.requestAnimationFrame(updateNavigation);
+    }
+
+    scheduleUpdate();
+    window.addEventListener("scroll", scheduleUpdate, { passive: true });
+    window.addEventListener("resize", scheduleUpdate);
+    return () => {
+      window.cancelAnimationFrame(frame);
+      window.removeEventListener("scroll", scheduleUpdate);
+      window.removeEventListener("resize", scheduleUpdate);
+    };
+  }, []);
 
   const closeMenu = () => setMenuOpen(false);
 
@@ -49,10 +93,11 @@ export default function Navbar() {
   }
 
   return (
-    <header onKeyDown={handleKeyDown} className="sticky top-0 z-50 border-b border-gio-line bg-gio-surface/95">
+    <header onKeyDown={handleKeyDown} data-compact={compact} className="gio-navbar sticky top-0 z-50">
       <nav
+        ref={navBar}
         aria-label={t("nav.label")}
-        className="mx-auto flex max-w-7xl items-center justify-between gap-2 px-3 py-3 min-[360px]:gap-3 min-[360px]:px-4 sm:px-6 lg:px-8"
+        className={`gio-navbar-inner mx-auto flex max-w-7xl items-center justify-between gap-2 px-3 min-[360px]:gap-3 min-[360px]:px-4 sm:px-6 lg:px-8 ${experienceControl ? "max-[400px]:gap-1 max-[400px]:px-2" : ""}`}
       >
         {/* Logo */}
         <a
@@ -61,15 +106,15 @@ export default function Navbar() {
           className="group flex shrink-0 items-center gap-3 rounded-lg"
           aria-label={t("nav.brandHome")}
         >
-          <span className="flex h-11 w-11 items-center justify-center rounded-xl border border-gio-line bg-gio-raised transition-colors duration-300 group-hover:border-gio-line">
-            <Compass
-              size={23}
-              strokeWidth={1.6}
-              className="text-gio-gold"
-            />
-          </span>
+          <img
+            src={`${import.meta.env.BASE_URL}favicon.svg`}
+            width={44}
+            height={44}
+            alt=""
+            className="size-11 shrink-0 rounded-xl ring-1 ring-gio-line transition-colors group-hover:ring-gio-violet"
+          />
 
-          <span className="hidden text-xl font-bold tracking-[0.12em] text-gio-ink min-[400px]:inline">
+          <span className={`hidden text-xl font-bold tracking-[0.12em] text-gio-ink ${experienceControl ? "min-[448px]:inline" : "min-[400px]:inline"}`}>
             GIO<span className="text-gio-gold">.</span>
           </span>
         </a>
@@ -80,7 +125,8 @@ export default function Navbar() {
             <a
               key={item.key}
               href={item.href}
-              className="group relative rounded-md px-2.5 py-2 text-sm font-medium text-gio-muted transition-colors hover:text-gio-gold"
+              aria-current={activeSection === item.href ? "location" : undefined}
+              className="gio-nav-link relative rounded-lg px-2.5 py-2 text-sm font-medium text-gio-muted hover:bg-gio-raised hover:text-gio-ink"
             >
               {t(`nav.${item.key}`)}
             </a>
@@ -88,7 +134,7 @@ export default function Navbar() {
         </div>
 
         {/* Acciones */}
-        <div className="flex items-center gap-2">
+        <div className={`flex items-center gap-2 ${experienceControl ? "max-[400px]:gap-1 max-[400px]:[&_[lang]]:min-w-7 max-[400px]:[&_[lang]]:px-1" : ""}`}>
           {/* Selector ES / EN / IT */}
           <LanguageSwitcher />
 
@@ -109,6 +155,7 @@ export default function Navbar() {
           <div className="rounded-lg border border-gio-line bg-gio-raised">
             <ThemeToggle />
           </div>
+          {experienceControl}
 
           {/* Menú móvil */}
           <button
@@ -140,7 +187,8 @@ export default function Navbar() {
                   key={item.key}
                   href={item.href}
                   onClick={followSection}
-                  className="rounded-lg border border-transparent px-4 py-3 text-sm font-medium text-gio-ink hover:border-gio-line hover:bg-gio-raised"
+                  aria-current={activeSection === item.href ? "location" : undefined}
+                  className="gio-nav-link relative rounded-lg px-4 py-3 text-sm font-medium text-gio-ink hover:bg-gio-raised"
                 >
                   {t(`nav.${item.key}`)}
                 </a>

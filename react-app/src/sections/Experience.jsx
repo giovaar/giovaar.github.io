@@ -116,7 +116,7 @@ function Experience() {
   const reveal = reduceMotion
     ? {}
     : {
-        initial: { opacity: 0, y: 12 },
+        initial: { opacity: 0.94, y: 6 },
         whileInView: { opacity: 1, y: 0 },
         viewport: { once: true, amount: 0.1 },
         transition: { duration: 0.5, ease: 'easeOut' },
@@ -126,28 +126,28 @@ function Experience() {
     <section
       id="experiencia"
       tabIndex={-1}
-      className="gio-section scroll-mt-24 px-6 py-24"
+      className="gio-section-layout"
     >
-      <div className="mx-auto max-w-6xl">
+      <div className="gio-section-container">
 
         {/* Encabezado */}
-        <motion.div {...reveal} className="max-w-3xl">
-          <span className="text-sm font-bold uppercase tracking-widest text-gio-gold">
+        <motion.div {...reveal} className="gio-reading-panel gio-section-heading">
+          <span className="gio-section-eyebrow text-gio-gold">
             {t('experience.eyebrow')}
           </span>
 
-          <h2 className="mt-4 text-3xl font-bold text-gio-ink sm:text-4xl lg:text-5xl">
+          <h2 className="gio-section-title text-gio-ink">
             {t('experience.title')}
           </h2>
 
-          <p className="mt-6 text-lg leading-relaxed text-gio-muted">
+          <p className="gio-section-intro">
             {t('experience.subtitle')}
           </p>
         </motion.div>
 
         {/* Experiencia laboral y académica */}
-        <motion.div {...reveal} className="mt-14">
-          <h3 className="mb-6 flex items-center gap-3 text-2xl font-bold text-gio-ink">
+        <motion.div {...reveal} className="gio-section-start">
+          <h3 className="gio-reading-label mb-6 flex items-center gap-3 text-2xl font-bold text-gio-ink">
             <BriefcaseBusiness
               size={25}
               className="text-gio-gold"
@@ -156,11 +156,11 @@ function Experience() {
             {t('experience.sections.experience')}
           </h3>
 
-          <div className="grid gap-6">
+          <div className="gio-grid">
             {experiences.map((item) => (
               <article
                 key={item.id}
-                className="gio-card rounded-2xl p-7"
+                className="gio-card gio-card-padding rounded-2xl"
               >
                 <span className="text-sm font-semibold text-gio-gold">
                   {t(item.periodKey)}
@@ -183,8 +183,8 @@ function Experience() {
         </motion.div>
 
         {/* Educación */}
-        <motion.div {...reveal} className="mt-14">
-          <h3 className="mb-6 flex items-center gap-3 text-2xl font-bold text-gio-ink">
+        <motion.div {...reveal} className="gio-section-start">
+          <h3 className="gio-reading-label mb-6 flex items-center gap-3 text-2xl font-bold text-gio-ink">
             <GraduationCap
               size={25}
               className="text-gio-gold"
@@ -193,11 +193,11 @@ function Experience() {
             {t('experience.sections.education')}
           </h3>
 
-          <div className="grid gap-6 md:grid-cols-2">
+          <div className="gio-grid md:grid-cols-2">
             {education.map((item) => (
               <article
                 key={item.id}
-                className="gio-card rounded-2xl p-7"
+                className="gio-card gio-card-padding rounded-2xl"
               >
                 <span className="text-sm font-semibold text-gio-gold">
                   {t(item.periodKey)}
@@ -220,9 +220,9 @@ function Experience() {
         </motion.div>
 
         {/* Certificaciones */}
-        <motion.div {...reveal} className="mt-14">
+        <motion.div {...reveal} className="gio-section-start">
           <div className="mb-6 flex flex-wrap items-center justify-between gap-3">
-            <h3 className="flex items-center gap-3 text-2xl font-bold text-gio-ink">
+            <h3 className="gio-reading-label flex items-center gap-3 text-2xl font-bold text-gio-ink">
               <Award
                 size={25}
                 className="text-gio-gold"
@@ -231,20 +231,24 @@ function Experience() {
               {t('experience.sections.certifications')}
             </h3>
 
-            <span className="text-sm text-gio-muted">
+            <span className="gio-reading-label text-sm text-gio-muted">
               {t('experience.certificatesCount', { count: certifications.length })}
             </span>
           </div>
 
-          <div className="grid gap-5 md:grid-cols-2">
-            {certifications.map((certificate) => {
+          <div className="gio-grid md:grid-cols-2">
+            {certifications.map((certificate, index) => {
               const certificateUrl =
                 `${documentsBase}certificates/${certificate.file}`
 
               return (
-                <article
+                <motion.article
                   key={certificate.id}
-                  className="flex flex-col gio-card gio-card-interactive rounded-2xl p-6 transition-colors duration-300"
+                  initial={reduceMotion ? false : { opacity: 0.9, y: 8 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: reduceMotion ? 0 : 0.32, delay: reduceMotion ? 0 : (index % 2) * 0.045 }}
+                  className="flex flex-col gio-card gio-card-interactive gio-card-padding rounded-2xl transition-colors"
                 >
                   <div className="mb-4 flex items-center justify-between">
                     <div className="rounded-xl bg-gio-raised p-3 text-gio-gold">
@@ -272,20 +276,20 @@ function Experience() {
                     href={certificateUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="mt-6 inline-flex items-center gap-2 font-semibold text-gio-violet hover:underline"
+                    className="mt-4 inline-flex items-center gap-2 font-semibold text-gio-violet hover:underline"
                   >
                     {t('experience.viewCertificate')}
                     <ExternalLink size={16} aria-hidden="true" />
                   </a>
-                </article>
+                </motion.article>
               )
             })}
           </div>
         </motion.div>
 
         {/* Idiomas */}
-        <motion.div {...reveal} className="mt-14">
-          <h3 className="mb-6 flex items-center gap-3 text-2xl font-bold text-gio-ink">
+        <motion.div {...reveal} className="gio-section-start">
+          <h3 className="gio-reading-label mb-6 flex items-center gap-3 text-2xl font-bold text-gio-ink">
             <Languages
               size={25}
               className="text-gio-gold"
@@ -315,7 +319,7 @@ function Experience() {
         {/* Currículums */}
         <motion.div
           {...reveal}
-          className="mt-14 gio-card rounded-2xl p-5 sm:p-8 md:p-10"
+          className="gio-section-start gio-card rounded-2xl p-5 sm:p-8 md:p-10"
         >
           <div className="flex items-center gap-3">
             <FileText

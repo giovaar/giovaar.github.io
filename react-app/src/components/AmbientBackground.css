@@ -1,0 +1,225 @@
+@layer components {
+  .gio-background-playback {
+    position: fixed;
+    z-index: 30;
+    inset-inline-end: max(0.75rem, env(safe-area-inset-right));
+    inset-block-end: max(0.75rem, env(safe-area-inset-bottom));
+  }
+
+  .gio-background-playback .gio-ambient-controls {
+    max-inline-size: calc(100vw - 1.5rem);
+    border: 1px solid var(--gio-line);
+    border-radius: 0.85rem;
+    background: var(--gio-surface);
+    box-shadow: var(--gio-shadow);
+  }
+
+  .gio-background-playback .gio-ambient-name:empty {
+    display: none;
+  }
+
+  .gio-ambient {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    overflow: hidden;
+    pointer-events: none;
+    background: var(--gio-canvas);
+    --ambient-strength: 36%;
+  }
+
+  .dark .gio-ambient {
+    --ambient-strength: 48%;
+  }
+
+  .gio-video-ambient {
+    background:
+      radial-gradient(ellipse at 18% 78%, color-mix(in srgb, var(--gio-turquoise) 12%, transparent), transparent 57%),
+      radial-gradient(ellipse at 86% 20%, color-mix(in srgb, var(--gio-violet) 15%, transparent), transparent 60%),
+      var(--gio-canvas);
+  }
+
+  .gio-video-surface {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    pointer-events: none;
+    opacity: 0;
+  }
+
+  .gio-video-surface[data-ready="true"] {
+    opacity: 0.85;
+  }
+
+  .dark .gio-video-surface[data-ready="true"] {
+    opacity: 0.84;
+    filter: brightness(0.82);
+  }
+
+  .gio-ambient:not(.gio-video-ambient)::after {
+    position: absolute;
+    inset: 0;
+    background: color-mix(in srgb, var(--gio-canvas) var(--gio-reading-opacity), transparent);
+    content: "";
+  }
+
+  [data-video-ambient] .gio-hero-copy {
+    padding: clamp(0.75rem, 1.8vw, 1.5rem);
+  }
+
+  [data-video-ambient] .gio-hero-copy::before {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    border-radius: clamp(0.85rem, 2.5vw, 2rem);
+    background: color-mix(in srgb, var(--gio-surface) var(--gio-video-reading), transparent);
+    box-shadow: 0 0 1.25rem color-mix(in srgb, var(--gio-surface) 30%, transparent);
+    content: "";
+  }
+
+  [data-video-ambient] .gio-hero-art {
+    visibility: hidden;
+  }
+
+  [data-video-ambient] {
+    --gio-video-reading: 92%;
+    --gio-video-card: 91%;
+  }
+
+  .dark [data-video-ambient] {
+    --gio-video-reading: 86%;
+    --gio-video-card: 87%;
+  }
+
+  [data-video-ambient] .gio-reading-panel,
+  [data-video-ambient] .gio-reading-label {
+    background: color-mix(in srgb, var(--gio-surface) var(--gio-video-reading), transparent);
+  }
+
+  [data-video-ambient] .gio-reading-panel {
+    padding: clamp(0.875rem, 2vw, 1.75rem);
+    border-radius: 1.25rem;
+  }
+
+  [data-video-ambient] .gio-reading-label {
+    width: fit-content;
+    max-width: 100%;
+    padding: 0.3rem 0.65rem;
+    border-radius: 0.65rem;
+  }
+
+  [data-video-ambient] .gio-card {
+    background-color: color-mix(in srgb, var(--gio-surface) var(--gio-video-card), transparent);
+  }
+
+  .gio-ambient-scene {
+    position: absolute;
+    inset: 0;
+    --ambient-turquoise: color-mix(in srgb, var(--gio-turquoise) var(--ambient-strength), transparent);
+    --ambient-violet: color-mix(in srgb, var(--gio-violet) var(--ambient-strength), transparent);
+    --ambient-coral: color-mix(in srgb, var(--gio-coral) var(--ambient-strength), transparent);
+    --ambient-gold: color-mix(in srgb, var(--gio-gold) var(--ambient-strength), transparent);
+  }
+
+  .gio-ambient-scene::before {
+    content: "";
+    position: absolute;
+    inset: -4%;
+    background: var(--ambient-art);
+    animation: gio-ambient-drift 18s ease-in-out infinite alternate;
+    animation-play-state: paused;
+  }
+
+  .gio-ambient-scene[data-playing="true"]::before {
+    animation-play-state: running;
+  }
+
+  .gio-ambient-scene[data-scene="lagoon"] {
+    --ambient-art:
+      radial-gradient(ellipse at 16% 76%, var(--ambient-turquoise), transparent 51%),
+      radial-gradient(ellipse at 78% 20%, var(--ambient-violet), transparent 55%),
+      radial-gradient(ellipse at 83% 93%, var(--ambient-gold), transparent 38%);
+  }
+
+  .gio-ambient-scene[data-scene="sunset"] {
+    --ambient-art:
+      radial-gradient(circle at 73% 29%, var(--ambient-gold) 0 9%, var(--ambient-coral) 20%, transparent 39%),
+      linear-gradient(164deg, var(--ambient-violet), transparent 56%),
+      radial-gradient(ellipse at 20% 94%, var(--ambient-coral), transparent 54%);
+  }
+
+  .gio-ambient-scene[data-scene="canopy"] {
+    --ambient-art:
+      radial-gradient(ellipse at 0% 12%, var(--ambient-turquoise), transparent 65%),
+      repeating-conic-gradient(from 18deg at 6% 0%, var(--ambient-turquoise) 0deg, transparent 14deg 27deg),
+      radial-gradient(ellipse at 96% 85%, var(--ambient-violet), transparent 54%);
+  }
+
+  .gio-ambient-scene[data-scene="tide"] {
+    --ambient-art:
+      repeating-radial-gradient(ellipse at 100% 82%, var(--ambient-turquoise) 0%, transparent 9% 18%, var(--ambient-violet) 24%),
+      radial-gradient(ellipse at 12% 18%, var(--ambient-coral), transparent 53%);
+  }
+
+  .gio-ambient-scene[data-scene="horizon"] {
+    --ambient-art:
+      radial-gradient(ellipse at 50% 66%, var(--ambient-coral), transparent 34%),
+      linear-gradient(172deg, transparent 37%, var(--ambient-gold) 49%, transparent 53%),
+      linear-gradient(22deg, var(--ambient-turquoise), transparent 49%, var(--ambient-violet));
+  }
+
+  .gio-ambient-controls {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.25rem 0.5rem;
+    padding-inline: 0.25rem;
+  }
+
+  .gio-ambient-name {
+    min-width: 0;
+    color: var(--gio-muted);
+    font-size: 0.75rem;
+    font-weight: 600;
+  }
+
+  .gio-ambient-actions {
+    display: flex;
+    gap: 0.25rem;
+  }
+
+  .gio-ambient-actions button {
+    display: grid;
+    width: 2.75rem;
+    height: 2.75rem;
+    place-items: center;
+    border-radius: 0.65rem;
+    color: var(--gio-ink);
+  }
+
+  .gio-ambient-actions button:hover:enabled {
+    background: var(--gio-raised);
+  }
+
+  .gio-ambient-actions button:disabled {
+    color: var(--gio-muted);
+    opacity: 0.65;
+  }
+}
+
+@keyframes gio-ambient-drift {
+  from { transform: translate(-2%, -1%); }
+  to { transform: translate(2%, 1%); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .gio-ambient-scene {
+    opacity: 1 !important;
+  }
+
+  .gio-ambient-scene::before {
+    animation: none;
+  }
+}

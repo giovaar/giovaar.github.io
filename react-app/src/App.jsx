@@ -1,5 +1,9 @@
 
+import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
+import AmbientBackground from './components/AmbientBackground'
+import ExperienceSelector from './components/ExperienceSelector'
+import VideoBackground from './components/VideoBackground'
 import Navbar from './components/Navbar'
 import Hero from './components/Hero'
 import Footer from './components/Footer'
@@ -10,8 +14,37 @@ import Projects from './sections/Projects'
 import Experience from './sections/Experience'
 import Contact from './sections/Contact'
 
+const experienceKey = 'gio-visual-experience'
+const videoFiles = {
+  adventure: 'aventuraChill.mp4',
+  after: 'afterMiami.mp4',
+}
+
+function readExperience() {
+  try {
+    const saved = localStorage.getItem(experienceKey)
+    if (saved === 'adventure' || saved === 'after') return saved
+  } catch {
+    // La experiencia original funciona sin almacenamiento.
+  }
+
+  return 'original'
+}
+
 function App() {
   const { t } = useTranslation()
+  const [controlsHost, setControlsHost] = useState(null)
+  const [experience, setExperience] = useState(() => import.meta.env.DEV ? readExperience() : 'original')
+  const videoFile = import.meta.env.DEV ? videoFiles[experience] : undefined
+
+  function selectExperience(next) {
+    setExperience(next)
+    try {
+      localStorage.setItem(experienceKey, next)
+    } catch {
+      // La experiencia seleccionada sigue activa durante esta visita.
+    }
+  }
 
   return (
     <>
@@ -21,9 +54,23 @@ function App() {
       >
         {t('nav.skipToContent')}
       </a>
-      <Navbar />
+      <Navbar experienceControl={(
+        <ExperienceSelector
+          selected={experience}
+          onSelect={selectExperience}
+          allowVideo={import.meta.env.DEV}
+        />
+      )} />
 
-      <main id="contenido-principal" tabIndex={-1}>
+      <main id="contenido-principal" tabIndex={-1} className="isolate" data-video-ambient={videoFile ? '' : undefined}>
+        <div ref={setControlsHost} className="gio-background-playback" />
+        {videoFile ? (
+          <VideoBackground
+            key={experience}
+            controlsHost={controlsHost}
+            src={`${import.meta.env.BASE_URL}videos/${videoFile}`}
+          />
+        ) : <AmbientBackground controlsHost={controlsHost} />}
         <Hero />
         <About />
         <Skills />

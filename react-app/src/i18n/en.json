@@ -1,4 +1,40 @@
 {
+  "experiencePicker": {
+    "title": "Customize experience",
+    "close": "Close customization",
+    "pause": "Pause background",
+    "play": "Play background",
+    "unavailable": "Video unavailable",
+    "options": {
+      "original": {
+        "name": "Original",
+        "description": "Professional atmosphere with five gradient scenes."
+      },
+      "adventure": {
+        "name": "Adventure",
+        "description": "An animated fantasy landscape."
+      },
+      "after": {
+        "name": "After",
+        "description": "An animated tropical atmosphere."
+      }
+    }
+  },
+  "ambient": {
+    "label": "Ambient background",
+    "previous": "Previous scene",
+    "next": "Next scene",
+    "pause": "Pause ambient background",
+    "play": "Play ambient background",
+    "reducedMotion": "Automatic playback is off because you prefer reduced motion.",
+    "scenes": {
+      "lagoon": "Luminous Lagoon",
+      "sunset": "Coral Sun",
+      "canopy": "Tropical Canopy",
+      "tide": "Violet Tide",
+      "horizon": "Golden Horizon"
+    }
+  },
   "nav": {
     "label": "Main navigation",
     "brandHome": "GIO Portfolio, home",
@@ -13,9 +49,10 @@
     "contact": "Contact"
   },
   "hero": {
-    "welcome": "Welcome to my portfolio",
-    "role": "Systems and Computer Engineering student",
-    "description": "I'm Giovanny Arpaia, a Systems and Computer Engineering student interested in software development and data analysis.",
+    "storyButton": "Get to know me",
+    "welcome": "Hi, welcome to my corner of the web.",
+    "role": "I learn by building and turning ideas into projects.",
+    "description": "I’m studying Systems and Computer Engineering and enjoy exploring how technology can solve real problems. This is where I share what I build and what I learn along the way.",
     "secondary": "I'm building my path in technology, learning with every project and aiming to create useful solutions.",
     "projectsButton": "Explore my projects",
     "contactButton": "Get in touch",
@@ -29,8 +66,8 @@
   },
   "about": {
     "eyebrow": "About me",
-    "title": "Learning and creating with technology",
-    "subtitle": "My journey brings together programming, data analysis, and continuous learning.",
+    "title": "What draws me to programming",
+    "subtitle": "I like taking a question and making something I can test: a page, a program, or an analysis.",
     "software": "Software development",
     "softwareDescription": "I'm interested in building applications and solutions that address real needs.",
     "data": "Data and analytics",
@@ -39,7 +76,7 @@
     "learningDescription": "I keep expanding my knowledge through projects and new technologies.",
     "intro": "I'm Giovanny Arpaia, a Systems and Computer Engineering student at the Technological University of Panama.",
     "description": "I'm exploring areas such as web development, programming, and data analysis, applying what I learn to academic and personal projects.",
-    "goal": "My goal is to keep growing as a professional and help create useful, thoughtfully designed software solutions."
+    "goal": "I want to keep learning and contribute to projects where software serves a clear purpose."
   },
   "common": {
     "darkMode": "Dark mode",
@@ -48,9 +85,9 @@
     "openNewTab": "opens in a new tab"
   },
   "skills": {
-  "eyebrow": "Skill tree",
-  "title": "My skills",
-  "subtitle": "Tools and technologies I've learned throughout my journey as a developer.",
+  "eyebrow": "My toolkit",
+  "title": "What I build with",
+  "subtitle": "These are the tools I practice with, from building interfaces to analyzing data.",
   "web": "Web development",
   "webDescription": "Interfaces, applications, and web experiences.",
   "programming": "Programming",
@@ -64,8 +101,8 @@
   },
   "projects": {
     "eyebrow": "My work",
-    "title": "Projects I've built",
-    "subtitle": "A selection of personal and academic projects where I apply my knowledge of programming, web development, and databases.",
+    "title": "Ideas I turned into projects",
+    "subtitle": "Here are three ways I’ve put what I learned into practice: an app for a clinic, a first game, and the portfolio you’re browsing.",
     "filters": {
       "label": "Filter projects by category",
       "all": "All"
@@ -83,7 +120,14 @@
       "viewCode": "View code",
       "playNow": "Play now",
       "viewDemo": "View demo",
-      "noDemo": "Demo unavailable"
+      "noDemo": "Demo unavailable",
+      "details": "View details"
+    },
+    "story": {
+      "objective": "Objective",
+      "solution": "Solution",
+      "technologies": "Technologies",
+      "learning": "Technical challenge"
     },
     "items": {
       "clinic": {
@@ -93,25 +137,31 @@
         "description": "A C++ programming project for practicing logic, data structures, and the fundamentals of game development."
       },
       "portfolio": {
-        "description": "A personal portfolio originally built with HTML, CSS, and JavaScript, now being modernized with React and Tailwind CSS."
+        "description": "A personal portfolio originally built with HTML, CSS, and JavaScript, now being modernized with React and Tailwind CSS.",
+        "story": {
+          "objective": "Modernize the original portfolio and present the projects in Spanish, English, and Italian.",
+          "solution": "The page is organized into sections, and the project catalog uses reusable cards with category filters.",
+          "technologies": "React composes the sections, Tailwind CSS styles them, and i18next manages translations.",
+          "learning": "Keep the catalog available if GitHub fails. The cards use local data, then show the language and star count when the API responds."
+        }
       }
     }
   },
   "experience": {
     "eyebrow": "My journey",
-    "title": "Education and experience",
-    "subtitle": "My education, academic experience, and professional preparation as I continue to grow in technology.",
+    "title": "From coursework to practice",
+    "subtitle": "My path brings together what I study, what tutoring teaches me, and the courses I take alongside my degree.",
     "sections": {
       "experience": "Experience",
       "education": "Education",
-      "certifications": "Certifications",
+      "certifications": "Courses and certifications",
       "languages": "Languages"
     },
     "entries": {
       "calculusTutor": {
         "title": "Calculus I Tutor",
         "period": "March 2026 - Present",
-        "description": "Academic support for university students in mathematical concepts, problem-solving, and exam preparation, while developing communication and teaching skills."
+        "description": "In tutoring sessions, I review calculus concepts with university students, work through exercises with them, and help them prepare for assessments."
       }
     },
     "education": {
@@ -133,7 +183,7 @@
     },
     "certificatesCount_one": "{{count}} certificate",
     "certificatesCount_other": "{{count}} certificates",
-    "viewCertificate": "View certificate",
+    "viewCertificate": "Open certificate",
     "languages": {
       "spanish": "Spanish",
       "english": "English",
@@ -142,7 +192,7 @@
     },
     "cv": {
       "title": "My résumés",
-      "description": "View or download my résumé in Spanish or English to learn more about my education, experience, and skills.",
+      "description": "You can view or download my résumé in Spanish or English.",
       "spanish": "Résumé in Spanish",
       "english": "Résumé in English",
       "language": "Language",
@@ -152,8 +202,8 @@
   },
   "contact": {
     "eyebrow": "Contact",
-    "title": "Let's talk",
-    "subtitle": "I'm interested in opportunities to keep learning and growing professionally in software development and data analysis. If you'd like to learn about my projects or get in touch, you can find me here.",
+    "title": "Let’s talk about what we could build",
+    "subtitle": "If you’d like to talk about a project or an opportunity in software development or data analysis, send me a message. You can also find me on GitHub and LinkedIn.",
     "links": {
       "email": {
         "name": "Email",
@@ -174,6 +224,6 @@
   },
   "footer": {
     "navigationLabel": "Footer navigation",
-    "copyright": "© {{year}} Giovanny Arpaia. Designed and developed with React."
+    "copyright": "© {{year}} Giovanny Arpaia. I built this portfolio with React."
   }
 }

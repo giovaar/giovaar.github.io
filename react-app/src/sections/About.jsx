@@ -39,42 +39,42 @@ export default function About() {
       id="sobre-mi"
       tabIndex={-1}
       aria-labelledby="about-title"
-      className="gio-section gio-section-alt relative scroll-mt-20 overflow-hidden px-5 py-20 sm:px-8 lg:py-28"
+      className="gio-section-layout"
     >
       {/* Iluminación ambiental */}
-      <div className="relative mx-auto max-w-7xl">
+      <div className="gio-section-container">
         <motion.div
-          initial={reduceMotion ? false : { opacity: 0, y: 12 }}
+          initial={reduceMotion ? false : { opacity: 0.94, y: 6 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.2 }}
           transition={{ duration: 0.55 }}
-          className="mx-auto mb-12 max-w-3xl text-center"
+          className="gio-reading-panel gio-section-heading"
         >
-          <span className="mb-4 inline-flex items-center gap-2 rounded-full border border-gio-line bg-gio-gold/10 px-4 py-2 text-xs font-semibold tracking-[0.15em] text-gio-gold uppercase">
+          <span className="gio-section-eyebrow text-gio-gold">
             <Compass size={15} />
             {t("about.eyebrow")}
           </span>
 
           <h2
             id="about-title"
-            className="mt-4 text-3xl font-bold text-gio-ink sm:text-4xl lg:text-5xl"
+            className="gio-section-title text-gio-ink"
           >
             {t("about.title")}
           </h2>
 
-          <p className="mt-5 text-base leading-relaxed text-gio-muted">
+          <p className="gio-section-intro">
             {t("about.subtitle")}
           </p>
         </motion.div>
 
-        <div className="grid items-start gap-10 lg:grid-cols-[1fr_1.1fr] lg:gap-14">
+        <div className="gio-section-start gio-grid items-start lg:grid-cols-2">
           {/* Perfil */}
           <motion.div
-            initial={reduceMotion ? false : { opacity: 0, x: -12 }}
+            initial={reduceMotion ? false : { opacity: 0.9, x: -8 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, amount: 0.2 }}
             transition={{ duration: 0.6 }}
-            className="relative gio-card rounded-2xl p-6 sm:p-8"
+            className="relative gio-card gio-card-padding rounded-2xl"
           >
 
             <div className="mb-6 flex items-center gap-3">
@@ -98,14 +98,14 @@ export default function About() {
           </motion.div>
 
           {/* Intereses */}
-          <div className="grid gap-4">
+          <div className="gio-grid">
             {cards.map((card, index) => {
               const Icon = card.icon;
 
               return (
                 <motion.div
                   key={card.id}
-                  initial={reduceMotion ? false : { opacity: 0, y: 12 }}
+                  initial={reduceMotion ? false : { opacity: 0.9, y: 8 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, amount: 0.2 }}
                   transition={{

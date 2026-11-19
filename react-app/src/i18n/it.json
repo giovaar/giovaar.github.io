@@ -1,4 +1,40 @@
 {
+  "experiencePicker": {
+    "title": "Personalizza l’esperienza",
+    "close": "Chiudi personalizzazione",
+    "pause": "Metti in pausa lo sfondo",
+    "play": "Riproduci lo sfondo",
+    "unavailable": "Video non disponibile",
+    "options": {
+      "original": {
+        "name": "Originale",
+        "description": "Atmosfera professionale con cinque scene sfumate."
+      },
+      "adventure": {
+        "name": "Avventura",
+        "description": "Un paesaggio fantasy in movimento."
+      },
+      "after": {
+        "name": "After",
+        "description": "Un’atmosfera tropicale in movimento."
+      }
+    }
+  },
+  "ambient": {
+    "label": "Sfondo ambientale",
+    "previous": "Scena precedente",
+    "next": "Scena successiva",
+    "pause": "Metti in pausa lo sfondo",
+    "play": "Riproduci lo sfondo",
+    "reducedMotion": "La riproduzione automatica è disattivata per la preferenza di movimento ridotto.",
+    "scenes": {
+      "lagoon": "Laguna luminosa",
+      "sunset": "Sole di corallo",
+      "canopy": "Chioma tropicale",
+      "tide": "Marea viola",
+      "horizon": "Orizzonte dorato"
+    }
+  },
   "nav": {
     "label": "Navigazione principale",
     "brandHome": "GIO Portfolio, pagina iniziale",
@@ -13,11 +49,12 @@
     "contact": "Contatti"
   },
   "hero": {
-    "welcome": "Benvenuto nel mio portfolio",
-    "role": "Studente di Ingegneria dei Sistemi e dell'Informatica",
-    "description": "Sono Giovanny Arpaia, studente di Ingegneria dei Sistemi e dell'Informatica, interessato allo sviluppo software e all'analisi dei dati.",
+    "storyButton": "Scopri il mio percorso",
+    "welcome": "Ciao, benvenuto nel mio spazio online.",
+    "role": "Imparo costruendo e trasformo le idee in progetti.",
+    "description": "Studio Ingegneria dei sistemi e informatica e mi piace capire come la tecnologia possa risolvere problemi concreti. Qui condivido i miei progetti e ciò che imparo lungo il percorso.",
     "secondary": "Sto costruendo il mio percorso nel mondo della tecnologia, imparando con ogni progetto e cercando di creare soluzioni utili.",
-    "projectsButton": "Scopri i miei progetti",
+    "projectsButton": "Esplora i miei progetti",
     "contactButton": "Contattami",
     "cvSpanish": "Curriculum in spagnolo",
     "cvEnglish": "Curriculum in inglese",
@@ -29,8 +66,8 @@
   },
   "about": {
     "eyebrow": "Chi sono",
-    "title": "Imparare e creare con la tecnologia",
-    "subtitle": "Il mio percorso unisce programmazione, analisi dei dati e apprendimento continuo.",
+    "title": "Cosa mi spinge a programmare",
+    "subtitle": "Mi piace partire da una domanda e arrivare a qualcosa da provare: una pagina, un programma o un’analisi.",
     "software": "Sviluppo software",
     "softwareDescription": "Mi interessa realizzare applicazioni e soluzioni che rispondano a esigenze reali.",
     "data": "Dati e analisi",
@@ -39,7 +76,7 @@
     "learningDescription": "Continuo ad ampliare le mie conoscenze attraverso progetti e nuove tecnologie.",
     "intro": "Sono Giovanny Arpaia, studente di Ingegneria dei Sistemi e dell'Informatica presso l'Università Tecnologica di Panama.",
     "description": "Mi sto avvicinando ad ambiti come lo sviluppo web, la programmazione e l'analisi dei dati, mettendo in pratica ciò che imparo in progetti accademici e personali.",
-    "goal": "Il mio obiettivo è continuare a crescere professionalmente e contribuire alla creazione di soluzioni software utili e curate."
+    "goal": "Voglio continuare a imparare e contribuire a progetti in cui il software abbia uno scopo chiaro."
   },
   "common": {
     "darkMode": "Modalità scura",
@@ -48,9 +85,9 @@
     "openNewTab": "si apre in una nuova scheda"
   },
   "skills": {
-  "eyebrow": "Albero delle competenze",
-  "title": "Le mie competenze",
-  "subtitle": "Strumenti e tecnologie che ho imparato durante il mio percorso come sviluppatore.",
+  "eyebrow": "I miei strumenti",
+  "title": "Con cosa lavoro",
+  "subtitle": "Sono gli strumenti con cui faccio pratica, dalle interfacce all’analisi dei dati.",
   "web": "Sviluppo web",
   "webDescription": "Interfacce, applicazioni ed esperienze web.",
   "programming": "Programmazione",
@@ -64,8 +101,8 @@
   },
   "projects": {
     "eyebrow": "I miei progetti",
-    "title": "Progetti che ho realizzato",
-    "subtitle": "Una selezione di progetti personali e accademici in cui applico le mie conoscenze di programmazione, sviluppo web e database.",
+    "title": "Idee diventate progetti",
+    "subtitle": "Qui racconto tre modi in cui ho messo in pratica ciò che ho imparato: un’applicazione per una clinica, un primo videogioco e il portfolio che stai esplorando.",
     "filters": {
       "label": "Filtra i progetti per categoria",
       "all": "Tutti"
@@ -83,7 +120,14 @@
       "viewCode": "Visualizza il codice",
       "playNow": "Gioca ora",
       "viewDemo": "Visualizza la demo",
-      "noDemo": "Demo non disponibile"
+      "noDemo": "Demo non disponibile",
+      "details": "Mostra dettagli"
+    },
+    "story": {
+      "objective": "Obiettivo",
+      "solution": "Soluzione",
+      "technologies": "Tecnologie",
+      "learning": "Sfida tecnica"
     },
     "items": {
       "clinic": {
@@ -93,25 +137,31 @@
         "description": "Progetto di programmazione in C++ per esercitarsi con la logica, le strutture dati e i fondamenti dello sviluppo di videogiochi."
       },
       "portfolio": {
-        "description": "Portfolio personale inizialmente realizzato con HTML, CSS e JavaScript, ora in fase di aggiornamento con React e Tailwind CSS."
+        "description": "Portfolio personale inizialmente realizzato con HTML, CSS e JavaScript, ora in fase di aggiornamento con React e Tailwind CSS.",
+        "story": {
+          "objective": "Aggiornare il portfolio originale e presentare i progetti in spagnolo, inglese e italiano.",
+          "solution": "La pagina è organizzata in sezioni e il catalogo usa schede riutilizzabili con filtri per categoria.",
+          "technologies": "React compone le sezioni, Tailwind CSS ne definisce gli stili e i18next gestisce le traduzioni.",
+          "learning": "Mantenere il catalogo disponibile se GitHub non risponde. Le schede usano i dati locali e mostrano il linguaggio e le stelle quando risponde l’API."
+        }
       }
     }
   },
   "experience": {
     "eyebrow": "Il mio percorso",
-    "title": "Formazione ed esperienza",
-    "subtitle": "La mia formazione, esperienza accademica e preparazione professionale mentre continuo a crescere nel mondo della tecnologia.",
+    "title": "Tra studio e pratica",
+    "subtitle": "Il mio percorso unisce lo studio, ciò che imparo dando ripetizioni e i corsi con cui completo la mia formazione.",
     "sections": {
       "experience": "Esperienza",
       "education": "Formazione",
-      "certifications": "Certificazioni",
+      "certifications": "Corsi e certificazioni",
       "languages": "Lingue"
     },
     "entries": {
       "calculusTutor": {
         "title": "Tutor di Calcolo I",
         "period": "Marzo 2026 - Presente",
-        "description": "Supporto accademico agli studenti universitari nei concetti matematici, nella risoluzione di esercizi e nella preparazione agli esami, sviluppando al contempo capacità comunicative e didattiche."
+        "description": "Durante le ripetizioni ripasso i concetti di analisi matematica con studenti universitari, li affianco negli esercizi e li aiuto a prepararsi alle verifiche."
       }
     },
     "education": {
@@ -133,7 +183,7 @@
     },
     "certificatesCount_one": "{{count}} certificato",
     "certificatesCount_other": "{{count}} certificati",
-    "viewCertificate": "Visualizza il certificato",
+    "viewCertificate": "Consulta il certificato",
     "languages": {
       "spanish": "Spagnolo",
       "english": "Inglese",
@@ -142,7 +192,7 @@
     },
     "cv": {
       "title": "I miei curriculum",
-      "description": "Consulta o scarica il mio curriculum in spagnolo o in inglese per saperne di più sulla mia formazione, esperienza e competenze.",
+      "description": "Puoi consultare o scaricare il mio curriculum in spagnolo o in inglese.",
       "spanish": "Curriculum in spagnolo",
       "english": "Curriculum in inglese",
       "language": "Lingua",
@@ -152,8 +202,8 @@
   },
   "contact": {
     "eyebrow": "Contatti",
-    "title": "Parliamone",
-    "subtitle": "Sono interessato a opportunità per continuare a imparare e crescere professionalmente nello sviluppo software e nell'analisi dei dati. Se vuoi conoscere i miei progetti o contattarmi, mi trovi qui.",
+    "title": "Parliamo di cosa possiamo costruire",
+    "subtitle": "Se vuoi parlare di un progetto o di un’opportunità nello sviluppo software o nell’analisi dei dati, scrivimi. Mi trovi anche su GitHub e LinkedIn.",
     "links": {
       "email": {
         "name": "Email",
@@ -174,6 +224,6 @@
   },
   "footer": {
     "navigationLabel": "Navigazione a piè di pagina",
-    "copyright": "© {{year}} Giovanny Arpaia. Progettato e sviluppato con React."
+    "copyright": "© {{year}} Giovanny Arpaia. Ho creato questo portfolio con React."
   }
 }

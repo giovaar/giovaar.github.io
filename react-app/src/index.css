@@ -37,7 +37,7 @@
   --gio-on-action: #ffffff;
   --gio-focus: #593aa0;
   --gio-shadow: 0 14px 36px rgb(42 24 73 / 0.08);
-  --gio-wash: 10%;
+  --gio-reading-opacity: 79%;
 }
 
 html.dark {
@@ -57,7 +57,7 @@ html.dark {
   --gio-on-action: #20152f;
   --gio-focus: #7ce3ce;
   --gio-shadow: 0 18px 42px rgb(6 4 12 / 0.28);
-  --gio-wash: 16%;
+  --gio-reading-opacity: 74%;
 }
 
 @layer base {
@@ -103,13 +103,88 @@ html.dark {
 }
 
 @layer components {
-  .gio-section {
-    border-top: 1px solid var(--gio-line);
-    background-color: color-mix(in srgb, var(--gio-canvas) 97%, transparent);
+  .gio-section-layout {
+    --gio-grid-gap: clamp(1rem, 2.4vw, 1.5rem);
+    --gio-section-gap: clamp(1.5rem, 3.5vw, 2.5rem);
+    padding-inline: clamp(1rem, 3vw, 2rem);
+    padding-block: clamp(3.75rem, 7vw, 6rem);
+    scroll-margin-top: 1rem;
   }
 
-  .gio-section-alt {
-    background-color: color-mix(in srgb, var(--gio-surface) 97%, transparent);
+  .gio-section-container {
+    max-inline-size: 72rem;
+    margin-inline: auto;
+  }
+
+  .gio-section-heading {
+    display: grid;
+    justify-items: start;
+    gap: 0.75rem;
+    inline-size: fit-content;
+    max-inline-size: min(100%, 42rem);
+  }
+
+  .gio-section-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.13em;
+    text-transform: uppercase;
+  }
+
+  .gio-section-intro {
+    max-inline-size: 62ch;
+    font-size: clamp(1rem, 1.7vw, 1.125rem);
+    line-height: 1.6;
+    color: var(--gio-muted);
+  }
+
+  .gio-section-start {
+    margin-block-start: var(--gio-section-gap);
+  }
+
+  .gio-grid {
+    display: grid;
+    gap: var(--gio-grid-gap);
+  }
+
+  .gio-card-padding {
+    padding: clamp(1rem, 2.2vw, 1.5rem);
+  }
+
+  .gio-project-grid {
+    align-items: start;
+  }
+
+  .gio-project-card {
+    display: grid;
+    gap: 0.875rem;
+  }
+
+  @media (48rem <= width < 64rem) {
+    .gio-balanced-grid {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+
+    .gio-balanced-grid > * {
+      grid-column: span 2;
+    }
+
+    .gio-balanced-grid > :nth-child(3):last-child {
+      grid-column: 2 / span 2;
+    }
+  }
+
+  @media (min-width: 48rem) {
+    @supports (grid-template-rows: subgrid) and selector(:has(details[open])) {
+      .gio-project-grid:not(:has(details[open])) > .gio-project-card {
+        grid-row: span 4;
+        grid-template-rows: subgrid;
+        align-self: stretch;
+      }
+    }
   }
 
   .gio-card {
@@ -124,19 +199,145 @@ html.dark {
     border-color: var(--gio-violet);
   }
 
-  .gio-hero {
-    background:
-      radial-gradient(ellipse at 84% 24%, color-mix(in srgb, var(--gio-violet) var(--gio-wash), transparent), transparent 52%),
-      radial-gradient(ellipse at 95% 88%, color-mix(in srgb, var(--gio-coral) var(--gio-wash), transparent), transparent 45%),
-      radial-gradient(ellipse at 12% 12%, color-mix(in srgb, var(--gio-turquoise) var(--gio-wash), transparent), transparent 40%),
-      var(--gio-canvas);
+  .gio-navbar {
+    background-color: color-mix(in srgb, var(--gio-surface) 95%, transparent);
+    transition: background-color 220ms ease, box-shadow 220ms ease;
+  }
+
+  .gio-navbar[data-compact="true"] {
+    background-color: var(--gio-surface);
+    box-shadow: 0 8px 24px color-mix(in srgb, #080511 16%, transparent);
+  }
+
+  .gio-navbar-inner {
+    padding-block: 0.5rem;
+  }
+
+  @media (min-width: 80rem) {
+    .gio-navbar,
+    .gio-navbar[data-compact="true"] {
+      min-height: 5.25rem;
+      padding: 0.5rem 1.5rem 0;
+      background: transparent;
+      box-shadow: none;
+    }
+
+    .gio-navbar .gio-navbar-inner {
+      padding-block: 0.625rem;
+      border: 1px solid var(--gio-line);
+      border-radius: 1.75rem;
+      background-color: color-mix(in srgb, var(--gio-surface) 96%, transparent);
+      box-shadow: var(--gio-shadow);
+      transition: padding-block 160ms ease, background-color 160ms ease;
+    }
+
+    .gio-navbar[data-compact="true"] .gio-navbar-inner {
+      padding-block: 0.25rem;
+      background-color: var(--gio-surface);
+    }
+  }
+
+  .gio-nav-link[aria-current="location"] {
+    color: var(--gio-ink);
+    background: var(--gio-raised);
+  }
+
+  .gio-nav-link[aria-current="location"]::after {
+    position: absolute;
+    inset: auto 0.6rem 0.22rem;
+    height: 2px;
+    border-radius: 1px;
+    background: var(--gio-turquoise);
+    content: "";
+  }
+
+  .gio-hero-title {
+    font-size: clamp(2.75rem, 10vw, 6.75rem);
+    line-height: 0.95;
+    letter-spacing: -0.075em;
+    font-weight: 800;
+  }
+
+  .gio-hero-action {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    min-height: 2.75rem;
+    padding: 0.5rem 0.9rem;
+    border-radius: 999px;
+    font-size: 0.875rem;
+    font-weight: 650;
+  }
+
+  .gio-hero-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.375rem;
+    min-height: 2.75rem;
+    text-underline-offset: 0.25em;
+  }
+
+  .gio-hero-link:is(:hover, :focus-visible) {
+    color: var(--gio-ink);
+    text-decoration: underline;
   }
 
   .gio-hero-art {
-    background:
-      radial-gradient(circle at 50% 30%, color-mix(in srgb, var(--gio-turquoise) var(--gio-wash), transparent), transparent 50%),
-      radial-gradient(circle at 85% 95%, color-mix(in srgb, var(--gio-coral) var(--gio-wash), transparent), transparent 55%),
-      var(--gio-raised);
+    position: relative;
+    width: min(100%, 26rem);
+    aspect-ratio: 1;
+    place-items: center;
+    justify-self: center;
+    color: var(--gio-violet);
+  }
+
+  .gio-hero-art::before,
+  .gio-hero-art::after {
+    position: absolute;
+    inset: 14% 4%;
+    border: 1px solid currentColor;
+    border-radius: 50%;
+    content: "";
+    opacity: 0.5;
+    transform: rotate(-33deg);
+  }
+
+  .gio-hero-art::after {
+    inset: 8% 14%;
+    color: var(--gio-turquoise);
+    transform: rotate(33deg);
+  }
+
+  .gio-hero-art span {
+    font-size: clamp(5rem, 11vw, 10rem);
+    font-weight: 800;
+    letter-spacing: -0.1em;
+    opacity: 0.64;
+  }
+
+  .gio-section-title {
+    font-size: clamp(1.8rem, 4.5vw, 2.9rem);
+    line-height: 1.08;
+    font-weight: 750;
+    max-inline-size: 23ch;
+    text-wrap: balance;
+  }
+
+  .gio-card-interactive:focus-visible,
+  .gio-card-interactive:focus-within {
+    border-color: var(--gio-focus);
+  }
+}
+
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  .gio-hero-action,
+  .gio-card-interactive {
+    transition: translate 180ms ease, background-color 180ms ease, border-color 180ms ease;
+  }
+
+  .gio-hero-action:hover,
+  .gio-card-interactive:is(:hover, :focus-within) {
+    translate: 0 -2px;
   }
 }
 

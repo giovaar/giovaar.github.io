@@ -1,0 +1,85 @@
+@layer components {
+  .gio-floating-tech {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+  }
+
+  .gio-tech-anchor {
+    position: absolute;
+    display: grid;
+    --tech-color: var(--gio-violet);
+    --tech-outline: 62%;
+    --tech-tint: 15%;
+    color: var(--tech-color);
+    opacity: 0.44;
+    transform: translate(-50%, -50%);
+  }
+
+  .dark .gio-tech-anchor {
+    --tech-outline: 52%;
+    --tech-tint: 11%;
+    opacity: 0.42;
+  }
+  .gio-tech-anchor[data-tone="gold"] { --tech-color: var(--gio-gold); }
+  .gio-tech-anchor[data-tone="turquoise"] { --tech-color: var(--gio-turquoise); }
+
+  .gio-tech-drift,
+  .gio-tech-mover {
+    display: block;
+  }
+
+  .gio-tech-symbol {
+    display: grid;
+    inline-size: clamp(2.35rem, 4vw, 3.25rem);
+    aspect-ratio: 1;
+    place-items: center;
+    border: 1px solid color-mix(in srgb, currentColor var(--tech-outline), transparent);
+    border-radius: 50%;
+    background: radial-gradient(circle at 35% 25%, var(--gio-surface), color-mix(in srgb, currentColor var(--tech-tint), transparent) 85%);
+    font: 650 0.69rem/1 ui-monospace, monospace;
+  }
+
+  @media (pointer: fine) and (hover: hover) and (prefers-reduced-motion: no-preference) {
+    .gio-tech-drift {
+      animation: gio-tech-drift var(--tech-duration) var(--tech-delay) infinite;
+      animation-play-state: paused;
+    }
+
+    .gio-floating-tech[data-playing="true"] .gio-tech-drift {
+      animation-play-state: running;
+    }
+  }
+
+  @media (width < 48rem) {
+    .gio-tech-anchor,
+    .dark .gio-tech-anchor {
+      opacity: 0.29;
+    }
+    .gio-tech-anchor:nth-child(even) { display: none; }
+    .gio-tech-symbol {
+      inline-size: 1.95rem;
+      font-size: 0.55rem;
+    }
+  }
+}
+
+@keyframes gio-tech-drift {
+  0%, 100% {
+    transform: translate(0, -28px) rotate(-5deg);
+    animation-timing-function: ease-in-out;
+  }
+  25% {
+    transform: translate(calc(var(--tech-direction) * min(5vw, 64px)), -8px) rotate(4deg);
+    animation-timing-function: ease-in-out;
+  }
+  50% {
+    transform: translate(calc(var(--tech-direction) * 18px), 43px) rotate(8deg);
+    animation-timing-function: ease-in-out;
+  }
+  75% {
+    transform: translate(calc(var(--tech-direction) * -38px), 15px) rotate(-6deg);
+    animation-timing-function: ease-in-out;
+  }
+}

@@ -1,11 +1,12 @@
-
 import { useEffect, useRef, useState } from 'react'
+import { motion, useReducedMotion } from 'motion/react'
 import { useTranslation } from 'react-i18next'
 import { projects } from '../data/projects'
 import ProjectCard from '../components/ProjectCard'
 
 function Projects() {
   const { t } = useTranslation()
+  const reduceMotion = useReducedMotion()
   const [activeFilter, setActiveFilter] = useState('Todos')
   const [githubRepos, setGithubRepos] = useState([])
   const [loading, setLoading] = useState(false)
@@ -49,7 +50,7 @@ function Projects() {
 
   // Combinar proyectos locales con datos de GitHub
   const enrichedProjects = projects.map((project) => {
-    const repoName = project.github.split('/').pop()
+    const repoName = project.github?.split('/').pop()
 
     const githubData = githubRepos.find(
       (repo) => repo.name === repoName
@@ -86,28 +87,34 @@ function Projects() {
       ref={sectionRef}
       id="proyectos"
       tabIndex={-1}
-      className="gio-section gio-section-alt scroll-mt-24 px-6 py-24"
+      className="gio-section-layout"
     >
-      <div className="mx-auto max-w-6xl">
+      <div className="gio-section-container">
 
         {/* Encabezado */}
-        <div className="max-w-3xl">
-          <span className="text-sm font-bold uppercase tracking-widest text-gio-violet">
+        <motion.div
+          className="gio-reading-panel gio-section-heading"
+          initial={reduceMotion ? false : { opacity: 0.94, y: 6 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: reduceMotion ? 0 : 0.35 }}
+        >
+          <span className="gio-section-eyebrow text-gio-violet">
             {t('projects.eyebrow')}
           </span>
 
-          <h2 className="mt-4 text-3xl font-bold text-gio-ink sm:text-4xl lg:text-5xl">
+          <h2 className="gio-section-title text-gio-ink">
             {t('projects.title')}
           </h2>
 
-          <p className="mt-6 text-lg leading-relaxed text-gio-muted">
+          <p className="gio-section-intro">
             {t('projects.subtitle')}
           </p>
-        </div>
+        </motion.div>
 
         {/* Filtros */}
         <div
-          className="mt-10 flex flex-wrap gap-3"
+          className="gio-section-start flex flex-wrap gap-3"
           role="group"
           aria-label={t('projects.filters.label')}
         >
@@ -132,25 +139,26 @@ function Projects() {
         {loading && (
           <p
             role="status"
-            className="mt-6 text-sm text-gio-muted"
+            className="gio-reading-label mt-6 text-sm text-gio-muted"
           >
             {t('projects.loading')}
           </p>
         )}
 
         {/* Tarjetas de proyectos */}
-        <div className="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {filteredProjects.map((project) => (
+        <div className="gio-project-grid gio-balanced-grid gio-grid mt-5 lg:grid-cols-3">
+          {filteredProjects.map((project, index) => (
             <ProjectCard
               key={project.id}
               project={project}
+              index={index}
             />
           ))}
         </div>
 
         {/* Estado vacío */}
         {filteredProjects.length === 0 && (
-          <p className="mt-10 text-gio-muted">
+          <p className="gio-reading-label mt-10 text-gio-muted">
             {t('projects.empty')}
           </p>
         )}

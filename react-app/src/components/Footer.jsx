@@ -16,7 +16,7 @@ function Footer() {
   const { t } = useTranslation()
 
   return (
-    <footer className="border-t border-gio-line bg-gio-raised px-6 py-10">
+    <footer className="bg-gio-raised px-6 py-10">
       <div className="mx-auto max-w-6xl">
 
         <div className="flex flex-col items-center justify-between gap-6 md:flex-row">

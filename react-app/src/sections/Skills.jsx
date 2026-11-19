@@ -66,37 +66,37 @@ export default function Skills() {
       id="habilidades"
       tabIndex={-1}
       aria-labelledby="skills-title"
-      className="gio-section relative scroll-mt-20 overflow-hidden px-5 py-20 sm:px-8 lg:py-28"
+      className="gio-section-layout"
     >
       {/* Fondo ambiental */}
-      <div className="relative mx-auto max-w-7xl">
+      <div className="gio-section-container">
         {/* Encabezado */}
         <motion.div
-          initial={reduceMotion ? false : { opacity: 0, y: 12 }}
+          initial={reduceMotion ? false : { opacity: 0.94, y: 6 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.2 }}
           transition={{ duration: 0.55 }}
-          className="mx-auto mb-12 max-w-3xl text-center"
+          className="gio-reading-panel gio-section-heading"
         >
-          <span className="mb-4 inline-flex items-center gap-2 rounded-full border border-gio-line bg-gio-gold/10 px-4 py-2 text-xs font-semibold tracking-[0.15em] text-gio-gold uppercase">
+          <span className="gio-section-eyebrow text-gio-gold">
             <GitBranch size={15} />
             {t("skills.eyebrow")}
           </span>
 
           <h2
             id="skills-title"
-            className="mt-4 text-3xl font-bold text-gio-ink sm:text-4xl lg:text-5xl"
+            className="gio-section-title text-gio-ink"
           >
             {t("skills.title")}
           </h2>
 
-          <p className="mt-5 text-base leading-relaxed text-gio-muted">
+          <p className="gio-section-intro">
             {t("skills.subtitle")}
           </p>
         </motion.div>
 
         {/* Categorías */}
-        <div className="grid gap-5 md:grid-cols-2">
+        <div className="gio-section-start gio-grid md:grid-cols-2">
           {skillGroups.map((group, index) => {
             const Icon = group.icon;
 
@@ -106,7 +106,7 @@ export default function Skills() {
                 initial={
                   reduceMotion
                     ? false
-                    : { opacity: 0, y: 12 }
+                    : { opacity: 0.9, y: 8 }
                 }
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.15 }}
@@ -114,7 +114,7 @@ export default function Skills() {
                   duration: 0.5,
                   delay: reduceMotion ? 0 : index * 0.08,
                 }}
-                className="group relative overflow-hidden gio-card gio-card-interactive rounded-2xl p-6 transition-colors sm:p-7"
+                className="group relative overflow-hidden gio-card gio-card-interactive gio-card-padding rounded-2xl transition-colors"
               >
                 {/* Esquinas decorativas */}
 
@@ -155,11 +155,11 @@ export default function Skills() {
 
         {/* Mensaje inferior */}
         <motion.div
-          initial={reduceMotion ? false : { opacity: 0, y: 12 }}
+          initial={reduceMotion ? false : { opacity: 0.9, y: 8 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="mt-9 flex items-start gap-3 gio-card rounded-xl p-5"
+          className="gio-section-start flex items-start gap-3 gio-card rounded-xl p-5"
         >
           <BookOpen
             size={22}
