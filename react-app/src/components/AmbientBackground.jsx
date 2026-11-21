@@ -1,34 +1,20 @@
 import { lazy, Suspense, useEffect, useState } from 'react'
-import { Pause, Play } from 'lucide-react'
 import { AnimatePresence } from 'motion/react'
 import * as m from 'motion/react-m'
-import { createPortal } from 'react-dom'
-import { useTranslation } from 'react-i18next'
 import './AmbientBackground.css'
 
 const FloatingTechBackground = lazy(() => import('./FloatingTechBackground'))
 
 const SCENES = ['lagoon', 'sunset', 'canopy', 'tide', 'horizon']
 const SCENE_DURATION = 14000
-const PAUSE_KEY = 'gio-ambient-paused'
 const MOTION_QUERY = '(hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference)'
-
-function readPaused() {
-  try {
-    return sessionStorage.getItem(PAUSE_KEY) === 'true'
-  } catch {
-    return false
-  }
-}
 
 function getSceneIndex(index, step) {
   return (index + step + SCENES.length) % SCENES.length
 }
 
-export default function AmbientBackground({ controlsHost }) {
-  const { t } = useTranslation()
+export default function AmbientBackground({ paused }) {
   const [index, setIndex] = useState(0)
-  const [paused, setPaused] = useState(readPaused)
   const [canAnimate, setCanAnimate] = useState(
     () => window.matchMedia(MOTION_QUERY).matches,
   )
@@ -61,19 +47,7 @@ export default function AmbientBackground({ controlsHost }) {
     return () => window.clearTimeout(timer)
   }, [index, playing])
 
-  function togglePlayback() {
-    const nextPaused = !paused
-    setPaused(nextPaused)
-
-    try {
-      sessionStorage.setItem(PAUSE_KEY, String(nextPaused))
-    } catch {
-      // La preferencia se conserva en el estado de React.
-    }
-  }
-
   const scene = SCENES[index]
-  const playbackLabel = t(paused ? 'ambient.play' : 'ambient.pause')
 
   return (
     <>
@@ -94,28 +68,6 @@ export default function AmbientBackground({ controlsHost }) {
           <FloatingTechBackground playing={playing} />
         </Suspense>
       </div>
-
-      {canAnimate && controlsHost && createPortal(
-        <div
-          className="gio-ambient-controls"
-          role="group"
-          aria-label={t('ambient.label')}
-        >
-          <div className="gio-ambient-actions">
-            <button
-              type="button"
-              onClick={togglePlayback}
-              aria-label={playbackLabel}
-              title={playbackLabel}
-            >
-              {paused
-                ? <Play size={17} aria-hidden="true" />
-                : <Pause size={17} aria-hidden="true" />}
-            </button>
-          </div>
-        </div>,
-        controlsHost,
-      )}
     </>
   )
 }

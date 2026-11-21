@@ -58,6 +58,13 @@ const education = [
 // Los nombres de archivo deben coincidir con los PDF reales
 const certifications = [
   {
+    id: 'copa-2026',
+    titleKey: 'experience.certifications.copa2026',
+    institution: 'Copa Airlines',
+    year: '2026',
+    file: 'certificadoCopa2026.pdf',
+  },
+  {
     id: 1,
     title: 'Data Science Essentials with Python',
     institutionKey: 'experience.certifications.ciscoUtp',
@@ -243,6 +250,7 @@ function Experience() {
 
           <div className="gio-grid md:grid-cols-2">
             {certifications.map((certificate, index) => {
+              const title = certificate.titleKey ? t(certificate.titleKey) : certificate.title
               const certificateUrl =
                 `${documentsBase}certificates/${certificate.file}`
 
@@ -268,7 +276,7 @@ function Experience() {
                   </div>
 
                   <h4 className="text-lg font-bold text-gio-ink">
-                    {certificate.title}
+                    {title}
                   </h4>
 
                   <p className="mt-2 flex-1 text-sm text-gio-muted">
@@ -281,7 +289,7 @@ function Experience() {
                     href={certificateUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    aria-label={`${t('experience.viewCertificate')} · ${certificate.title} (${t('common.openNewTab')})`}
+                    aria-label={`${t('experience.viewCertificate')} · ${title} (${t('common.openNewTab')})`}
                     className="mt-2 inline-flex min-h-11 self-start items-center gap-2 rounded-sm font-semibold text-gio-violet hover:underline"
                   >
                     {t('experience.viewCertificate')}

@@ -128,7 +128,7 @@ export default function Navbar({ experienceControl }) {
           aria-label={t("nav.brandHome")}
         >
           <img
-            src={`${import.meta.env.BASE_URL}favicon.svg`}
+            src={`${import.meta.env.BASE_URL}favicon.svg?v=2.0.1`}
             width={44}
             height={44}
             alt=""

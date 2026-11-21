@@ -1,29 +1,4 @@
 @layer components {
-  .gio-background-playback {
-    --gio-playback-edge: max(0.75rem, env(safe-area-inset-right, 0px));
-    --gio-playback-opposite-edge: max(0.75rem, env(safe-area-inset-left, 0px));
-    position: fixed;
-    z-index: 30;
-    inset-inline-end: var(--gio-playback-edge);
-    inset-block-end: max(0.75rem, env(safe-area-inset-bottom, 0px));
-    max-inline-size: calc(100% - var(--gio-playback-edge) - var(--gio-playback-opposite-edge));
-  }
-
-  .gio-background-playback .gio-ambient-controls {
-    border: 1px solid var(--gio-line);
-    border-radius: 0.85rem;
-    background: var(--gio-surface);
-    box-shadow: var(--gio-shadow);
-  }
-
-  .gio-background-playback .gio-ambient-name:empty {
-    display: none;
-  }
-
-  .gio-background-playback .gio-ambient-name {
-    overflow-wrap: anywhere;
-  }
-
   .gio-ambient {
     position: fixed;
     inset: 0;
@@ -177,43 +152,7 @@
       linear-gradient(22deg, var(--ambient-turquoise), transparent 49%, var(--ambient-violet));
   }
 
-  .gio-ambient-controls {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: 0.25rem 0.5rem;
-    padding-inline: 0.25rem;
-  }
 
-  .gio-ambient-name {
-    min-width: 0;
-    color: var(--gio-muted);
-    font-size: 0.75rem;
-    font-weight: 600;
-  }
-
-  .gio-ambient-actions {
-    display: flex;
-    gap: 0.25rem;
-  }
-
-  .gio-ambient-actions button {
-    display: grid;
-    width: 2.75rem;
-    height: 2.75rem;
-    place-items: center;
-    border-radius: 0.65rem;
-    color: var(--gio-ink);
-  }
-
-  .gio-ambient-actions button:hover:enabled {
-    background: var(--gio-raised);
-  }
-
-  .gio-ambient-actions button:disabled {
-    color: var(--gio-muted);
-    opacity: 0.65;
-  }
 }
 
 @keyframes gio-ambient-drift {

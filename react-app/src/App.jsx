@@ -15,15 +15,30 @@ import Experience from './sections/Experience'
 import Contact from './sections/Contact'
 
 const experienceKey = 'gio-visual-experience'
-const videoFiles = {
-  adventure: 'aventuraChill.mp4',
-  after: 'afterMiami.mp4',
+function approvedVideoUrl(value) {
+  try {
+    const url = new URL(value)
+    return url.protocol === 'https:' && !url.username && !url.password ? url.href : undefined
+  } catch {
+    return undefined
+  }
 }
+
+const videoSources = import.meta.env.DEV
+  ? {
+      adventure: `${import.meta.env.BASE_URL}videos/aventuraChill.mp4`,
+      after: `${import.meta.env.BASE_URL}videos/afterMiami.mp4`,
+    }
+  : {
+      adventure: approvedVideoUrl(import.meta.env.VITE_ADVENTURE_VIDEO_URL),
+      after: approvedVideoUrl(import.meta.env.VITE_AFTER_VIDEO_URL),
+    }
+const availableVideos = Object.keys(videoSources).filter((id) => videoSources[id])
 
 function readExperience() {
   try {
     const saved = localStorage.getItem(experienceKey)
-    if (saved === 'adventure' || saved === 'after') return saved
+    if (availableVideos.includes(saved)) return saved
   } catch {
     // La experiencia original funciona sin almacenamiento.
   }
@@ -33,9 +48,9 @@ function readExperience() {
 
 function App() {
   const { t } = useTranslation()
-  const [controlsHost, setControlsHost] = useState(null)
-  const [experience, setExperience] = useState(() => import.meta.env.DEV ? readExperience() : 'original')
-  const videoFile = import.meta.env.DEV ? videoFiles[experience] : undefined
+  const [paused, setPaused] = useState(false)
+  const [experience, setExperience] = useState(readExperience)
+  const videoSource = videoSources[experience]
 
   function selectExperience(next) {
     setExperience(next)
@@ -58,19 +73,20 @@ function App() {
         <ExperienceSelector
           selected={experience}
           onSelect={selectExperience}
-          allowVideo={import.meta.env.DEV}
+          availableVideos={availableVideos}
+          paused={paused}
+          onTogglePlayback={() => setPaused((current) => !current)}
         />
       )} />
 
-      <main id="contenido-principal" tabIndex={-1} className="isolate" data-video-ambient={videoFile ? '' : undefined}>
-        <div ref={setControlsHost} className="gio-background-playback" />
-        {videoFile ? (
+      <main id="contenido-principal" tabIndex={-1} className="isolate" data-video-ambient={videoSource ? '' : undefined}>
+        {videoSource ? (
           <VideoBackground
             key={experience}
-            controlsHost={controlsHost}
-            src={`${import.meta.env.BASE_URL}videos/${videoFile}`}
+            paused={paused}
+            src={videoSource}
           />
-        ) : <AmbientBackground controlsHost={controlsHost} />}
+        ) : <AmbientBackground paused={paused} />}
         <Hero />
         <About />
         <Skills />
