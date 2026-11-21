@@ -1,5 +1,6 @@
 
-import { motion, useReducedMotion } from "motion/react";
+import { useReducedMotion } from "motion/react";
+import * as m from "motion/react-m";
 import { useTranslation } from "react-i18next";
 import {
   BookOpen,
@@ -15,6 +16,7 @@ const skillGroups = [
   {
     id: "web",
     icon: Code2,
+    example: "skills.webExample",
     technologies: [
       "HTML",
       "CSS",
@@ -26,6 +28,7 @@ const skillGroups = [
   {
     id: "programming",
     icon: Terminal,
+    example: "skills.programmingExample",
     technologies: [
       "Python",
       "C",
@@ -37,8 +40,10 @@ const skillGroups = [
   {
     id: "data",
     icon: Database,
+    example: "skills.dataExample",
     technologies: [
       "SQL",
+      "Azure SQL Database",
       "Excel",
       "Power BI",
     ],
@@ -71,7 +76,7 @@ export default function Skills() {
       {/* Fondo ambiental */}
       <div className="gio-section-container">
         {/* Encabezado */}
-        <motion.div
+        <m.div
           initial={reduceMotion ? false : { opacity: 0.94, y: 6 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.2 }}
@@ -79,7 +84,7 @@ export default function Skills() {
           className="gio-reading-panel gio-section-heading"
         >
           <span className="gio-section-eyebrow text-gio-gold">
-            <GitBranch size={15} />
+            <GitBranch size={15} aria-hidden="true" />
             {t("skills.eyebrow")}
           </span>
 
@@ -93,7 +98,7 @@ export default function Skills() {
           <p className="gio-section-intro">
             {t("skills.subtitle")}
           </p>
-        </motion.div>
+        </m.div>
 
         {/* Categorías */}
         <div className="gio-section-start gio-grid md:grid-cols-2">
@@ -101,7 +106,7 @@ export default function Skills() {
             const Icon = group.icon;
 
             return (
-              <motion.article
+              <m.article
                 key={group.id}
                 initial={
                   reduceMotion
@@ -119,9 +124,10 @@ export default function Skills() {
                 {/* Esquinas decorativas */}
 
                 <div className="mb-5 flex items-center gap-4">
-                  <span className="flex h-12 w-12 items-center justify-center rounded-xl border border-gio-line bg-gio-surface transition-colors group-hover:border-gio-line">
+                  <span className="grid size-12 shrink-0 place-items-center rounded-xl border border-gio-line bg-gio-surface">
                     <Icon
                       size={24}
+                      aria-hidden="true"
                       className="text-gio-gold"
                     />
                   </span>
@@ -138,23 +144,28 @@ export default function Skills() {
                 </div>
 
                 {/* Tecnologías */}
-                <div className="flex flex-wrap gap-2">
+                <ul role="list" className="flex flex-wrap gap-2">
                   {group.technologies.map((technology) => (
-                    <span
+                    <li
                       key={technology}
                       className="rounded-lg border border-gio-line bg-gio-surface px-3 py-2 text-sm font-medium text-gio-ink transition-colors hover:border-gio-line hover:bg-gio-gold/10"
                     >
                       {technology}
-                    </span>
+                    </li>
                   ))}
-                </div>
-              </motion.article>
+                </ul>
+                {group.example && (
+                  <p className="mt-4 border-t border-gio-line pt-3 text-sm leading-relaxed text-gio-muted">
+                    {t(group.example)}
+                  </p>
+                )}
+              </m.article>
             );
           })}
         </div>
 
         {/* Mensaje inferior */}
-        <motion.div
+        <m.div
           initial={reduceMotion ? false : { opacity: 0.9, y: 8 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -163,6 +174,7 @@ export default function Skills() {
         >
           <BookOpen
             size={22}
+            aria-hidden="true"
             className="mt-0.5 shrink-0 text-gio-turquoise"
           />
 
@@ -181,7 +193,7 @@ export default function Skills() {
             aria-hidden="true"
             className="ml-auto shrink-0 text-gio-gold"
           />
-        </motion.div>
+        </m.div>
       </div>
     </section>
   );

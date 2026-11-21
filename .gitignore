@@ -8,3 +8,5 @@ node_modules/
 
 # Archivos temporales
 *.log
+
+/i18n-backup/

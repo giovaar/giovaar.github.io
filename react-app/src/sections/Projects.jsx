@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
-import { motion, useReducedMotion } from 'motion/react'
+import { useReducedMotion } from 'motion/react'
+import * as m from 'motion/react-m'
 import { useTranslation } from 'react-i18next'
 import { projects } from '../data/projects'
 import ProjectCard from '../components/ProjectCard'
@@ -87,12 +88,13 @@ function Projects() {
       ref={sectionRef}
       id="proyectos"
       tabIndex={-1}
+      aria-labelledby="projects-title"
       className="gio-section-layout"
     >
       <div className="gio-section-container">
 
         {/* Encabezado */}
-        <motion.div
+        <m.div
           className="gio-reading-panel gio-section-heading"
           initial={reduceMotion ? false : { opacity: 0.94, y: 6 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -103,14 +105,14 @@ function Projects() {
             {t('projects.eyebrow')}
           </span>
 
-          <h2 className="gio-section-title text-gio-ink">
+          <h2 id="projects-title" className="gio-section-title text-gio-ink">
             {t('projects.title')}
           </h2>
 
           <p className="gio-section-intro">
             {t('projects.subtitle')}
           </p>
-        </motion.div>
+        </m.div>
 
         {/* Filtros */}
         <div
@@ -124,7 +126,7 @@ function Projects() {
               type="button"
               onClick={() => setActiveFilter(category.value)}
               aria-pressed={activeFilter === category.value}
-              className={`rounded-xl px-5 py-2.5 text-sm font-semibold transition-colors ${
+              className={`min-h-11 rounded-xl px-5 py-2.5 text-sm font-semibold transition-colors ${
                 activeFilter === category.value
                   ? 'bg-gio-action text-gio-on-action'
                   : 'border border-gio-line bg-gio-raised text-gio-muted hover:border-gio-violet hover:text-gio-violet'
@@ -136,14 +138,9 @@ function Projects() {
         </div>
 
         {/* Estado de carga */}
-        {loading && (
-          <p
-            role="status"
-            className="gio-reading-label mt-6 text-sm text-gio-muted"
-          >
-            {t('projects.loading')}
-          </p>
-        )}
+        <p role="status" className="sr-only">
+          {loading ? t('projects.loading') : ''}
+        </p>
 
         {/* Tarjetas de proyectos */}
         <div className="gio-project-grid gio-balanced-grid gio-grid mt-5 lg:grid-cols-3">

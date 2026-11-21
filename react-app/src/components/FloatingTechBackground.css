@@ -13,14 +13,14 @@
     --tech-outline: 62%;
     --tech-tint: 15%;
     color: var(--tech-color);
-    opacity: 0.44;
+    opacity: 0.27;
     transform: translate(-50%, -50%);
   }
 
   .dark .gio-tech-anchor {
     --tech-outline: 52%;
     --tech-tint: 11%;
-    opacity: 0.42;
+    opacity: 0.25;
   }
   .gio-tech-anchor[data-tone="gold"] { --tech-color: var(--gio-gold); }
   .gio-tech-anchor[data-tone="turquoise"] { --tech-color: var(--gio-turquoise); }
@@ -55,7 +55,7 @@
   @media (width < 48rem), (height < 32rem) {
     .gio-tech-anchor,
     .dark .gio-tech-anchor {
-      opacity: 0.29;
+      opacity: 0.18;
     }
     .gio-tech-anchor:nth-child(even) { display: none; }
     .gio-tech-symbol {

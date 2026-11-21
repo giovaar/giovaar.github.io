@@ -1,6 +1,7 @@
 import { lazy, Suspense, useEffect, useState } from 'react'
 import { Pause, Play } from 'lucide-react'
-import { AnimatePresence, motion } from 'motion/react'
+import { AnimatePresence } from 'motion/react'
+import * as m from 'motion/react-m'
 import { createPortal } from 'react-dom'
 import { useTranslation } from 'react-i18next'
 import './AmbientBackground.css'
@@ -78,7 +79,7 @@ export default function AmbientBackground({ controlsHost }) {
     <>
       <div className="gio-ambient" aria-hidden="true">
         <AnimatePresence mode="wait" initial={false}>
-          <motion.div
+          <m.div
             key={scene}
             className="gio-ambient-scene"
             data-scene={scene}

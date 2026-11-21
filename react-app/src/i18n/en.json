@@ -65,6 +65,8 @@
     "scroll": "Scroll to explore"
   },
   "about": {
+    "projectsAction": "See my projects",
+    "profileRole": "Engineering student",
     "eyebrow": "About me",
     "title": "What draws me to programming",
     "subtitle": "I like taking a question and making something I can test: a page, a program, or an analysis.",
@@ -74,9 +76,9 @@
     "dataDescription": "I enjoy organizing and exploring data and turning it into useful information.",
     "learning": "Continuous learning",
     "learningDescription": "I keep expanding my knowledge through projects and new technologies.",
-    "intro": "I'm Giovanny Arpaia, a Systems and Computer Engineering student at the Technological University of Panama.",
-    "description": "I'm exploring areas such as web development, programming, and data analysis, applying what I learn to academic and personal projects.",
-    "goal": "I want to keep learning and contribute to projects where software serves a clear purpose."
+    "intro": "I’m Giovanny Arpaia, a Systems and Computer Engineering student at the Technological University of Panama.",
+    "description": "My academic and personal projects give me a place to apply what I learn about programming, web development, and data. I enjoy figuring out how a tool works and using it to solve a specific problem.",
+    "goal": "I want to keep learning how software is built and maintained, from the interface to the data it uses."
   },
   "common": {
     "darkMode": "Dark mode",
@@ -85,12 +87,15 @@
     "openNewTab": "opens in a new tab"
   },
   "skills": {
+    "dataExample": "Clínica Salud y Bienestar · data storage with Azure SQL Database.",
+    "programmingExample": "FirstGame · movement and collision logic in C++.",
+    "webExample": "Portafolio Web Personal · interfaces built with React and Tailwind CSS.",
   "eyebrow": "My toolkit",
   "title": "What I build with",
   "subtitle": "These are the tools I practice with, from building interfaces to analyzing data.",
-  "web": "Web development",
+  "web": "Frontend",
   "webDescription": "Interfaces, applications, and web experiences.",
-  "programming": "Programming",
+  "programming": "Programming languages and software development",
   "programmingDescription": "Logic, algorithms, and software development.",
   "data": "Data and analytics",
   "dataDescription": "Databases, data organization, and visualization.",
@@ -139,7 +144,13 @@
         }
       },
       "firstGame": {
-        "description": "A C++ programming project for practicing logic, data structures, and the fundamentals of game development."
+        "description": "A C++ console maze game where you guide a character to the treasure.",
+        "story": {
+          "objective": "Reach the treasure ($) by navigating a maze drawn with characters in the console.",
+          "solution": "The game loads the maze from Map.txt and reads the intro and victory screens from text files. Each WASD command attempts to move the character one cell. Reaching the treasure brings up the victory screen.",
+          "technologies": "The game uses C++ and its standard library for file reading and console input and output. The Code::Blocks project is configured for GNU GCC.",
+          "learning": "The code shows how to divide responsibilities among the Player, GameMap, and MapCell classes, load text resources, and validate each move to keep the character from walking through walls or leaving the map."
+        }
       },
       "portfolio": {
         "imageAlt": "Giovanny Arpaia’s portfolio homepage, with his name and main links.",
@@ -154,11 +165,12 @@
     }
   },
   "experience": {
+    "projectsAction": "See academic and personal projects",
     "eyebrow": "My journey",
     "title": "From coursework to practice",
     "subtitle": "My path brings together what I study, what tutoring teaches me, and the courses I take alongside my degree.",
     "sections": {
-      "experience": "Experience",
+      "experience": "University tutoring",
       "education": "Education",
       "certifications": "Courses and certifications",
       "languages": "Languages"
@@ -207,9 +219,10 @@
     }
   },
   "contact": {
+    "cvAction": "View my résumé",
     "eyebrow": "Contact",
     "title": "Let’s talk about what we could build",
-    "subtitle": "If you’d like to talk about a project or an opportunity in software development or data analysis, send me a message. You can also find me on GitHub and LinkedIn.",
+    "subtitle": "Email me to discuss a project or an opportunity in software development or data analysis. You can browse my code on GitHub or connect with me on LinkedIn.",
     "links": {
       "email": {
         "name": "Email",

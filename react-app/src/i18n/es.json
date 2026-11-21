@@ -65,6 +65,8 @@
     "scroll": "Desplázate para explorar"
   },
   "about": {
+    "projectsAction": "Ver mis proyectos",
+    "profileRole": "Estudiante de ingeniería",
     "eyebrow": "Sobre mí",
     "title": "Lo que me mueve a programar",
     "subtitle": "Me gusta pasar de una pregunta a algo que puedo probar: una página, un programa o un análisis.",
@@ -74,9 +76,9 @@
     "dataDescription": "Me gusta organizar, explorar y convertir datos en información útil.",
     "learning": "Aprendizaje continuo",
     "learningDescription": "Sigo ampliando mis conocimientos mediante proyectos y nuevas tecnologías.",
-    "intro": "Soy Giovanny Arpaia, estudiante de Ingeniería de Sistemas y Computación en la Universidad Tecnológica de Panamá.",
-    "description": "Exploro áreas como el desarrollo web, la programación y el análisis de datos, aplicando lo aprendido en proyectos académicos y personales.",
-    "goal": "Quiero seguir aprendiendo y aportar a proyectos donde el software tenga un propósito claro."
+    "intro": "Soy Giovanny Arpaia y estudio Ingeniería de Sistemas y Computación en la Universidad Tecnológica de Panamá.",
+    "description": "En mis proyectos académicos y personales pongo en práctica lo que aprendo de programación, desarrollo web y datos. Me interesa entender cómo funciona una herramienta y usarla para resolver un problema concreto.",
+    "goal": "Quiero seguir aprendiendo cómo se construye y se mantiene el software, desde la interfaz hasta los datos que utiliza."
   },
   "common": {
     "darkMode": "Modo oscuro",
@@ -85,12 +87,15 @@
     "openNewTab": "se abre en una pestaña nueva"
   },
   "skills": {
+    "dataExample": "Clínica Salud y Bienestar · almacenamiento de datos con Azure SQL Database.",
+    "programmingExample": "FirstGame · lógica de movimiento y colisiones en C++.",
+    "webExample": "Portafolio Web Personal · interfaces con React y Tailwind CSS.",
   "eyebrow": "Mi caja de herramientas",
   "title": "Con qué construyo",
   "subtitle": "Estas son las herramientas que uso para practicar, desde el trabajo con interfaces hasta el análisis de datos.",
-  "web": "Desarrollo web",
+  "web": "Frontend",
   "webDescription": "Interfaces, aplicaciones y experiencias web.",
-  "programming": "Programación",
+  "programming": "Lenguajes y desarrollo de software",
   "programmingDescription": "Lógica, algoritmos y desarrollo de software.",
   "data": "Datos y análisis",
   "dataDescription": "Bases de datos, organización y visualización de información.",
@@ -139,7 +144,13 @@
         }
       },
       "firstGame": {
-        "description": "Proyecto de programación desarrollado en C++ para practicar lógica, estructuras y fundamentos del desarrollo de videojuegos."
+        "description": "Minijuego de laberinto en consola, hecho en C++, en el que guías al personaje hasta el tesoro.",
+        "story": {
+          "objective": "Llegar al tesoro ($) recorriendo un laberinto representado con caracteres en la consola.",
+          "solution": "El juego carga el laberinto desde Map.txt y lee la introducción y la pantalla de victoria desde archivos de texto. Cada comando WASD intenta mover al personaje una casilla. Si llega al tesoro, aparece la pantalla de victoria.",
+          "technologies": "El juego usa C++ y su biblioteca estándar para leer archivos y gestionar la entrada y salida de consola. El proyecto de Code::Blocks está configurado para GNU GCC.",
+          "learning": "El código muestra cómo separar las responsabilidades entre las clases Player, GameMap y MapCell, cargar recursos de texto y validar cada movimiento para impedir que el personaje atraviese paredes o salga del mapa."
+        }
       },
       "portfolio": {
         "imageAlt": "Inicio del portafolio de Giovanny Arpaia, con su nombre y los enlaces principales.",
@@ -154,11 +165,12 @@
     }
   },
   "experience": {
+    "projectsAction": "Ver proyectos académicos y personales",
     "eyebrow": "Mi trayectoria",
     "title": "Entre el aula y la práctica",
     "subtitle": "Mi recorrido reúne lo que estudio, lo que aprendo al dar tutorías y la formación que complemento con cursos.",
     "sections": {
-      "experience": "Experiencia",
+      "experience": "Tutoría universitaria",
       "education": "Educación",
       "certifications": "Cursos y certificaciones",
       "languages": "Idiomas"
@@ -207,9 +219,10 @@
     }
   },
   "contact": {
+    "cvAction": "Consultar mi CV",
     "eyebrow": "Contacto",
     "title": "Hablemos de lo que podemos construir",
-    "subtitle": "Si quieres conversar sobre un proyecto o una oportunidad en desarrollo de software o análisis de datos, escríbeme. También puedes encontrarme en GitHub y LinkedIn.",
+    "subtitle": "Escríbeme por correo si quieres conversar sobre un proyecto o una oportunidad en software o análisis de datos. Puedes consultar mi código en GitHub o conectar conmigo en LinkedIn.",
     "links": {
       "email": {
         "name": "Correo electrónico",

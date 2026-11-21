@@ -1,5 +1,6 @@
 
-import { motion, useReducedMotion } from 'motion/react'
+import { useReducedMotion } from 'motion/react'
+import * as m from 'motion/react-m'
 import { useTranslation } from 'react-i18next'
 import {
   Award,
@@ -126,27 +127,28 @@ function Experience() {
     <section
       id="experiencia"
       tabIndex={-1}
+      aria-labelledby="experience-title"
       className="gio-section-layout"
     >
       <div className="gio-section-container">
 
         {/* Encabezado */}
-        <motion.div {...reveal} className="gio-reading-panel gio-section-heading">
+        <m.div {...reveal} className="gio-reading-panel gio-section-heading">
           <span className="gio-section-eyebrow text-gio-gold">
             {t('experience.eyebrow')}
           </span>
 
-          <h2 className="gio-section-title text-gio-ink">
+          <h2 id="experience-title" className="gio-section-title text-gio-ink">
             {t('experience.title')}
           </h2>
 
           <p className="gio-section-intro">
             {t('experience.subtitle')}
           </p>
-        </motion.div>
+        </m.div>
 
         {/* Experiencia laboral y académica */}
-        <motion.div {...reveal} className="gio-section-start">
+        <m.div {...reveal} className="gio-section-start">
           <h3 className="gio-reading-label mb-6 flex items-center gap-3 text-2xl font-bold text-gio-ink">
             <BriefcaseBusiness
               size={25}
@@ -156,9 +158,9 @@ function Experience() {
             {t('experience.sections.experience')}
           </h3>
 
-          <div className="gio-grid">
+          <ol role="list" className="gio-timeline">
             {experiences.map((item) => (
-              <article
+              <li
                 key={item.id}
                 className="gio-card gio-card-padding rounded-2xl"
               >
@@ -177,13 +179,13 @@ function Experience() {
                 <p className="mt-4 leading-relaxed text-gio-muted">
                   {t(item.descriptionKey)}
                 </p>
-              </article>
+              </li>
             ))}
-          </div>
-        </motion.div>
+          </ol>
+        </m.div>
 
         {/* Educación */}
-        <motion.div {...reveal} className="gio-section-start">
+        <m.div {...reveal} className="gio-section-start">
           <h3 className="gio-reading-label mb-6 flex items-center gap-3 text-2xl font-bold text-gio-ink">
             <GraduationCap
               size={25}
@@ -193,9 +195,9 @@ function Experience() {
             {t('experience.sections.education')}
           </h3>
 
-          <div className="gio-grid md:grid-cols-2">
+          <ol role="list" className="gio-timeline">
             {education.map((item) => (
-              <article
+              <li
                 key={item.id}
                 className="gio-card gio-card-padding rounded-2xl"
               >
@@ -214,13 +216,16 @@ function Experience() {
                 <p className="mt-4 leading-relaxed text-gio-muted">
                   {t(item.descriptionKey)}
                 </p>
-              </article>
+              </li>
             ))}
-          </div>
-        </motion.div>
+          </ol>
+          <a href="#proyectos" className="gio-reading-label mt-4 inline-flex min-h-11 items-center rounded-sm font-semibold text-gio-violet hover:underline">
+            {t('experience.projectsAction')}
+          </a>
+        </m.div>
 
         {/* Certificaciones */}
-        <motion.div {...reveal} className="gio-section-start">
+        <m.div {...reveal} className="gio-section-start">
           <div className="mb-6 flex flex-wrap items-center justify-between gap-3">
             <h3 className="gio-reading-label flex items-center gap-3 text-2xl font-bold text-gio-ink">
               <Award
@@ -242,7 +247,7 @@ function Experience() {
                 `${documentsBase}certificates/${certificate.file}`
 
               return (
-                <motion.article
+                <m.article
                   key={certificate.id}
                   initial={reduceMotion ? false : { opacity: 0.9, y: 8 }}
                   whileInView={{ opacity: 1, y: 0 }}
@@ -276,19 +281,20 @@ function Experience() {
                     href={certificateUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="mt-4 inline-flex items-center gap-2 font-semibold text-gio-violet hover:underline"
+                    aria-label={`${t('experience.viewCertificate')} · ${certificate.title} (${t('common.openNewTab')})`}
+                    className="mt-2 inline-flex min-h-11 self-start items-center gap-2 rounded-sm font-semibold text-gio-violet hover:underline"
                   >
                     {t('experience.viewCertificate')}
                     <ExternalLink size={16} aria-hidden="true" />
                   </a>
-                </motion.article>
+                </m.article>
               )
             })}
           </div>
-        </motion.div>
+        </m.div>
 
         {/* Idiomas */}
-        <motion.div {...reveal} className="gio-section-start">
+        <m.div {...reveal} className="gio-section-start">
           <h3 className="gio-reading-label mb-6 flex items-center gap-3 text-2xl font-bold text-gio-ink">
             <Languages
               size={25}
@@ -301,7 +307,7 @@ function Experience() {
           <div className="grid gap-4 sm:grid-cols-2">
             {languages.map((language) => (
               <div
-                key={language.name}
+                key={language.nameKey}
                 className="flex flex-wrap items-center justify-between gap-3 gio-card rounded-xl p-6"
               >
                 <span className="font-semibold text-gio-ink">
@@ -314,11 +320,13 @@ function Experience() {
               </div>
             ))}
           </div>
-        </motion.div>
+        </m.div>
 
         {/* Currículums */}
-        <motion.div
+        <m.div
           {...reveal}
+          id="curriculums"
+          tabIndex={-1}
           className="gio-section-start gio-card rounded-2xl p-5 sm:p-8 md:p-10"
         >
           <div className="flex items-center gap-3">
@@ -359,7 +367,8 @@ function Experience() {
                       href={cvUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2 rounded-lg bg-gio-action px-4 py-2.5 text-sm font-semibold text-gio-on-action hover:bg-gio-action-hover"
+                      aria-label={`${t('experience.cv.view')} · ${t(cv.labelKey)} (${t('common.openNewTab')})`}
+                      className="inline-flex min-h-11 items-center gap-2 rounded-lg bg-gio-action px-4 py-2.5 text-sm font-semibold text-gio-on-action hover:bg-gio-action-hover"
                     >
                       <ExternalLink size={16} aria-hidden="true" />
                       {t('experience.cv.view')}
@@ -368,7 +377,8 @@ function Experience() {
                     <a
                       href={cvUrl}
                       download={cv.filename}
-                      className="inline-flex items-center gap-2 rounded-lg border border-gio-line px-4 py-2.5 text-sm font-semibold text-gio-violet hover:bg-gio-raised"
+                      aria-label={`${t('experience.cv.download')} · ${t(cv.labelKey)}`}
+                      className="inline-flex min-h-11 items-center gap-2 rounded-lg border border-gio-line px-4 py-2.5 text-sm font-semibold text-gio-violet hover:bg-gio-raised"
                     >
                       <Download size={16} aria-hidden="true" />
                       {t('experience.cv.download')}
@@ -378,7 +388,7 @@ function Experience() {
               )
             })}
           </div>
-        </motion.div>
+        </m.div>
 
       </div>
     </section>

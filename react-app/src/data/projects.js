@@ -28,6 +28,12 @@ export const projects = [
     github:
       'https://github.com/giovaar/FirstGame',
     featured: true,
+    story: {
+      objective: 'projects.items.firstGame.story.objective',
+      solution: 'projects.items.firstGame.story.solution',
+      technologies: 'projects.items.firstGame.story.technologies',
+      learning: 'projects.items.firstGame.story.learning',
+    },
   },
   {
     id: 3,

@@ -63,7 +63,7 @@ html.dark {
 @layer base {
   html {
     scroll-behavior: smooth;
-    scroll-padding-block-start: calc(var(--gio-nav-height, 4.5rem) + 1.25rem);
+    scroll-padding-block-start: calc(var(--gio-nav-height, 5.25rem) + clamp(1rem, 2vw, 1.5rem));
   }
 
   body {
@@ -158,8 +158,42 @@ html.dark {
   }
 
   .gio-project-card {
+    display: flex;
+    flex-direction: column;
+    gap: 0.875rem;
+    min-inline-size: 0;
+    overflow-wrap: anywhere;
+  }
+
+  .gio-project-header-with-image {
     display: grid;
     gap: 0.875rem;
+  }
+
+  .gio-timeline {
+    display: grid;
+    gap: 1rem;
+    margin-inline-start: 0.375rem;
+    padding-inline-start: 1.25rem;
+    border-inline-start: 1px solid var(--gio-line);
+  }
+
+  .gio-timeline > li {
+    position: relative;
+    min-inline-size: 0;
+    overflow-wrap: anywhere;
+  }
+
+  .gio-timeline > li::before {
+    position: absolute;
+    inset-block-start: 1.5rem;
+    inset-inline-start: calc(-1.25rem - 0.375rem - 2px);
+    inline-size: 0.75rem;
+    block-size: 0.75rem;
+    border: 2px solid var(--gio-surface);
+    border-radius: 50%;
+    background: var(--gio-gold);
+    content: "";
   }
 
   @media (48rem <= width < 64rem) {
@@ -177,12 +211,19 @@ html.dark {
   }
 
   @media (min-width: 48rem) {
-    @supports (grid-template-rows: subgrid) and selector(:has(details[open])) {
-      .gio-project-grid:not(:has(details[open])) > .gio-project-card {
-        grid-row: span 4;
-        grid-template-rows: subgrid;
-        align-self: stretch;
-      }
+    .gio-project-grid:not(:has(details[open])) > .gio-project-card {
+      align-self: stretch;
+    }
+  }
+
+  @media (min-width: 64rem) {
+    .gio-project-header-with-image {
+      grid-template-columns: minmax(0, 1fr) minmax(0, 36%);
+      align-items: start;
+    }
+
+    .gio-project-image {
+      order: 1;
     }
   }
 

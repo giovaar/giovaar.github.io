@@ -19,6 +19,7 @@ function publishablePublicAssets() {
         const entries = await readdir(join(publicDir, directory), { withFileTypes: true })
         for (const entry of entries) {
           if (directory === '' && entry.name === 'videos') continue
+          if (/\.mp4$/i.test(entry.name)) continue
           const fileName = directory ? `${directory}/${entry.name}` : entry.name
           if (entry.isDirectory()) {
             await emitDirectory.call(this, fileName)

@@ -1,4 +1,5 @@
-import { motion, useReducedMotion } from 'motion/react'
+import { useReducedMotion } from 'motion/react'
+import * as m from 'motion/react-m'
 import { useTranslation } from 'react-i18next'
 import { ArrowRight, Download, ExternalLink, FileText } from 'lucide-react'
 
@@ -16,7 +17,7 @@ export default function Hero() {
       aria-labelledby="hero-title"
       className="gio-hero relative isolate mx-auto grid w-full max-w-7xl items-center gap-8 lg:grid-cols-[minmax(0,1.18fr)_minmax(0,0.82fr)]"
     >
-      <motion.div
+      <m.div
         initial={reduceMotion ? false : { opacity: 0.82, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: reduceMotion ? 0 : 0.42, ease: 'easeOut' }}
@@ -70,7 +71,7 @@ export default function Hero() {
             </li>
           ))}
         </ul>
-      </motion.div>
+      </m.div>
 
       <div className="gio-hero-art hidden lg:grid" aria-hidden="true">
         <span>GA</span>

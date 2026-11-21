@@ -1,5 +1,6 @@
 
-import { motion, useReducedMotion } from "motion/react";
+import { useReducedMotion } from "motion/react";
+import * as m from "motion/react-m";
 import { useTranslation } from "react-i18next";
 import {
   BookOpen,
@@ -43,7 +44,7 @@ export default function About() {
     >
       {/* Iluminación ambiental */}
       <div className="gio-section-container">
-        <motion.div
+        <m.div
           initial={reduceMotion ? false : { opacity: 0.94, y: 6 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.2 }}
@@ -51,7 +52,7 @@ export default function About() {
           className="gio-reading-panel gio-section-heading"
         >
           <span className="gio-section-eyebrow text-gio-gold">
-            <Compass size={15} />
+            <Compass size={15} aria-hidden="true" />
             {t("about.eyebrow")}
           </span>
 
@@ -65,37 +66,40 @@ export default function About() {
           <p className="gio-section-intro">
             {t("about.subtitle")}
           </p>
-        </motion.div>
+        </m.div>
 
-        <div className="gio-section-start gio-grid items-start lg:grid-cols-2">
+        <div className="gio-section-start gio-grid lg:grid-cols-2">
           {/* Perfil */}
-          <motion.div
-            initial={reduceMotion ? false : { opacity: 0.9, x: -8 }}
-            whileInView={{ opacity: 1, x: 0 }}
+          <m.div
+            initial={reduceMotion ? false : { opacity: 0.9, y: 6 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.2 }}
             transition={{ duration: 0.6 }}
             className="relative gio-card gio-card-padding rounded-2xl"
           >
 
             <div className="mb-6 flex items-center gap-3">
-              <span className="flex h-12 w-12 items-center justify-center rounded-xl border border-gio-line bg-gio-raised">
-                <Sparkles size={23} className="text-gio-gold" />
+              <span className="grid size-12 shrink-0 place-items-center rounded-xl border border-gio-line bg-gio-raised">
+                <Sparkles size={23} aria-hidden="true" className="text-gio-gold" />
               </span>
 
               <div>
                 <h3 className="text-xl font-bold">Giovanny Arpaia</h3>
                 <p className="text-xs tracking-wider text-gio-turquoise">
-                  GIO · Developer
+                  {t("about.profileRole")}
                 </p>
               </div>
             </div>
 
             <div className="space-y-5 text-sm leading-7 text-gio-muted sm:text-base">
-              <p>{t("about.intro")}</p>
+              <p className="text-lg leading-relaxed font-semibold text-gio-ink">{t("about.intro")}</p>
               <p>{t("about.description")}</p>
               <p>{t("about.goal")}</p>
             </div>
-          </motion.div>
+            <a href="#proyectos" className="mt-5 inline-flex min-h-11 items-center rounded-sm font-semibold text-gio-violet hover:underline">
+              {t("about.projectsAction")}
+            </a>
+          </m.div>
 
           {/* Intereses */}
           <div className="gio-grid">
@@ -103,7 +107,7 @@ export default function About() {
               const Icon = card.icon;
 
               return (
-                <motion.div
+                <m.div
                   key={card.id}
                   initial={reduceMotion ? false : { opacity: 0.9, y: 8 }}
                   whileInView={{ opacity: 1, y: 0 }}
@@ -115,7 +119,7 @@ export default function About() {
                   className="group flex gap-4 gio-card gio-card-interactive rounded-2xl p-5 transition-colors sm:p-6"
                 >
                   <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl border border-gio-line bg-gio-raised transition-colors group-hover:border-gio-line">
-                    <Icon size={23} className="text-gio-turquoise transition-colors group-hover:text-gio-gold" />
+                    <Icon size={23} aria-hidden="true" className="text-gio-turquoise transition-colors group-hover:text-gio-gold" />
                   </span>
 
                   <div>
@@ -126,7 +130,7 @@ export default function About() {
                       {card.description}
                     </p>
                   </div>
-                </motion.div>
+                </m.div>
               );
             })}
           </div>

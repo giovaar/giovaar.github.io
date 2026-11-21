@@ -1,7 +1,8 @@
 
 import { useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { motion, useReducedMotion } from "motion/react";
+import { useReducedMotion } from "motion/react";
+import * as m from "motion/react-m";
 import {
   Menu,
   X,
@@ -27,16 +28,19 @@ export default function Navbar({ experienceControl }) {
   const [activeSection, setActiveSection] = useState("#inicio");
   const [compact, setCompact] = useState(false);
   const reduceMotion = useReducedMotion();
-  const navBar = useRef(null);
+  const headerRef = useRef(null);
   const menuButton = useRef(null);
 
   useEffect(() => {
-    const nav = navBar.current;
+    const header = headerRef.current;
     const root = document.documentElement;
-    const measure = () => root.style.setProperty("--gio-nav-height", `${nav.offsetTop + nav.offsetHeight}px`);
+    const measure = () => {
+      const height = Math.ceil(header.getBoundingClientRect().height);
+      root.style.setProperty("--gio-nav-height", `${height}px`);
+    };
     const observer = typeof ResizeObserver === "function" ? new ResizeObserver(measure) : null;
     measure();
-    observer?.observe(nav);
+    observer?.observe(header, { box: "border-box" });
     window.addEventListener("resize", measure);
     return () => {
       observer?.disconnect();
@@ -54,7 +58,7 @@ export default function Navbar({ experienceControl }) {
     function updateNavigation() {
       frame = undefined;
       const scrollY = Math.max(0, window.scrollY);
-      const position = (navBar.current?.getBoundingClientRect().bottom ?? 0) + window.innerHeight * 0.23;
+      const position = (headerRef.current?.getBoundingClientRect().bottom ?? 0) + window.innerHeight * 0.23;
       let current = navigation[0].href;
 
       for (const section of sections) {
@@ -103,22 +107,23 @@ export default function Navbar({ experienceControl }) {
   }
 
   function followSection(event) {
+    if (event.defaultPrevented || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+
     const section = document.getElementById(event.currentTarget.hash.slice(1));
     section?.focus({ preventScroll: true });
     closeMenu();
   }
 
   return (
-    <header onKeyDown={handleKeyDown} data-compact={compact && !reduceMotion} className="gio-navbar sticky top-0 z-50">
+    <header ref={headerRef} onKeyDown={handleKeyDown} data-compact={compact && !reduceMotion} className="gio-navbar sticky top-0 z-50">
       <nav
-        ref={navBar}
         aria-label={t("nav.label")}
         className={`gio-navbar-inner mx-auto flex max-w-7xl items-center justify-between gap-2 px-3 min-[360px]:gap-3 min-[360px]:px-4 sm:px-6 lg:px-8 ${experienceControl ? "max-[400px]:gap-1 max-[400px]:px-2" : ""}`}
       >
         {/* Logo */}
         <a
           href="#inicio"
-          onClick={closeMenu}
+          onClick={followSection}
           className="group flex shrink-0 items-center gap-3 rounded-lg"
           aria-label={t("nav.brandHome")}
         >
@@ -141,6 +146,7 @@ export default function Navbar({ experienceControl }) {
             <a
               key={item.key}
               href={item.href}
+              onClick={followSection}
               aria-current={activeSection === item.href ? "location" : undefined}
               className="gio-nav-link relative rounded-lg px-2.5 py-2 text-sm font-medium text-gio-muted hover:bg-gio-raised hover:text-gio-ink"
             >
@@ -189,9 +195,9 @@ export default function Navbar({ experienceControl }) {
       </nav>
 
       {/* Menú móvil desplegable */}
-      <div id="gio-mobile-menu" hidden={!menuOpen} className="xl:hidden">
+      <div id="gio-mobile-menu" hidden={!menuOpen} className="absolute inset-x-0 top-full xl:hidden">
         {menuOpen && (
-          <motion.div
+          <m.div
             initial={reduceMotion ? false : { opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             transition={{ duration: reduceMotion ? 0 : 0.2 }}
@@ -225,7 +231,7 @@ export default function Navbar({ experienceControl }) {
                 <ExternalLink size={14} />
               </a>
             </div>
-          </motion.div>
+          </m.div>
         )}
       </div>
     </header>

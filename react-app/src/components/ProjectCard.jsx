@@ -1,6 +1,7 @@
 
 import { useState } from 'react'
-import { motion, useReducedMotion } from 'motion/react'
+import { useReducedMotion } from 'motion/react'
+import * as m from 'motion/react-m'
 import { useTranslation } from 'react-i18next'
 
 import {
@@ -60,7 +61,7 @@ function ProjectCard({ project, index }) {
   const externalLabel = (action) => `${action} · ${project.title} (${t('common.openNewTab')})`
 
   return (
-    <motion.article
+    <m.article
       initial={
         reduceMotion
           ? false
@@ -79,9 +80,9 @@ function ProjectCard({ project, index }) {
       }}
       className="gio-project-card gio-card gio-card-padding rounded-2xl transition-colors duration-150 hover:border-gio-violet focus-within:border-gio-violet motion-reduce:transition-none"
     >
-      <header>
+      <header className={showImage ? 'gio-project-header-with-image' : undefined}>
         {showImage && (
-          <div className="mb-4 overflow-hidden rounded-xl border border-gio-line bg-gio-raised">
+          <div className="gio-project-image overflow-hidden rounded-xl border border-gio-line bg-gio-raised">
             <img
               key={image.src}
               src={image.src}
@@ -96,19 +97,21 @@ function ProjectCard({ project, index }) {
           </div>
         )}
 
-        <div className="flex items-center gap-3">
+        <div className="flex items-start gap-3">
           {!showImage && (
             <div className="grid size-11 shrink-0 place-items-center rounded-xl border border-gio-line bg-gio-raised text-gio-violet">
               <ProjectCategoryIcon category={project.category} />
             </div>
           )}
-          <p className="text-xs font-semibold uppercase tracking-widest text-gio-violet">
-            {t(project.categoryKey)}
-          </p>
+          <div className="min-w-0">
+            <p className="text-xs font-semibold uppercase tracking-widest text-gio-violet">
+              {t(project.categoryKey)}
+            </p>
+            <h3 className="mt-1 text-2xl leading-tight font-bold tracking-tight text-gio-ink">
+              {project.title}
+            </h3>
+          </div>
         </div>
-        <h3 className="mt-4 text-2xl leading-tight font-bold tracking-tight text-gio-ink">
-          {project.title}
-        </h3>
       </header>
 
       <p className="leading-relaxed text-gio-muted">
@@ -123,7 +126,7 @@ function ProjectCard({ project, index }) {
         ))}
       </ul>
 
-      <div>
+      <div className="mt-auto">
         <footer>
           <div className="flex flex-wrap items-center gap-x-4 border-t border-gio-line pt-2">
             {codeUrl && (
@@ -193,7 +196,7 @@ function ProjectCard({ project, index }) {
           </details>
         )}
       </div>
-    </motion.article>
+    </m.article>
   )
 }
 
