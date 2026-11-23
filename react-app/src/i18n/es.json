@@ -107,7 +107,7 @@
   "projects": {
     "eyebrow": "Mi trabajo",
     "title": "Ideas que se volvieron proyectos",
-    "subtitle": "Aquí reúno tres formas de poner en práctica lo aprendido: una aplicación para una clínica, un primer videojuego y el portafolio que estás viendo.",
+    "subtitle": "Aquí reúno cuatro formas de poner en práctica lo aprendido: una aplicación para una clínica, un primer videojuego, el portafolio que estás viendo y un dashboard de análisis de alquileres de bicicletas.",
     "filters": {
       "label": "Filtrar proyectos por categoría",
       "all": "Todos"
@@ -151,6 +151,10 @@
           "technologies": "El juego usa C++ y su biblioteca estándar para leer archivos y gestionar la entrada y salida de consola. El proyecto de Code::Blocks está configurado para GNU GCC.",
           "learning": "El código muestra cómo separar las responsabilidades entre las clases Player, GameMap y MapCell, cargar recursos de texto y validar cada movimiento para impedir que el personaje atraviese paredes o salga del mapa."
         }
+      },
+      "bikeSharing": {
+        "imageAlt": "Resumen de Bike Sharing Analytics con 3,29 millones de alquileres y gráficos de alquileres por mes y por hora.",
+        "description": "Dashboard interactivo de 3,29 millones de alquileres históricos de Capital Bikeshare, con análisis de demanda, clima y evaluación de modelos de Machine Learning."
       },
       "portfolio": {
         "imageAlt": "Inicio del portafolio de Giovanny Arpaia, con su nombre y los enlaces principales.",

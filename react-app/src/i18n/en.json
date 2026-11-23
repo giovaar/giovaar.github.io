@@ -107,7 +107,7 @@
   "projects": {
     "eyebrow": "My work",
     "title": "Ideas I turned into projects",
-    "subtitle": "Here are three ways I’ve put what I learned into practice: an app for a clinic, a first game, and the portfolio you’re browsing.",
+    "subtitle": "Here are four ways I’ve put what I learned into practice: an app for a clinic, a first game, the portfolio you’re browsing, and a dashboard for analyzing bike rentals.",
     "filters": {
       "label": "Filter projects by category",
       "all": "All"
@@ -151,6 +151,10 @@
           "technologies": "The game uses C++ and its standard library for file reading and console input and output. The Code::Blocks project is configured for GNU GCC.",
           "learning": "The code shows how to divide responsibilities among the Player, GameMap, and MapCell classes, load text resources, and validate each move to keep the character from walking through walls or leaving the map."
         }
+      },
+      "bikeSharing": {
+        "imageAlt": "Bike Sharing Analytics overview showing 3.29 million rentals and charts of monthly and hourly rentals.",
+        "description": "An interactive dashboard covering 3.29 million historical Capital Bikeshare rentals, with demand and weather analysis and machine learning model evaluation."
       },
       "portfolio": {
         "imageAlt": "Giovanny Arpaia’s portfolio homepage, with his name and main links.",

@@ -64,4 +64,21 @@ export const projects = [
       learning: 'projects.items.portfolio.story.learning',
     },
   },
+  {
+    id: 4,
+    title: 'Bike Sharing Analytics',
+    descriptionKey: 'projects.items.bikeSharing.description',
+    technologies: ['React', 'TypeScript', 'Python', 'Recharts', 'scikit-learn'],
+    category: 'Web',
+    categoryKey: 'projects.categories.web',
+    github: 'https://github.com/giovaar/bike-sharing-analytics',
+    demo: 'https://giovaar.github.io/bike-sharing-analytics/',
+    featured: true,
+    image: {
+      src: `${import.meta.env.BASE_URL}images/projects/bike-sharing-dashboard.png`,
+      width: 1587,
+      height: 772,
+      altKey: 'projects.items.bikeSharing.imageAlt',
+    },
+  },
 ]
